@@ -12,8 +12,8 @@ metadata/_custom_type_script = "uid://mmchhhj8417w"
 [resource]
 script = ExtResource("2_xwo78")
 name = "Heavy Atatck"
-prepare_time = 0.4
-recover_time = 0.6
+prepare_time = 1.0
+recover_time = 1.5
 effects = Array[ExtResource("1_4i6lk")]([SubResource("Resource_sv2ca")])
 target_type = "enemy"
 metadata/_custom_type_script = "uid://f0d7wg7fgwje"

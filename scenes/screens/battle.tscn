@@ -17,12 +17,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timeline" parent="CanvasLayer/Control" node_paths=PackedStringArray("battlee_manager") instance=ExtResource("2_rxsww")]
+[node name="Timeline" parent="CanvasLayer/Control" node_paths=PackedStringArray("battle_manager") instance=ExtResource("2_rxsww")]
 layout_mode = 1
 anchors_preset = -1
-battlee_manager = NodePath("../../../BattleManager")
+battle_manager = NodePath("../../../BattleManager")
 visible_seconds = 3.5
 metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -74.2921
+offset_top = 274.44
+offset_right = -66.2921
+offset_bottom = 282.44
+text = "start/pause"
 
 [node name="BattleManager" type="Node" parent="."]
 script = ExtResource("4_h1mvy")

@@ -4,7 +4,7 @@ extends Panel
 
 
 func _action_x(at_time: float) -> float:
-	return (at_time - timeline_row.timeline.battlee_manager.battle_time) * timeline_row._pixels_per_sec
+	return (at_time) * timeline_row._pixels_per_sec
 
 
 func _draw():

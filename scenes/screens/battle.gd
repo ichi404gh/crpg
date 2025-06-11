@@ -1,34 +1,46 @@
 extends Node2D
 
 
-@onready var timeline: Timeline = $CanvasLayer/Control/Timeline
+@onready var battle_manager: BattleManager = $BattleManager
+@onready var button: Button = $CanvasLayer/Control/Button
 
-var t1: TimelineUnitRow
-var t2: TimelineUnitRow
+const LIGHT_ATTACK = preload("res://data/action_cards/light_attack.tres")
+const HEAVY_ATTACK = preload("res://data/action_cards/heavy_attack.tres")
+const VERY_FAST_ATTACK = preload("res://data/action_cards/very_fast_attack.tres")
+
+
+var paused = false
 
 func _ready():
-	timeline.reset()
+	button.button_down.connect(on_pause_unpause)
 	
-	t1 = timeline.add_unit_track("Player") 
-	t1.set_action(Action.new("Wind-Up", 1, 3))
-	t1.action_ended.connect(new_t1_action)
+	var hero = Unit.new()
+	hero.unit_name = "Hero"
+	hero.hp = 20
+	
+	var enemy = Unit.new()
+	enemy.unit_name = "Enemy"
+	enemy.hp = 20
+	
+	var enemy2 = Unit.new()
+	enemy2.unit_name = "Enemy"
+	enemy2.hp = 20
+	
+	battle_manager.set_parties([hero], [enemy,enemy2])
 
-	t2 = timeline.add_unit_track("Enemy")
-	t2.set_action(Action.new("Block", 2, 3))
-	t2.action_ended.connect(new_t2_action)
+	battle_manager.play_card(hero, enemy, VERY_FAST_ATTACK)
+	battle_manager.play_card(enemy, hero, HEAVY_ATTACK)
+	battle_manager.play_card(enemy2, hero, LIGHT_ATTACK)
+	battle_manager.card_recovered.connect(play_new_action)
 	
-	t1.action_hit.connect(hit)
-	t2.action_hit.connect(hit)
+func play_new_action(card: QueuedAction):
+	battle_manager.play_card(card.source, card.target, card.action)
+
+func on_pause_unpause():
+	if paused:
+		battle_manager.resume()
+	else:
+		battle_manager.pause()
+	paused = !paused
 
 	
-func new_t1_action(a):
-	var r = randf_range(0.5, 2.5)
-	t1.set_action(Action.new("Wind-Up", r, r + randf_range(0.5, 1)))
-	
-func new_t2_action(a):
-	var r = randf_range(0.5, 2.5)
-
-	t2.set_action(Action.new("Block-Up", r, r + randf_range(0.5, 1)))
-	
-func hit(a: Action):
-	print(a.action_name)

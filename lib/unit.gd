@@ -1,4 +1,3 @@
-extends Node
 class_name Unit
 
 @export var hp: int
