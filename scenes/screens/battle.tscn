@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6vs1yn5jv11w"]
+
+[ext_resource type="Script" uid="uid://dv5rr6wkps7v2" path="res://scenes/screens/battle.gd" id="1_1q0n7"]
+[ext_resource type="PackedScene" uid="uid://b2bbup73sb7kf" path="res://scenes/ui/timeline/timeline.tscn" id="2_rxsww"]
+[ext_resource type="Script" uid="uid://bnby2sebjora2" path="res://lib/battle_manager.gd" id="4_h1mvy"]
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_1q0n7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.141
+anchor_right = 0.549
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timeline" parent="CanvasLayer/Control" node_paths=PackedStringArray("battlee_manager") instance=ExtResource("2_rxsww")]
+layout_mode = 1
+anchors_preset = -1
+battlee_manager = NodePath("../../../BattleManager")
+visible_seconds = 3.5
+metadata/_edit_use_anchors_ = true
+
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("4_h1mvy")
