@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6vs1yn5jv11w"]
+[gd_scene load_steps=5 format=3 uid="uid://c6vs1yn5jv11w"]
 
 [ext_resource type="Script" uid="uid://dv5rr6wkps7v2" path="res://scenes/screens/battle.gd" id="1_1q0n7"]
 [ext_resource type="PackedScene" uid="uid://b2bbup73sb7kf" path="res://scenes/ui/timeline/timeline.tscn" id="2_rxsww"]
-[ext_resource type="Script" uid="uid://bnby2sebjora2" path="res://lib/battle_manager.gd" id="4_h1mvy"]
+[ext_resource type="Script" uid="uid://bnby2sebjora2" path="res://lib/managers/battle_manager.gd" id="4_h1mvy"]
+[ext_resource type="Script" uid="uid://cvwridj2ss0qq" path="res://lib/managers/deck_manager.gd" id="4_mwhox"]
 
 [node name="BattleScene" type="Node2D"]
 script = ExtResource("1_1q0n7")
@@ -11,8 +12,8 @@ script = ExtResource("1_1q0n7")
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchor_left = 0.141
-anchor_right = 0.549
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -26,11 +27,21 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = -74.2921
-offset_top = 274.44
-offset_right = -66.2921
-offset_bottom = 282.44
+offset_left = 360.0
+offset_top = 270.0
+offset_right = 458.0
+offset_bottom = 301.0
 text = "start/pause"
+
+[node name="ActionBar" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="BattleManager" type="Node" parent="."]
 script = ExtResource("4_h1mvy")
+
+[node name="DeckManager" type="Node" parent="."]
+script = ExtResource("4_mwhox")

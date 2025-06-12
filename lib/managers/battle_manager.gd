@@ -28,13 +28,11 @@ func _process(delta: float):
 func pause():
 	is_running = false
 	emit_signal("time_paused")
-	print_debug("paused")
 	
 
 func resume():
 	is_running = true
 	emit_signal("time_resumed")
-	print_debug("resumed")
 
 func reset():
 	battle_time = 0.0
@@ -72,3 +70,23 @@ func set_parties(player: Array[Unit], enemy: Array[Unit]):
 	player_party = player
 	enemy_party = enemy
 	units_updated.emit(player, enemy)
+
+# TODO: use target while playing cards
+func get_valid_targets(card: ActionCard, caster: Unit) -> TargetQueryResult:
+	if caster in player_party:
+		match card.target_type:
+			"enemy":
+				return TargetQueryResult.new(true, enemy_party)
+			_:
+				return TargetQueryResult.new(false)
+	else:
+		return TargetQueryResult.new(true, player_party)
+
+
+class TargetQueryResult:
+	var have_targets: bool
+	var targets: Array[Unit]
+	
+	func _init(have_targets: bool, targets: Array[Unit] = []) -> void:
+		self.have_targets = have_targets
+		self.targets = targets

@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://mmchhhj8417w"
 
 [resource]
 script = ExtResource("3_q16yv")
-name = "Light Atatck"
+name = "Fast Atatck"
 prepare_time = 1.0
 recover_time = 0.0
 effects = Array[ExtResource("1_fofc4")]([SubResource("Resource_6n7bv")])
