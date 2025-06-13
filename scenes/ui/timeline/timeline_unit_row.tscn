@@ -11,7 +11,14 @@ offset_bottom = 27.0
 grow_horizontal = 2
 script = ExtResource("1_ler8q")
 
-[node name="UnitLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="UnitLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Bob"
+
+[node name="UnitHP" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Bob"
 
