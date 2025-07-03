@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8tr8vcgba8r5"]
+
+[ext_resource type="Script" uid="uid://d2gdviq5r7217" path="res://scenes/screens/battle/panels/action_panel_action.gd" id="1_natoq"]
+[ext_resource type="Texture2D" uid="uid://c1d384ok0bo5s" path="res://assets/sprites/actions/31.png" id="2_msarm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msarm"]
+bg_color = Color(0.360949, 0.360949, 0.360949, 1)
+
+[node name="ActionPanelAction" type="Panel"]
+custom_minimum_size = Vector2(200, 50)
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_msarm")
+script = ExtResource("1_natoq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_msarm")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Action name"

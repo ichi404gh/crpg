@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Action" load_steps=6 format=3 uid="uid://0qs4h3wckcsd"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_vby44"]
+[ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/action_effects/heal_effect.gd" id="2_vby44"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="3_bqmvk"]
+[ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="3_w2p41"]
+
+[sub_resource type="Resource" id="Resource_qfgin"]
+script = ExtResource("2_vby44")
+metadata/_custom_type_script = "uid://c5d87g5vabc7n"
+
+[resource]
+script = ExtResource("3_bqmvk")
+title = "Quantum healing"
+effects = Array[ExtResource("1_vby44")]([SubResource("Resource_qfgin")])
+texture = ExtResource("3_w2p41")
+metadata/_custom_type_script = "uid://crhahprxps0vr"

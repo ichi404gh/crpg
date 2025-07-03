@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://bh1v1hqr1jrup"]
+
+[ext_resource type="Texture2D" uid="uid://bdks7tl1mr6qu" path="res://assets/sprites/monsters/slime.png" id="1_0kd0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kd0r"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yr13"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82nhe"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4npi"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb04b"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3autf"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w53bb"]
+atlas = ExtResource("1_0kd0r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_km3t6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kd0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yr13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82nhe")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4npi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb04b")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3autf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w53bb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Slime" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_km3t6")
+animation = &"idle"
+autoplay = "idle"

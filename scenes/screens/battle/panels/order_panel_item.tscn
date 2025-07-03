@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://cprgcwiqvm0r"]
+
+[ext_resource type="Script" uid="uid://3jppw0ifsqf" path="res://scenes/screens/battle/panels/order_panel_item.gd" id="1_bxh4k"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hh3ql"]
+
+[node name="OrderPanelItem" type="Control"]
+custom_minimum_size = Vector2(60, 90)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 90.0
+grow_vertical = 2
+script = ExtResource("1_bxh4k")
+hover_color = Color(0.647017, 0.394954, 0.198792, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.439216, 0.329412, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_hh3ql")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Name"

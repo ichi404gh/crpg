@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp7u7ranfmgt6"]
+
+[ext_resource type="Script" uid="uid://c15alunhujjym" path="res://scenes/screens/battle/panels/actions_panel.gd" id="1_jr7df"]
+[ext_resource type="PackedScene" uid="uid://b8tr8vcgba8r5" path="res://scenes/screens/battle/panels/action_panel_action.tscn" id="2_06l5s"]
+[ext_resource type="PackedScene" uid="uid://1chirv0jgwe6" path="res://scenes/screens/battle/pawn/action_slot.tscn" id="2_w1c0d"]
+
+[node name="ActionsPanel" type="Control"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jr7df")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Actions:"
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[close]"
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SlotsContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ActionSlot" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+layout_mode = 2
+
+[node name="ActionSlot2" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+layout_mode = 2
+
+[node name="ActionSlot3" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+layout_mode = 2
+
+[node name="ActionSlot4" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+layout_mode = 2
+
+[node name="ActionsContainer" type="HFlowContainer" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionPanelAction" parent="Panel/VBoxContainer/ActionsContainer" instance=ExtResource("2_06l5s")]
+layout_mode = 2
+
+[node name="ActionPanelAction2" parent="Panel/VBoxContainer/ActionsContainer" instance=ExtResource("2_06l5s")]
+layout_mode = 2

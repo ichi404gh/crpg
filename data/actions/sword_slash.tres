@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Action" load_steps=6 format=3 uid="uid://cdgexlvpex5uy"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_ovj3u"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1hcsd"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_yn1tf"]
+[ext_resource type="Texture2D" uid="uid://c1d384ok0bo5s" path="res://assets/sprites/actions/31.png" id="4_h70gr"]
+
+[sub_resource type="Resource" id="Resource_tj7m5"]
+script = ExtResource("2_yn1tf")
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[resource]
+script = ExtResource("2_1hcsd")
+title = "Sword slash"
+effects = Array[ExtResource("1_ovj3u")]([SubResource("Resource_tj7m5")])
+texture = ExtResource("4_h70gr")
+metadata/_custom_type_script = "uid://crhahprxps0vr"

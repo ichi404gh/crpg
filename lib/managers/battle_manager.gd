@@ -1,123 +1,91 @@
 extends Node
 class_name BattleManager
 
-signal time_paused()
-signal time_resumed()
-signal time_updated(new_time: float)
-signal card_activated(card: QueuedAction)
-signal card_recovered(card: QueuedAction)
-signal card_played(card: QueuedAction)
+signal stage_simulation_ready(SimulationData)
 
-signal unit_damaged(unit: Unit)
-signal unit_died(unit: Unit)
+var is_running
 
-signal units_updated(pp: Array[Unit], ep: Array[Unit])
-signal battle_ended(winner: String) # "player" or "enemy"
-
-
-var is_running: bool = true
-var battle_time: float = 0.0
-
-var actions: Array[QueuedAction] = []
 var player_party: Array[Unit] = []
 var enemy_party: Array[Unit] = []
 
+var order: Array[Unit]
+var stage: int = 0
+var meta: Meta = Meta.new()
 
-func _process(delta: float):
-	if is_running:
-		battle_time += delta
-		emit_signal("time_updated", battle_time)
-		_process_actions(delta)
-
-func pause():
-	is_running = false
-	emit_signal("time_paused")
-	
-
-func resume():
-	is_running = true
-	emit_signal("time_resumed")
-
-func reset():
-	battle_time = 0.0
-	emit_signal("time_updated", battle_time)
-
-func play_card(source: Unit, target: Unit, card: ActionCard):
-	var qa = QueuedAction.new()
-	qa.action = card
-	qa.prepare = card.prepare_time
-	qa.recovery = card.recover_time + card.prepare_time
-	qa.source = source
-	qa.target = target
-	
-	actions.append(qa)
-	card_played.emit(qa)
-	
-
-func _process_actions(delta: float):
-	for action in actions:
-		if !action.source.alive:
-			continue
-			
-		if !action.done:
-			if action.prepare <= 0:
-				card_activated.emit(action)
-				process_action_effects(action)
-				action.done = true
-		action.prepare -= delta
-			
-		if !action.recovered:
-			if action.recovery <= 0:
-				card_recovered.emit(action)
-				# remove from actions array?
-				action.recovered = true
-		action.recovery -= delta
-
-func process_action_effects(action: QueuedAction) -> void:
-	for effect in action.action.effects:
-		effect.apply(action.source, action.target, self)
-			
-func apply_damage(target: Unit, amount: int):
-	target.hp -= min(amount, target.hp)
-	unit_damaged.emit(target)
-
-	if target.hp <= 0:
-		target.alive = false
-		unit_died.emit(target)
-		on_unit_died()
-
-func on_unit_died():
-	if player_party.all(func (u): return !u.alive):
-		battle_ended.emit("enemy")
-		pause()
-		print("enemy party wins")
-	elif enemy_party.all(func (u): return !u.alive):
-		battle_ended.emit("player")
-		pause()
-		print("player party wins")
-
-
-func set_parties(player: Array[Unit], enemy: Array[Unit]):
+func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	player_party = player
 	enemy_party = enemy
-	units_updated.emit(player, enemy)
+	order = _get_turn_order()
+	stage_simulation_ready.emit(SimulationData.new([], order))
 
 
-func get_valid_targets(card: ActionCard, caster: Unit) -> TargetQueryResult:
-	if caster in player_party:
-		match card.target_type:
-			"enemy":
-				return TargetQueryResult.new(true, enemy_party)
-			_:
-				return TargetQueryResult.new(false)
-	else:
-		return TargetQueryResult.new(true, player_party)
+func simulate_stage():
+	var events: Array[CombatEvent] = []
+	var round_number: int = 0
 
+	while round_number < 4:
+		for unit in order:
+			if !unit.alive:
+				continue
 
-class TargetQueryResult:
-	var have_targets: bool
-	var targets: Array[Unit]
+			var plan: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
+			
+			if plan.size() <= round_number:
+				continue
+
+			var action = plan[round_number]
+			for effect in action.effects:
+				if effect is DamageEffect:
+					var target = _get_opposite_alive_party(unit).pick_random()
+					if  not target:
+						continue
+					effect.apply(unit, target, self)
+					events.append(CombatEvent.attack(unit, target, effect.amount))
+					if !target.alive:
+						events.append(CombatEvent.dies(target))
+				if effect is HealEffect:
+					var target = _get_own_alive_party(unit).pick_random()
+					effect.apply(unit, target, self)
+
+				else:
+					push_error("unknown action type")
+		round_number += 1
+	order = _get_turn_order()
+	stage_simulation_ready.emit(SimulationData.new(events, order))
 	
-	func _init(have_targets: bool, targets: Array[Unit] = []) -> void:
-		self.have_targets = have_targets
-		self.targets = targets
+func _get_own_alive_party(unit: Unit) -> Array[Unit]:
+	if unit not in player_party:
+		return enemy_party.filter(Unit.is_alive)
+	return player_party.filter(Unit.is_alive)
+
+func _get_opposite_alive_party(unit: Unit) -> Array[Unit]:
+	if unit in player_party:
+		return enemy_party.filter(Unit.is_alive)
+	return player_party.filter(Unit.is_alive)
+
+func _get_turn_order() -> Array[Unit]:
+	var _order: Array[Unit] = []
+	_order.append_array(player_party.filter(func (u: Unit): return u.alive))
+	_order.append_array(enemy_party.filter(func (u: Unit): return u.alive))
+	_order.shuffle()
+	return _order
+	
+	
+func apply_damage(target: Unit, amount: int):
+	target.hp -= amount
+	if target.hp <= 0:
+		target.alive = false
+
+func apply_heal(target: Unit, amount: int):
+	target.hp += amount
+
+class SimulationData:
+	var previous_stage_result: Array[CombatEvent]
+	var next_turn_order: Array[Unit]
+	
+	func _init(events: Array[CombatEvent], order: Array[Unit]) -> void:
+		previous_stage_result = events
+		next_turn_order = order
+
+class Meta:
+	var hovered_unit: Unit
