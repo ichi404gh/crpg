@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cprgcwiqvm0r"]
 
-[ext_resource type="Script" uid="uid://3jppw0ifsqf" path="res://scenes/screens/battle/panels/order_panel_item.gd" id="1_bxh4k"]
+[ext_resource type="Script" path="res://scenes/screens/battle/panels/order_panel_item.gd" id="1_bxh4k"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hh3ql"]
 

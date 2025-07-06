@@ -29,7 +29,7 @@ func simulate_stage():
 				continue
 
 			var plan: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
-			
+
 			if plan.size() <= round_number:
 				continue
 
@@ -52,7 +52,7 @@ func simulate_stage():
 		round_number += 1
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new(events, order))
-	
+
 func _get_own_alive_party(unit: Unit) -> Array[Unit]:
 	if unit not in player_party:
 		return enemy_party.filter(Unit.is_alive)
@@ -69,8 +69,8 @@ func _get_turn_order() -> Array[Unit]:
 	_order.append_array(enemy_party.filter(func (u: Unit): return u.alive))
 	_order.shuffle()
 	return _order
-	
-	
+
+
 func apply_damage(target: Unit, amount: int):
 	target.hp -= amount
 	if target.hp <= 0:
@@ -82,7 +82,7 @@ func apply_heal(target: Unit, amount: int):
 class SimulationData:
 	var previous_stage_result: Array[CombatEvent]
 	var next_turn_order: Array[Unit]
-	
+
 	func _init(events: Array[CombatEvent], order: Array[Unit]) -> void:
 		previous_stage_result = events
 		next_turn_order = order

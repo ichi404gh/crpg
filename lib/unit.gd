@@ -3,7 +3,6 @@ class_name Unit
 @export var hp: int = 20
 @export var unit_name: String = "Slime"
 @export var alive: bool = true
-@export var effects: Dictionary[StatusEffect, float] = {}
 
 signal selected_actions_changed(actions: Array[Action])
 

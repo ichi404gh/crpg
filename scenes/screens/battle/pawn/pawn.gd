@@ -26,10 +26,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	sprite_2d.set_instance_shader_parameter("outline", battle_manager.meta.hovered_unit == self.unit)
-	
+
 func _on_mouse_hover():
 	battle_manager.meta.hovered_unit = self.unit
-	
+
 func _on_mouse_leave():
 	battle_manager.meta.hovered_unit = null
 
@@ -51,7 +51,7 @@ func _play_atack_animation():
 
 func hurt():
 	_play_hurt_animation()
-	
+
 func _play_hurt_animation():
 	print("hurt")
 	animation_player.play("hurt")
@@ -78,12 +78,12 @@ func _on_selected_actions_changed(actions: Array[Action]):
 	for action in actions:
 		if action == null:
 			continue
-		
+
 		var action_ui = PREPARED_ACTION_UI.instantiate()
 		action_ui.action = action
 		action_ui.position.y = -32 * actions_count
 		ui.add_child(action_ui)
-		
+
 		actions_count += 1
 
 func flip():

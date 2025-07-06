@@ -3,7 +3,7 @@ class_name ActionSlot
 
 @onready var panel: Panel = $Panel
 
-var action: Action
+var _action: Action
 
 signal action_set(action: Action)
 
@@ -14,9 +14,11 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var action = data as Action
 	set_action(action)
 	action_set.emit(action)
+	print("drag end")
+
 
 func set_action(action: Action):
-	self.action = action
+	self._action = action
 	for c in panel.get_children():
 			c.queue_free()
 	if action:
@@ -25,3 +27,8 @@ func set_action(action: Action):
 		texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 		panel.add_child(texture_rect)
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_DRAG_END:
+			print('end')
