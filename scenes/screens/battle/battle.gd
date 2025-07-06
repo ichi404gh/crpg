@@ -1,4 +1,3 @@
-
 extends Node2D
 
 var player_party: Array[Unit] = []

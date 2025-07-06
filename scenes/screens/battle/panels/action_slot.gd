@@ -2,8 +2,12 @@ extends Control
 class_name ActionSlot
 
 @onready var panel: Panel = $Panel
+@onready var hilight_rect: ColorRect = $HilightRect
 
-var _action: Action
+var action: Action
+var hilight: bool = false:
+	set(value):
+		hilight_rect.visible = value
 
 signal action_set(action: Action)
 
@@ -13,7 +17,6 @@ func _can_drop_data(_at_position: Vector2, data: Variant):
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var action = data as Action
 	set_action(action)
-	print("drag end")
 
 func clear_slot():
 	for c in panel.get_children():
@@ -21,7 +24,7 @@ func clear_slot():
 
 
 func set_action(action: Action):
-	self._action = action
+	self.action = action
 	for c in panel.get_children():
 			c.queue_free()
 	if action:
@@ -35,11 +38,11 @@ func set_action(action: Action):
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.is_released() and _action:
+		if event.is_released() and action:
 			set_action(null)
 
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_DRAG_END:
-			print('end')
+			hilight = false

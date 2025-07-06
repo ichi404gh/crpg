@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://pbsa2wewi6p1"]
+
+[ext_resource type="Script" uid="uid://qe3xyvprclei" path="res://scenes/units/mousefolk.gd" id="1_lybww"]
+[ext_resource type="Texture2D" uid="uid://bk6ypyuckx586" path="res://assets/sprites/Mousefolk.png" id="2_m6i4t"]
+
+[sub_resource type="Animation" id="Animation_m6i4t"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mousefolk:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39719, 0.79070234),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, -155), Vector2(-11, -147.76), Vector2(-11, -155)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mousefolk:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.39596412, 0.79070234),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.96), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cypqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mousefolk:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -155)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mousefolk:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mousefolk:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bh75s"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mousefolk:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, -155), Vector2(49, -155), Vector2(49, -155), Vector2(-11, -155)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_attack_hit_moment"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ycwla"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mousefolk:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, -155), Vector2(-38, -155), Vector2(-38, -155), Vector2(-11, -155)]
+}
+
+[sub_resource type="Animation" id="Animation_nx8wo"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mousefolk:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39596412, 0.8507712),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, -155), Vector2(-11, -112.36246), Vector2(-11, -31.000008)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mousefolk:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.39596412, 0.8507712),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -1.5772517]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mousefolk:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.39596412, 0.8507712),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.7249191), Vector2(0.6, 0.725)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bh75s"]
+_data = {
+&"RESET": SubResource("Animation_cypqi"),
+&"attack": SubResource("Animation_bh75s"),
+&"die": SubResource("Animation_nx8wo"),
+&"hurt": SubResource("Animation_ycwla"),
+&"idle": SubResource("Animation_m6i4t")
+}
+
+[node name="Mousefolk" type="Node2D"]
+script = ExtResource("1_lybww")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bh75s")
+}
+
+[node name="Mousefolk" type="Sprite2D" parent="."]
+position = Vector2(-11, -155)
+texture = ExtResource("2_m6i4t")

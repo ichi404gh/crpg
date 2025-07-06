@@ -14,16 +14,16 @@ var battle_manager: BattleManager
 func setup(unit: Unit, battle_manager: BattleManager):
 	self.unit = unit
 	self.is_ally = unit in battle_manager.player_party
-	
+
 	_reset_color()
-	
+
 	name_label.text = "%s (%s)" % [unit.unit_name, unit.hp]
-	
+
 	self.battle_manager = battle_manager
-	
+
 	mouse_entered.connect(_on_mouse_enter)
 	mouse_exited.connect(_on_mouse_exit)
-	
+
 func _process(_delta: float) -> void:
 	if battle_manager.meta.hovered_unit == self.unit:
 		color_rect.color = hover_color

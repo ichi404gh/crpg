@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://nqkobm5ii7rg"]
+
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://data/units/unit_data.gd" id="1_qtjk2"]
+[ext_resource type="PackedScene" uid="uid://5qra7yjjcdwd" path="res://scenes/units/skeleton.tscn" id="2_0bo4j"]
+
+[resource]
+script = ExtResource("1_qtjk2")
+name = "Skeleton warrior"
+hp = 25
+unit_ui = ExtResource("2_0bo4j")
+metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

@@ -3,7 +3,7 @@ extends Control
 var action: Action
 
 signal selected(action: Action)
-
+signal dragging
 
 
 func setup(action: Action):
@@ -16,7 +16,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	preview.size = Vector2(20, 20)
 	preview.texture = action.texture
 	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-
+	dragging.emit()
 
 	set_drag_preview(preview)
 	return action

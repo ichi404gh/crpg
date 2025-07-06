@@ -39,6 +39,7 @@ func setup(_unit: Unit):
 		apa.setup(a)
 		actions_container.add_child(apa)
 		apa.selected.connect(_on_action_selected)
+		apa.dragging.connect(_hilight_slots)
 
 func _on_action_selected(action: Action):
 	var free_idx := 0
@@ -49,3 +50,7 @@ func _on_action_selected(action: Action):
 
 	var slot: ActionSlot = slots_container.get_child(free_idx) as ActionSlot
 	slot.set_action(action)
+
+func _hilight_slots():
+	for slot: ActionSlot in slots_container.get_children():
+		slot.hilight = true

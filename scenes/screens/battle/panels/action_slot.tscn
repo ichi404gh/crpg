@@ -5,12 +5,14 @@
 [node name="ActionSlot" type="Control"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.078
+anchor_bottom = 0.13900001
+offset_right = 0.15999603
+offset_bottom = -0.08000946
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x0l4p")
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -20,3 +22,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="HilightRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.65882355, 0.3647059, 0.37254903)
