@@ -28,22 +28,22 @@ func simulate_stage():
 			if !unit.alive:
 				continue
 
-			var plan: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
+			var unit_actions: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
 
-			if plan.size() <= round_number:
+			if unit_actions.size() <= round_number:
 				continue
 
-			var action = plan[round_number]
-			for effect in action.effects:
+			var action = unit_actions[round_number]
+			for effect: ActionEffect in action.effects:
 				if effect is DamageEffect:
 					var target = _get_opposite_alive_party(unit).pick_random()
-					if  not target:
+					if not target:
 						continue
 					effect.apply(unit, target, self)
-					events.append(CombatEvent.attack(unit, target, effect.amount))
+					events.append(CombatEvent.attacks(unit, target, effect.amount))
 					if !target.alive:
 						events.append(CombatEvent.dies(target))
-				if effect is HealEffect:
+				elif effect is HealEffect:
 					var target = _get_own_alive_party(unit).pick_random()
 					effect.apply(unit, target, self)
 

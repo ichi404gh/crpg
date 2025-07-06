@@ -7,8 +7,6 @@ class_name Pawn
 
 signal hit_moment
 signal clicked
-signal hovering(unit: Unit)
-signal stop_hovering(unit: Unit)
 
 var battle_manager: BattleManager
 
@@ -23,6 +21,8 @@ func _ready() -> void:
 	$Area2D.mouse_entered.connect(_on_mouse_hover)
 	$Area2D.mouse_exited.connect(_on_mouse_leave)
 	_on_selected_actions_changed(self.unit.selected_actions)
+	animation_player.speed_scale = 2
+
 
 func _process(_delta: float) -> void:
 	sprite_2d.set_instance_shader_parameter("outline", battle_manager.meta.hovered_unit == self.unit)
@@ -40,20 +40,28 @@ func _on_area_input(_viewport: Node, event: InputEvent, _shape_idx: int):
 		clicked.emit(self)
 		get_tree().get_root().set_input_as_handled()
 
+func finish_animations():
+	if animation_player.current_animation != 'idle':
+		await animation_player.animation_finished
+
 func attack():
 	_play_atack_animation()
 	await hit_moment
 
+
 func _play_atack_animation():
+	animation_player.stop()
 	animation_player.play("attack")
 	await animation_player.animation_finished
 	animation_player.play("idle")
+
+
 
 func hurt():
 	_play_hurt_animation()
 
 func _play_hurt_animation():
-	print("hurt")
+	animation_player.stop()
 	animation_player.play("hurt")
 	await animation_player.animation_finished
 	animation_player.play("idle")

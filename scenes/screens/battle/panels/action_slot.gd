@@ -13,8 +13,11 @@ func _can_drop_data(_at_position: Vector2, data: Variant):
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var action = data as Action
 	set_action(action)
-	action_set.emit(action)
 	print("drag end")
+
+func clear_slot():
+	for c in panel.get_children():
+		c.queue_free()
 
 
 func set_action(action: Action):
@@ -27,6 +30,14 @@ func set_action(action: Action):
 		texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 		panel.add_child(texture_rect)
+	action_set.emit(action)
+
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_released() and _action:
+			set_action(null)
+
 
 func _notification(what: int) -> void:
 	match what:

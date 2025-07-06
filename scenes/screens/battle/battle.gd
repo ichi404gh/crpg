@@ -1,3 +1,4 @@
+
 extends Node2D
 
 var player_party: Array[Unit] = []
@@ -5,9 +6,10 @@ var enemy_party: Array[Unit] = []
 
 var selected_pawn: Pawn
 
+var unit_to_pawn: Dictionary[Unit, Pawn] = {}
 
 @onready var battle_manager: BattleManager = $BattleManager
-@onready var actions_panel = $CanvasLayer/ActionsPanel
+@onready var actions_panel: ActionPanel = $CanvasLayer/ActionsPanel
 @onready var order_panel: HBoxContainer = $CanvasLayer/OrderPanel
 @onready var start_battle_button: Button = $CanvasLayer/Button
 
@@ -53,10 +55,11 @@ func arrange_slots():
 
 	var _width = 0.0
 	for idx in len(player_party.filter(Unit.is_alive)):
-
+		var unit: Unit = player_party.filter(Unit.is_alive)[idx]
 		var pawn_ui = PAWN.instantiate()
 		pawn_ui.position = Vector2(-(idx*sprite_size + idx * spacing), 0)
-		pawn_ui.setup(player_party.filter(Unit.is_alive)[idx], battle_manager)
+		pawn_ui.setup(unit, battle_manager)
+		unit_to_pawn[unit] = pawn_ui
 
 		pawn_ui.clicked.connect(_on_pawn_click)
 
@@ -67,10 +70,12 @@ func arrange_slots():
 
 	_width = 0.0
 	for idx in len(enemy_party.filter(Unit.is_alive)):
-
+		var unit: Unit = enemy_party.filter(Unit.is_alive)[idx]
 		var pawn_ui = PAWN.instantiate()
 		pawn_ui.position = Vector2(-(idx*sprite_size + idx * spacing), 0)
-		pawn_ui.setup(enemy_party.filter(Unit.is_alive)[idx], battle_manager)
+		pawn_ui.setup(unit, battle_manager)
+		unit_to_pawn[unit] = pawn_ui
+
 		pawn_ui.flip()
 
 		_width += sprite_size + spacing
@@ -84,10 +89,20 @@ func _on_pawn_click(pwn: Pawn):
 	actions_panel.show()
 
 func _on_stage_result(data: BattleManager.SimulationData):
+	actions_panel.hide()
+	print(data.previous_stage_result)
+
+	for event: CombatEvent in data.previous_stage_result:
+		if event is CombatEvent.Attacks:
+			await unit_to_pawn[event.source].attack()
+			await unit_to_pawn[event.target].hurt()
+			await unit_to_pawn[event.source].finish_animations()
+			await unit_to_pawn[event.target].finish_animations()
+		elif event is CombatEvent.Dies:
+			pass
+
 	_update_order_panel()
 	arrange_slots()
-	print(data.previous_stage_result)
-	print(data.next_turn_order)
 
 func _on_panel_closed():
 	actions_panel.hide()

@@ -1,3 +1,4 @@
+class_name ActionPanel
 extends Control
 
 @onready var close_button: Button = %CloseButton
@@ -25,7 +26,7 @@ func setup(_unit: Unit):
 	const ACTION_PANEL_ACTION = preload("res://scenes/screens/battle/panels/action_panel_action.tscn")
 
 	for c in slots_container.get_children():
-		c.set_action(null)
+		c.clear_slot()
 
 	for action_idx in unit.selected_actions.size():
 		slots_container.get_child(action_idx).set_action(unit.selected_actions[action_idx])
@@ -37,3 +38,14 @@ func setup(_unit: Unit):
 		var apa = ACTION_PANEL_ACTION.instantiate()
 		apa.setup(a)
 		actions_container.add_child(apa)
+		apa.selected.connect(_on_action_selected)
+
+func _on_action_selected(action: Action):
+	var free_idx := 0
+	for action_idx in unit.selected_actions.size():
+		free_idx = action_idx
+		if unit.selected_actions[action_idx] == null:
+			break;
+
+	var slot: ActionSlot = slots_container.get_child(free_idx) as ActionSlot
+	slot.set_action(action)
