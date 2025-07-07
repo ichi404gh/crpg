@@ -1,98 +1,39 @@
 extends Node2D
 class_name Pawn
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var ui: Node2D = $UI
-
-signal hit_moment
-signal clicked
-
-var battle_manager: BattleManager
-
-var flipped = false
 var unit: Unit
 
+signal clicked
+
+@onready var hp_bar: ProgressBar = $HpBar
+@onready var prepared_actions_bar: HBoxContainer = $PreparedActionsBar
+@onready var unit_root: Node2D = $UnitRoot
 
 
-func _ready() -> void:
-	sprite_2d.flip_h = flipped
-	$Area2D.input_event.connect(_on_area_input)
-	$Area2D.mouse_entered.connect(_on_mouse_hover)
-	$Area2D.mouse_exited.connect(_on_mouse_leave)
-	_on_selected_actions_changed(self.unit.selected_actions)
-	animation_player.speed_scale = 2
+func setup(unit: Unit, flip: bool = false):
+	self.unit = unit
+	var scene: UnitBaseUI = unit.instantiate_ui()
+	scene.clicked.connect(clicked.emit.bind(self))
+	unit.selected_actions_changed.connect(_on_selected_actions_changed)
+	_on_selected_actions_changed(unit.selected_actions)
+	unit_root.add_child(scene)
+	if flip:
+		scene.scale.x = -1
+	hp_bar.max_value = unit.unit_data.max_hp
+	hp_bar.value = unit.hp
 
-
-func _process(_delta: float) -> void:
-	sprite_2d.set_instance_shader_parameter("outline", battle_manager.meta.hovered_unit == self.unit)
-
-func _on_mouse_hover():
-	battle_manager.meta.hovered_unit = self.unit
-
-func _on_mouse_leave():
-	battle_manager.meta.hovered_unit = null
-
-func _on_area_input(_viewport: Node, event: InputEvent, _shape_idx: int):
-	if event is InputEventMouseButton and \
-			event.pressed and \
-			event.button_index == MOUSE_BUTTON_LEFT:
-		clicked.emit(self)
-		get_tree().get_root().set_input_as_handled()
-
-func finish_animations():
-	if animation_player.current_animation != 'idle':
-		await animation_player.animation_finished
-
-func attack():
-	_play_atack_animation()
-	await hit_moment
-
-
-func _play_atack_animation():
-	animation_player.stop()
-	animation_player.play("attack")
-	await animation_player.animation_finished
-	animation_player.play("idle")
-
-
-
-func hurt():
-	_play_hurt_animation()
-
-func _play_hurt_animation():
-	animation_player.stop()
-	animation_player.play("hurt")
-	await animation_player.animation_finished
-	animation_player.play("idle")
-
-
-func _on_attack_hit_moment():
-	hit_moment.emit()
-
-
-func setup(_unit: Unit, _battle_manager: BattleManager):
-	self.unit = _unit
-	self.battle_manager = _battle_manager
-	self.unit.selected_actions_changed.connect(_on_selected_actions_changed)
-
+func update_status(hp_increnemnt: int):
+	hp_bar.value += hp_increnemnt
 
 func _on_selected_actions_changed(actions: Array[Action]):
 	const PREPARED_ACTION_UI = preload("uid://cjad02w8v2per")
-
-	for c in ui.get_children():
+	for c in prepared_actions_bar.get_children():
 		c.queue_free()
-	var actions_count = 0
 	for action in actions:
 		if action == null:
 			continue
 
 		var action_ui = PREPARED_ACTION_UI.instantiate()
-		action_ui.action = action
-		action_ui.position.y = -32 * actions_count
-		ui.add_child(action_ui)
-
-		actions_count += 1
-
-func flip():
-	flipped = true
+		var action_texture_node: TextureRect = action_ui.get_node("%ActionTexture")
+		action_texture_node.texture = action.texture
+		prepared_actions_bar.add_child(action_ui)

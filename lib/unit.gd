@@ -1,8 +1,12 @@
 class_name Unit
 
-@export var hp: int = 20
-@export var unit_name: String = "Slime"
+
+@export var hp: int
+@export var unit_name: String
 @export var alive: bool = true
+@export var unit_data: UnitData
+
+var unit_view: UnitBaseUI
 
 signal selected_actions_changed(actions: Array[Action])
 
@@ -17,3 +21,10 @@ func _to_string() -> String:
 
 static func is_alive(unit: Unit) -> bool:
 	return unit.alive
+
+func instantiate_ui():
+	if not unit_data:
+		return
+
+	unit_view = unit_data.unit_ui.instantiate() as UnitBaseUI
+	return unit_view

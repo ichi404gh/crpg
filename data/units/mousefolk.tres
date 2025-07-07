@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://bj5wsdwq6hy7e"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://bj5wsdwq6hy7e"]
 
-[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://data/units/unit_data.gd" id="1_ju077"]
+[ext_resource type="Texture2D" uid="uid://bk6ypyuckx586" path="res://assets/sprites/Mousefolk.png" id="1_klq5l"]
 [ext_resource type="PackedScene" uid="uid://pbsa2wewi6p1" path="res://scenes/units/mousefolk.tscn" id="2_ectkk"]
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_ss7jk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klq5l"]
+atlas = ExtResource("1_klq5l")
+region = Rect2(43, 4.75, 234.5, 211.5)
 
 [resource]
-script = ExtResource("1_ju077")
+script = ExtResource("2_ss7jk")
 name = "Mousefolk thug"
-hp = 20
+max_hp = 20
 unit_ui = ExtResource("2_ectkk")
+portrait = SubResource("AtlasTexture_klq5l")
 metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

@@ -1,152 +1,58 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmwqt8pe1nwg5"]
+[gd_scene load_steps=4 format=3 uid="uid://dmwqt8pe1nwg5"]
 
-[ext_resource type="Texture2D" uid="uid://bdks7tl1mr6qu" path="res://assets/sprites/monsters/slime.png" id="1_4x36n"]
 [ext_resource type="Script" uid="uid://dcdwl6y5wlagj" path="res://scenes/screens/battle/pawn/pawn.gd" id="1_hayec"]
-[ext_resource type="Shader" uid="uid://dqyfqpi8l8iv7" path="res://scenes/screens/battle/pawn/pawn.gdshader" id="2_5aj45"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qp7de"]
-resource_local_to_scene = true
-shader = ExtResource("2_5aj45")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_thicness = 1.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk45r"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.39551923, 0.009381038, 0.1316472, 0.8156863)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hayec"]
-atlas = ExtResource("1_4x36n")
-
-[sub_resource type="Animation" id="Animation_5aj45"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material:shader_parameter/flash")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_qp7de"]
-resource_name = "attack"
-length = 1.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [3, 4, 5, 3]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.7),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_attack_hit_moment"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_yhk8q"]
-resource_name = "hurt"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [6, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:instance_shader_parameters/flash")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_hayec"]
-resource_name = "idle"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qp7de"]
-_data = {
-&"RESET": SubResource("Animation_5aj45"),
-&"attack": SubResource("Animation_qp7de"),
-&"hurt": SubResource("Animation_yhk8q"),
-&"idle": SubResource("Animation_hayec")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aj45"]
-size = Vector2(32, 32)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jacq"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.14039281, 0.49854654, 0.36171407, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
 [node name="Pawn" type="Node2D"]
 script = ExtResource("1_hayec")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qp7de")
-instance_shader_parameters/flash = false
-instance_shader_parameters/outline = false
-texture = SubResource("AtlasTexture_hayec")
-hframes = 3
-vframes = 3
+[node name="UnitRoot" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qp7de")
-}
-autoplay = "idle"
+[node name="EffectRoot" type="Node2D" parent="."]
+position = Vector2(0, -71)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HpBar" type="ProgressBar" parent="."]
+offset_left = -28.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_lk45r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5jacq")
+max_value = 50.0
+value = 23.77
+show_percentage = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_5aj45")
-
-[node name="UI" type="Node2D" parent="."]
-position = Vector2(0, -43)
+[node name="PreparedActionsBar" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7.0
+offset_top = 22.0
+offset_right = 8.0
+offset_bottom = 32.0
+grow_horizontal = 2
+pivot_offset = Vector2(27, 0)
+theme_override_constants/separation = 6

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Action" load_steps=6 format=3 uid="uid://cf5ul8llmqy0c"]
+[gd_resource type="Resource" script_class="Action" load_steps=7 format=3 uid="uid://cf5ul8llmqy0c"]
 
+[ext_resource type="PackedScene" uid="uid://ckvc2hc6l5skt" path="res://data/actions/sword_slash/sword_slash.tscn" id="1_h70gr"]
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_ovj3u"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1hcsd"]
 [ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_yn1tf"]
@@ -15,4 +16,5 @@ script = ExtResource("2_1hcsd")
 title = "Sword slash"
 effects = Array[ExtResource("1_ovj3u")]([SubResource("Resource_yn1tf")])
 texture = ExtResource("4_h70gr")
+effect_scene = ExtResource("1_h70gr")
 metadata/_custom_type_script = "uid://crhahprxps0vr"

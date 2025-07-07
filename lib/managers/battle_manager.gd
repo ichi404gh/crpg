@@ -40,12 +40,13 @@ func simulate_stage():
 					if not target:
 						continue
 					effect.apply(unit, target, self)
-					events.append(CombatEvent.attacks(unit, target, effect.amount))
+					events.append(CombatEvent.attacks(unit, target, effect.amount, action.effect_scene))
 					if !target.alive:
 						events.append(CombatEvent.dies(target))
 				elif effect is HealEffect:
 					var target = _get_own_alive_party(unit).pick_random()
 					effect.apply(unit, target, self)
+					events.append(CombatEvent.interact(target, -effect.amount, action.effect_scene))
 
 				else:
 					push_error("unknown action type")

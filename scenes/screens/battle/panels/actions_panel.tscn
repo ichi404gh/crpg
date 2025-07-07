@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp7u7ranfmgt6"]
+[gd_scene load_steps=5 format=3 uid="uid://cp7u7ranfmgt6"]
 
 [ext_resource type="Script" uid="uid://c15alunhujjym" path="res://scenes/screens/battle/panels/actions_panel.gd" id="1_jr7df"]
 [ext_resource type="PackedScene" uid="uid://b8tr8vcgba8r5" path="res://scenes/screens/battle/panels/action_panel_action.tscn" id="2_06l5s"]
+[ext_resource type="Texture2D" uid="uid://ci0ce4qlihrkq" path="res://assets/ui/9-panel.png" id="2_idy1y"]
 [ext_resource type="PackedScene" uid="uid://dhcty1gknjrlf" path="res://scenes/screens/battle/panels/action_slot.tscn" id="2_w1c0d"]
 
 [node name="ActionsPanel" type="Control"]
@@ -21,6 +22,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_idy1y")
+region_rect = Rect2(0, 0, 10, 10)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0

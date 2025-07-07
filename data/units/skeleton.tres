@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://nqkobm5ii7rg"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://nqkobm5ii7rg"]
 
-[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://data/units/unit_data.gd" id="1_qtjk2"]
+[ext_resource type="Texture2D" uid="uid://dnqatco4k237m" path="res://assets/sprites/Skeleton.png" id="1_hk6eh"]
 [ext_resource type="PackedScene" uid="uid://5qra7yjjcdwd" path="res://scenes/units/skeleton.tscn" id="2_0bo4j"]
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_ixclv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqewh"]
+atlas = ExtResource("1_hk6eh")
+region = Rect2(93.5, -5.75, 232.5, 216)
 
 [resource]
-script = ExtResource("1_qtjk2")
+script = ExtResource("2_ixclv")
 name = "Skeleton warrior"
-hp = 25
+max_hp = 25
 unit_ui = ExtResource("2_0bo4j")
+portrait = SubResource("AtlasTexture_aqewh")
 metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3jppw0ifsqf" path="res://scenes/screens/battle/panels/order_panel_item.gd" id="1_bxh4k"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hh3ql"]
+size = Vector2(4, 4)
 
 [node name="OrderPanelItem" type="Control"]
 custom_minimum_size = Vector2(60, 90)
@@ -48,8 +49,11 @@ grow_vertical = 2
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_hh3ql")
 expand_mode = 4
+stretch_mode = 6
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Name"
+theme_override_font_sizes/font_size = 7
+text = "Name of the unit"
+autowrap_mode = 2

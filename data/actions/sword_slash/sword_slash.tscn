@@ -1,0 +1,68 @@
+[gd_scene load_steps=15 format=3 uid="uid://ckvc2hc6l5skt"]
+
+[ext_resource type="Script" uid="uid://oppbcfgqx1i2" path="res://data/actions/sword_slash/sword_slash.gd" id="1_6cg17"]
+[ext_resource type="Texture2D" uid="uid://bqitft4pcbt6l" path="res://assets/vfx/slash-1/slash5-animation_00.png" id="1_npyo2"]
+[ext_resource type="Texture2D" uid="uid://cne114lyfjisw" path="res://assets/vfx/slash-1/slash5-animation_01.png" id="2_6cg17"]
+[ext_resource type="Texture2D" uid="uid://xepqtm227wnm" path="res://assets/vfx/slash-1/slash5-animation_02.png" id="3_v6wt2"]
+[ext_resource type="Texture2D" uid="uid://b4gq0fkffp1q" path="res://assets/vfx/slash-1/slash5-animation_03.png" id="4_ve7e8"]
+[ext_resource type="Texture2D" uid="uid://bkfie2xvyuake" path="res://assets/vfx/slash-1/slash5-animation_04.png" id="5_cqsxb"]
+[ext_resource type="Texture2D" uid="uid://bay8ug7t8j3ah" path="res://assets/vfx/slash-1/slash5-animation_05.png" id="6_eq0dh"]
+[ext_resource type="Texture2D" uid="uid://d1bx7fr4rdsc2" path="res://assets/vfx/slash-1/slash5-animation_06.png" id="7_ge3c7"]
+[ext_resource type="Texture2D" uid="uid://dftvtp6dhmrri" path="res://assets/vfx/slash-1/slash5-animation_07.png" id="8_kf4r2"]
+[ext_resource type="Texture2D" uid="uid://dxt6whjnre5ok" path="res://assets/vfx/slash-1/slash5-animation_08.png" id="9_n4quq"]
+[ext_resource type="Texture2D" uid="uid://ck8y5bec77ixv" path="res://assets/vfx/slash-1/slash5-animation_09.png" id="10_62hck"]
+[ext_resource type="Texture2D" uid="uid://kprcgeovbxuw" path="res://assets/vfx/slash-1/slash5-animation_10.png" id="11_7iynu"]
+[ext_resource type="AudioStream" uid="uid://cto7ci745grf1" path="res://assets/sfx/hit-by-a-wood-230542.mp3" id="13_v6wt2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nhex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_npyo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6cg17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v6wt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ve7e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cqsxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eq0dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ge3c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kf4r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_n4quq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_62hck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7iynu")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="SwordSlash" type="Node2D"]
+script = ExtResource("1_6cg17")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.59999996, 0.59999996)
+sprite_frames = SubResource("SpriteFrames_6nhex")
+frame = 10
+frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_v6wt2")

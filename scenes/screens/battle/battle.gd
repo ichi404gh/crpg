@@ -15,26 +15,35 @@ var unit_to_pawn: Dictionary[Unit, Pawn] = {}
 
 func _ready() -> void:
 	connect_signals()
-
 	setup_stub()
+	arrange_slots()
 
 
 func setup_stub():
 	const SWORD_SLASH = preload("uid://cf5ul8llmqy0c")
+
+	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
+	const SKELETON = preload("uid://nqkobm5ii7rg")
+
 	player_party = [
-		Unit.new(),
-		Unit.new(),
-	]
+		MOUSEFOLK.instantiate(),
+		#SKELETON.instantiate(),
+		#MOUSEFOLK.instantiate(),
+		#MOUSEFOLK.instantiate(),
+	] as Array[Unit]
 
 	enemy_party = [
-		Unit.new(),
-		Unit.new(),
-		Unit.new(),
-	]
+		SKELETON.instantiate(),
+		SKELETON.instantiate(),
+		#MOUSEFOLK.instantiate(),
+		#MOUSEFOLK.instantiate(),
+	] as Array[Unit]
+	enemy_party[0].set_actions(0, SWORD_SLASH)
+	enemy_party[1].set_actions(0, SWORD_SLASH)
 
 	battle_manager.setup(player_party, enemy_party)
-	for e in enemy_party:
-		e.set_actions(0, SWORD_SLASH)
+	#for e in enemy_party:
+		#e.set_actions(0, SWORD_SLASH)
 
 func connect_signals():
 	battle_manager.stage_simulation_ready.connect(_on_stage_result)
@@ -43,8 +52,8 @@ func connect_signals():
 
 
 func arrange_slots():
-	const spacing = 30.0
-	const sprite_size = 32
+	const spacing = 20.0
+	const sprite_size = 100
 	const PAWN = preload("res://scenes/screens/battle/pawn/pawn.tscn")
 
 	for u in $PlayerParty.get_children():
@@ -57,13 +66,14 @@ func arrange_slots():
 		var unit: Unit = player_party.filter(Unit.is_alive)[idx]
 		var pawn_ui = PAWN.instantiate()
 		pawn_ui.position = Vector2(-(idx*sprite_size + idx * spacing), 0)
-		pawn_ui.setup(unit, battle_manager)
 		unit_to_pawn[unit] = pawn_ui
 
 		pawn_ui.clicked.connect(_on_pawn_click)
 
 		_width += sprite_size + spacing
 		$PlayerParty.add_child(pawn_ui)
+		pawn_ui.setup(unit)
+
 	_width -= spacing
 
 
@@ -71,14 +81,14 @@ func arrange_slots():
 	for idx in len(enemy_party.filter(Unit.is_alive)):
 		var unit: Unit = enemy_party.filter(Unit.is_alive)[idx]
 		var pawn_ui = PAWN.instantiate()
-		pawn_ui.position = Vector2(-(idx*sprite_size + idx * spacing), 0)
-		pawn_ui.setup(unit, battle_manager)
+		pawn_ui.position = Vector2((idx*sprite_size + idx * spacing), 0)
 		unit_to_pawn[unit] = pawn_ui
 
-		pawn_ui.flip()
 
 		_width += sprite_size + spacing
 		$EnemyParty.add_child(pawn_ui)
+		pawn_ui.setup(unit, true)
+
 	_width -= spacing
 
 
@@ -93,15 +103,25 @@ func _on_stage_result(data: BattleManager.SimulationData):
 
 	for event: CombatEvent in data.previous_stage_result:
 		if event is CombatEvent.Attacks:
-			await unit_to_pawn[event.source].attack()
-			await unit_to_pawn[event.target].hurt()
-			await unit_to_pawn[event.source].finish_animations()
-			await unit_to_pawn[event.target].finish_animations()
+			await event.source.unit_view.attack()
+			unit_to_pawn[event.target].update_status(-event.damage)
+			if event.effect_scene:
+				var scene = event.effect_scene.instantiate()
+				unit_to_pawn[event.target].get_node("./EffectRoot").add_child(scene)
+			await event.target.unit_view.hurt()
+			await event.source.unit_view.finish_animations()
+			await event.target.unit_view.finish_animations()
 		elif event is CombatEvent.Dies:
-			pass
+			await event.who.unit_view.die()
+		elif event is CombatEvent.Interact:
+			await event.target.unit_view.interact()
+			unit_to_pawn[event.target].update_status(-event.damage)
+			if event.effect_scene:
+				var scene = event.effect_scene.instantiate()
+				unit_to_pawn[event.target].get_node("./EffectRoot").add_child(scene)
 
 	_update_order_panel()
-	arrange_slots()
+	#arrange_slots()
 
 func _on_panel_closed():
 	actions_panel.hide()

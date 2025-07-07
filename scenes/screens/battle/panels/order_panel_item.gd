@@ -6,6 +6,7 @@ extends Control
 @onready var panel: Panel = $Panel
 @onready var color_rect: ColorRect = $Panel/ColorRect
 @onready var name_label: Label = $Panel/VBoxContainer/Label
+@onready var portrait: TextureRect = $Panel/VBoxContainer/TextureRect
 
 var is_ally: bool = true
 var unit: Unit
@@ -18,6 +19,8 @@ func setup(unit: Unit, battle_manager: BattleManager):
 	_reset_color()
 
 	name_label.text = "%s (%s)" % [unit.unit_name, unit.hp]
+	if unit.unit_data.portrait:
+		portrait.texture = unit.unit_data.portrait
 
 	self.battle_manager = battle_manager
 
