@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6vs1yn5jv11w"]
+[gd_scene load_steps=7 format=3 uid="uid://c6vs1yn5jv11w"]
 
 [ext_resource type="Script" uid="uid://dv5rr6wkps7v2" path="res://scenes/screens/battle/battle.gd" id="1_po8hi"]
 [ext_resource type="Texture2D" uid="uid://4i25p2vwchd7" path="res://assets/bg/2304x1296.png" id="2_f7stq"]
+[ext_resource type="Script" uid="uid://bxp51gh1s6ktl" path="res://scenes/tooltips/tooltip_context.gd" id="2_kqxcs"]
 [ext_resource type="Script" uid="uid://bnby2sebjora2" path="res://lib/managers/battle_manager.gd" id="3_4grbx"]
 [ext_resource type="PackedScene" uid="uid://cp7u7ranfmgt6" path="res://scenes/screens/battle/panels/actions_panel.tscn" id="7_xcah6"]
 [ext_resource type="PackedScene" uid="uid://cprgcwiqvm0r" path="res://scenes/screens/battle/panels/order_panel_item.tscn" id="8_m4bs7"]
@@ -9,20 +10,36 @@
 [node name="BattleScene" type="Node2D"]
 script = ExtResource("1_po8hi")
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(667, 323)
+[node name="TooltipContext" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("2_kqxcs")
+node = NodePath("CanvasLayer/TooltipAnchor")
+metadata/_custom_type_script = "uid://bxp51gh1s6ktl"
+
+[node name="Background" type="Sprite2D" parent="TooltipContext"]
+position = Vector2(667.00006, 314)
 scale = Vector2(0.6307871, 0.630787)
 texture = ExtResource("2_f7stq")
 
-[node name="PlayerParty" type="Node2D" parent="."]
-position = Vector2(557, 626)
+[node name="PlayerParty" type="Node2D" parent="TooltipContext"]
+unique_name_in_owner = true
+position = Vector2(557, 613)
 
-[node name="EnemyParty" type="Node2D" parent="."]
-position = Vector2(707, 626)
+[node name="EnemyParty" type="Node2D" parent="TooltipContext"]
+unique_name_in_owner = true
+position = Vector2(707, 613)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="TooltipContext"]
 
-[node name="ActionsPanel" parent="CanvasLayer" instance=ExtResource("7_xcah6")]
+[node name="TooltipAnchor" type="Control" parent="TooltipContext/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 49.0
+offset_top = 190.0
+offset_right = 244.0
+offset_bottom = 460.0
+
+[node name="ActionsPanel" parent="TooltipContext/CanvasLayer" instance=ExtResource("7_xcah6")]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(300, 100)
 anchors_preset = -1
@@ -32,20 +49,22 @@ anchor_bottom = 0.8
 offset_left = -300.0
 grow_horizontal = 1
 
-[node name="OrderPanel" type="HBoxContainer" parent="CanvasLayer"]
+[node name="OrderPanel" type="HBoxContainer" parent="TooltipContext/CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 82.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="OrderPanelItem" parent="CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]
+[node name="OrderPanelItem" parent="TooltipContext/CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]
 layout_mode = 2
 
-[node name="OrderPanelItem2" parent="CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]
+[node name="OrderPanelItem2" parent="TooltipContext/CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="TooltipContext/CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -59,6 +78,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Start battle"
 
-[node name="BattleManager" type="Node" parent="."]
+[node name="BattleManager" type="Node" parent="TooltipContext"]
+unique_name_in_owner = true
 script = ExtResource("3_4grbx")
 metadata/_custom_type_script = "uid://bnby2sebjora2"

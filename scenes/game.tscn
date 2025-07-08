@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://w5vyrn4sbp6b"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ActiveSceneContainer" type="Node" parent="."]

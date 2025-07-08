@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjad02w8v2per"]
+[gd_scene load_steps=4 format=3 uid="uid://cjad02w8v2per"]
 
 [ext_resource type="Texture2D" uid="uid://ci0ce4qlihrkq" path="res://assets/ui/9-panel.png" id="1_4cqas"]
+[ext_resource type="Script" uid="uid://6outg4up5uo4" path="res://scenes/screens/battle/pawn/prepared_action_ui.gd" id="1_bkvds"]
 [ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="1_jicmy"]
 
 [node name="PreparedActionUI" type="Control"]
@@ -15,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_bkvds")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1

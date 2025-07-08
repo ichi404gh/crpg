@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://dart6y5fjuscr"]
+
+[ext_resource type="Shader" uid="uid://ckarti0e8owex" path="res://scenes/tooltips/action_tooltip_icon.gdshader" id="1_dvphy"]
+[ext_resource type="Texture2D" uid="uid://dvkffb2m22tq" path="res://assets/sprites/actions/19.png" id="2_xfbio"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_of53n"]
+shader = ExtResource("1_dvphy")
+shader_parameter/fade_radius = 0.2900000000081491
+shader_parameter/center = Vector2(0.68, 0.17)
+shader_parameter/smoothness = 0.9400000000023283
+
+[node name="ActionTooltip" type="Control"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 3
+anchor_right = 0.23700002
+anchor_bottom = 0.467
+offset_right = 0.63998413
+offset_bottom = -0.23999023
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ActionLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Action name"
+
+[node name="Image" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_of53n")
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_xfbio")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Description" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+bbcode_enabled = true
+text = "Deals [b]tons[/b] of damage"
+fit_content = true

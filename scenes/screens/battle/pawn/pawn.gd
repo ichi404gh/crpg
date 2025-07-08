@@ -33,7 +33,6 @@ func _on_selected_actions_changed(actions: Array[Action]):
 		if action == null:
 			continue
 
-		var action_ui = PREPARED_ACTION_UI.instantiate()
-		var action_texture_node: TextureRect = action_ui.get_node("%ActionTexture")
-		action_texture_node.texture = action.texture
+		var action_ui: PreparedActionUI = PREPARED_ACTION_UI.instantiate()
 		prepared_actions_bar.add_child(action_ui)
+		action_ui.setup(action)

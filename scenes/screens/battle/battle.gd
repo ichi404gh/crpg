@@ -7,10 +7,13 @@ var selected_pawn: Pawn
 
 var unit_to_pawn: Dictionary[Unit, Pawn] = {}
 
-@onready var battle_manager: BattleManager = $BattleManager
-@onready var actions_panel: ActionPanel = $CanvasLayer/ActionsPanel
-@onready var order_panel: HBoxContainer = $CanvasLayer/OrderPanel
-@onready var start_battle_button: Button = $CanvasLayer/Button
+@onready var battle_manager: BattleManager = %BattleManager
+@onready var actions_panel: ActionPanel = %ActionsPanel
+@onready var order_panel: HBoxContainer = %OrderPanel
+@onready var start_battle_button: Button = %Button
+
+@onready var player_party_node: Node2D = %PlayerParty
+@onready var enemy_party_node: Node2D = %EnemyParty
 
 
 func _ready() -> void:
@@ -58,9 +61,9 @@ func arrange_slots():
 	const sprite_size = 100
 	const PAWN = preload("res://scenes/screens/battle/pawn/pawn.tscn")
 
-	for u in $PlayerParty.get_children():
+	for u in player_party_node.get_children():
 		u.queue_free()
-	for u in $EnemyParty.get_children():
+	for u in enemy_party_node.get_children():
 		u.queue_free()
 
 	var _width = 0.0
@@ -73,7 +76,7 @@ func arrange_slots():
 		pawn_ui.clicked.connect(_on_pawn_click)
 
 		_width += sprite_size + spacing
-		$PlayerParty.add_child(pawn_ui)
+		player_party_node.add_child(pawn_ui)
 		pawn_ui.setup(unit)
 
 	_width -= spacing
@@ -88,7 +91,7 @@ func arrange_slots():
 
 
 		_width += sprite_size + spacing
-		$EnemyParty.add_child(pawn_ui)
+		enemy_party_node.add_child(pawn_ui)
 		pawn_ui.setup(unit, true)
 
 	_width -= spacing

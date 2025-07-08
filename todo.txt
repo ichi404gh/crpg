@@ -1,8 +1,9 @@
-❕ tooltips
+✅ tooltips
 ✅ ai/player controlled flag
 ✅ ai for units
 ❕ content diversity
 ❕ limited slots support for player units
+❕ inventory, item actions, consumables
 
 
 ❕✅❌
