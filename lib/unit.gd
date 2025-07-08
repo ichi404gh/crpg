@@ -5,6 +5,7 @@ class_name Unit
 @export var unit_name: String
 @export var alive: bool = true
 @export var unit_data: UnitData
+@export var ai_controlled: bool
 
 var unit_view: UnitBaseUI
 

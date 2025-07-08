@@ -34,7 +34,7 @@ func setup(_unit: Unit):
 	for c in actions_container.get_children():
 		c.queue_free()
 
-	for a in ActionManager.get_actions_for_unit(unit):
+	for a in ActionManager.get_actions_selection_for_unit(unit):
 		var apa = ACTION_PANEL_ACTION.instantiate()
 		apa.setup(a)
 		actions_container.add_child(apa)

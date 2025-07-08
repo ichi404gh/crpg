@@ -20,30 +20,32 @@ func _ready() -> void:
 
 
 func setup_stub():
-	const SWORD_SLASH = preload("uid://cf5ul8llmqy0c")
-
 	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
 	const SKELETON = preload("uid://nqkobm5ii7rg")
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
 		#SKELETON.instantiate(),
-		#MOUSEFOLK.instantiate(),
+		MOUSEFOLK.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
 
 	enemy_party = [
 		SKELETON.instantiate(),
 		SKELETON.instantiate(),
-		#MOUSEFOLK.instantiate(),
+		MOUSEFOLK.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
-	enemy_party[0].set_actions(0, SWORD_SLASH)
-	enemy_party[1].set_actions(0, SWORD_SLASH)
+
+
+	for u in enemy_party:
+		u.ai_controlled = true
 
 	battle_manager.setup(player_party, enemy_party)
 	#for e in enemy_party:
 		#e.set_actions(0, SWORD_SLASH)
+	set_ai_actions()
+
 
 func connect_signals():
 	battle_manager.stage_simulation_ready.connect(_on_stage_result)
@@ -106,8 +108,9 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			await event.source.unit_view.attack()
 			unit_to_pawn[event.target].update_status(-event.damage)
 			if event.effect_scene:
-				var scene = event.effect_scene.instantiate()
+				var scene: ActionFX = event.effect_scene.instantiate()
 				unit_to_pawn[event.target].get_node("./EffectRoot").add_child(scene)
+				scene.play_impact()
 			await event.target.unit_view.hurt()
 			await event.source.unit_view.finish_animations()
 			await event.target.unit_view.finish_animations()
@@ -117,11 +120,24 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			await event.target.unit_view.interact()
 			unit_to_pawn[event.target].update_status(-event.damage)
 			if event.effect_scene:
-				var scene = event.effect_scene.instantiate()
+				var scene: ActionFX = event.effect_scene.instantiate()
 				unit_to_pawn[event.target].get_node("./EffectRoot").add_child(scene)
+				scene.play_impact()
 
 	_update_order_panel()
+	set_ai_actions()
 	#arrange_slots()
+
+func set_ai_actions():
+	for u in player_party:
+		if u.ai_controlled:
+			u.selected_actions = ActionManager.select_action_for_ai_unit(u)
+			u.selected_actions_changed.emit(u.selected_actions)
+
+	for u in enemy_party:
+		if u.ai_controlled:
+			u.selected_actions = ActionManager.select_action_for_ai_unit(u)
+			u.selected_actions_changed.emit(u.selected_actions)
 
 func _on_panel_closed():
 	actions_panel.hide()
