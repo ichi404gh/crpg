@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://5qra7yjjcdwd"]
 
 [ext_resource type="Script" uid="uid://dapsdlwtoslu7" path="res://scenes/units/skeleton.gd" id="1_ou6oy"]
-[ext_resource type="Texture2D" uid="uid://dnqatco4k237m" path="res://assets/sprites/Skeleton.png" id="2_m637o"]
+[ext_resource type="Texture2D" uid="uid://dnqatco4k237m" path="res://assets/sprites/monsters/Skeleton.png" id="2_m637o"]
 
 [sub_resource type="Animation" id="Animation_sksfq"]
 length = 0.001
@@ -117,7 +117,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m637o"]
-size = Vector2(100, 183)
+size = Vector2(112, 229)
 
 [node name="Skeleton" type="Node2D"]
 script = ExtResource("1_ou6oy")
@@ -140,5 +140,5 @@ autoplay = "idle"
 [node name="ClickArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
-position = Vector2(0, -91.5)
+position = Vector2(-6, -114.5)
 shape = SubResource("RectangleShape2D_m637o")

@@ -5,9 +5,10 @@ var unit: Unit
 
 signal clicked
 
-@onready var hp_bar: ProgressBar = $HpBar
-@onready var prepared_actions_bar: HBoxContainer = $PreparedActionsBar
-@onready var unit_root: Node2D = $UnitRoot
+@onready var hp_bar: ProgressBar = %HpBar
+@onready var prepared_actions_bar: HBoxContainer = %PreparedActionsBar
+@onready var unit_root: Node2D = %UnitRoot
+@onready var hp_label: Label = %Label
 
 
 func setup(unit: Unit, flip: bool = false):
@@ -21,9 +22,12 @@ func setup(unit: Unit, flip: bool = false):
 		scene.scale.x = -1
 	hp_bar.max_value = unit.unit_data.max_hp
 	hp_bar.value = unit.hp
+	hp_label.text = "%s/%s" % [unit.hp, unit.unit_data.max_hp]
+
 
 func update_status(hp_increnemnt: int):
 	hp_bar.value += hp_increnemnt
+	hp_label.text = "%s/%s" % [int(hp_bar.value), unit.unit_data.max_hp]
 
 func _on_selected_actions_changed(actions: Array[Action]):
 	const PREPARED_ACTION_UI = preload("uid://cjad02w8v2per")

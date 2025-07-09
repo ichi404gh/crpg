@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://hwd0lxpta2ko"]
+
+[ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_1vto5"]
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_0wcjl"]
+[ext_resource type="Texture2D" uid="uid://diatt1qayd5t7" path="res://assets/sprites/monsters/bat.png" id="2_krrwq"]
+[ext_resource type="PackedScene" uid="uid://bde3g874eny2l" path="res://scenes/units/bat.tscn" id="4_t066e"]
+
+[resource]
+script = ExtResource("2_0wcjl")
+name = "Bat"
+max_hp = 10
+unit_ui = ExtResource("4_t066e")
+portrait = ExtResource("2_krrwq")
+metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

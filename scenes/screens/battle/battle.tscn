@@ -16,17 +16,17 @@ node = NodePath("CanvasLayer/TooltipAnchor")
 metadata/_custom_type_script = "uid://bxp51gh1s6ktl"
 
 [node name="Background" type="Sprite2D" parent="TooltipContext"]
-position = Vector2(667.00006, 314)
-scale = Vector2(0.6307871, 0.630787)
+position = Vector2(958.00006, 492)
+scale = Vector2(0.92496145, 0.92496145)
 texture = ExtResource("2_f7stq")
 
 [node name="PlayerParty" type="Node2D" parent="TooltipContext"]
 unique_name_in_owner = true
-position = Vector2(557, 613)
+position = Vector2(882, 903)
 
 [node name="EnemyParty" type="Node2D" parent="TooltipContext"]
 unique_name_in_owner = true
-position = Vector2(707, 613)
+position = Vector2(1032, 903)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="TooltipContext"]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnqatco4k237m"
-path="res://.godot/imported/Skeleton.png-85a44cdc1e16793d77a22fec0ac075a1.ctex"
+uid="uid://bk6ypyuckx586"
+path="res://.godot/imported/Mousefolk.png-21546e49416ba12819fb8acda4aeb487.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Skeleton.png"
-dest_files=["res://.godot/imported/Skeleton.png-85a44cdc1e16793d77a22fec0ac075a1.ctex"]
+source_file="res://assets/sprites/monsters/Mousefolk.png"
+dest_files=["res://.godot/imported/Mousefolk.png-21546e49416ba12819fb8acda4aeb487.ctex"]
 
 [params]
 

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Action" load_steps=10 format=3 uid="uid://cyhi26yqebnth"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_g0j1m"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1ymbi"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_8pc2t"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/status_effects/status_effect.gd" id="3_ktxwd"]
+[ext_resource type="Script" uid="uid://c4gfidkjcl2un" path="res://data/status_effects/damage_over_time.gd" id="4_tm4yk"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/action_effects/apply_status_effects.gd" id="5_athi6"]
+
+[sub_resource type="Resource" id="Resource_rr1mg"]
+script = ExtResource("2_8pc2t")
+amount = 3
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_f4sif"]
+script = ExtResource("4_tm4yk")
+duration_rounds = 1
+damage = 3
+title = "Poison"
+metadata/_custom_type_script = "uid://c4gfidkjcl2un"
+
+[sub_resource type="Resource" id="Resource_wdvfq"]
+script = ExtResource("5_athi6")
+effects = Array[ExtResource("3_ktxwd")]([SubResource("Resource_f4sif")])
+metadata/_custom_type_script = "uid://h625835j74oo"
+
+[resource]
+script = ExtResource("2_1ymbi")
+title = "Poisoned sickle"
+effects = Array[ExtResource("1_g0j1m")]([SubResource("Resource_rr1mg"), SubResource("Resource_wdvfq")])
+metadata/_custom_type_script = "uid://crhahprxps0vr"

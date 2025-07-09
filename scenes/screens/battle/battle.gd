@@ -15,6 +15,8 @@ var unit_to_pawn: Dictionary[Unit, Pawn] = {}
 @onready var player_party_node: Node2D = %PlayerParty
 @onready var enemy_party_node: Node2D = %EnemyParty
 
+@export var spacing = 30.0
+@export var sprite_size = 100
 
 func _ready() -> void:
 	connect_signals()
@@ -25,6 +27,8 @@ func _ready() -> void:
 func setup_stub():
 	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
 	const SKELETON = preload("uid://nqkobm5ii7rg")
+	const SKELETON_REAPER = preload("uid://d00w56ml886iu")
+	const BAT = preload("uid://hwd0lxpta2ko")
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
@@ -35,8 +39,8 @@ func setup_stub():
 
 	enemy_party = [
 		SKELETON.instantiate(),
-		SKELETON.instantiate(),
-		MOUSEFOLK.instantiate(),
+		SKELETON_REAPER.instantiate(),
+		BAT.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
 
@@ -57,10 +61,8 @@ func connect_signals():
 
 
 func arrange_slots():
-	const spacing = 20.0
-	const sprite_size = 100
-	const PAWN = preload("res://scenes/screens/battle/pawn/pawn.tscn")
 
+	const PAWN = preload("uid://dmwqt8pe1nwg5")
 	for u in player_party_node.get_children():
 		u.queue_free()
 	for u in enemy_party_node.get_children():
@@ -112,7 +114,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			unit_to_pawn[event.target].update_status(-event.damage)
 			if event.effect_scene:
 				var scene: ActionFX = event.effect_scene.instantiate()
-				unit_to_pawn[event.target].get_node("./EffectRoot").add_child(scene)
+				unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
 				scene.play_impact()
 			await event.target.unit_view.hurt()
 			await event.source.unit_view.finish_animations()
@@ -124,7 +126,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			unit_to_pawn[event.target].update_status(-event.damage)
 			if event.effect_scene:
 				var scene: ActionFX = event.effect_scene.instantiate()
-				unit_to_pawn[event.target].get_node("./EffectRoot").add_child(scene)
+				unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
 				scene.play_impact()
 
 	_update_order_panel()

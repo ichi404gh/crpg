@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://bj5wsdwq6hy7e"]
 
 [ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_ectkk"]
-[ext_resource type="Texture2D" uid="uid://bk6ypyuckx586" path="res://assets/sprites/Mousefolk.png" id="1_klq5l"]
+[ext_resource type="Texture2D" uid="uid://bk6ypyuckx586" path="res://assets/sprites/monsters/Mousefolk.png" id="1_klq5l"]
 [ext_resource type="PackedScene" uid="uid://pbsa2wewi6p1" path="res://scenes/units/mousefolk.tscn" id="2_ectkk"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_ss7jk"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_xcaa2"]

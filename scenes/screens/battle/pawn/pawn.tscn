@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmwqt8pe1nwg5"]
+[gd_scene load_steps=5 format=3 uid="uid://dmwqt8pe1nwg5"]
 
 [ext_resource type="Script" uid="uid://dcdwl6y5wlagj" path="res://scenes/screens/battle/pawn/pawn.gd" id="1_hayec"]
+[ext_resource type="Script" uid="uid://bxp51gh1s6ktl" path="res://scenes/tooltips/tooltip_context.gd" id="2_ah6r1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk45r"]
 content_margin_left = 2.0
@@ -29,12 +30,19 @@ corner_detail = 6
 [node name="Pawn" type="Node2D"]
 script = ExtResource("1_hayec")
 
-[node name="UnitRoot" type="Node2D" parent="."]
+[node name="TooltipContext" type="Node2D" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("2_ah6r1")
+node = NodePath("Control")
 
-[node name="EffectRoot" type="Node2D" parent="."]
+[node name="UnitRoot" type="Node2D" parent="TooltipContext"]
+unique_name_in_owner = true
+
+[node name="EffectRoot" type="Node2D" parent="TooltipContext"]
+unique_name_in_owner = true
 position = Vector2(0, -71)
 
-[node name="HpBar" type="ProgressBar" parent="."]
+[node name="HpBar" type="ProgressBar" parent="TooltipContext"]
+unique_name_in_owner = true
 offset_left = -28.0
 offset_top = 4.0
 offset_right = 28.0
@@ -45,14 +53,37 @@ max_value = 50.0
 value = 23.77
 show_percentage = false
 
-[node name="PreparedActionsBar" type="HBoxContainer" parent="."]
+[node name="Label" type="Label" parent="TooltipContext/HpBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 17.0
+offset_top = -1.0
+offset_right = 39.0
+offset_bottom = 7.375
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.30980393)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 6
+text = "13/37"
+horizontal_alignment = 1
+
+[node name="PreparedActionsBar" type="HBoxContainer" parent="TooltipContext"]
+unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -7.0
-offset_top = 22.0
-offset_right = 8.0
-offset_bottom = 32.0
+offset_left = -7.5
+offset_top = 16.0
+offset_right = 7.5
+offset_bottom = 26.0
 grow_horizontal = 2
 pivot_offset = Vector2(27, 0)
 theme_override_constants/separation = 6
+
+[node name="Control" type="Control" parent="TooltipContext"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -73.0
+offset_top = -222.0
+offset_right = 74.0
+offset_bottom = -60.0

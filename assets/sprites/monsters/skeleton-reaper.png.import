@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdks7tl1mr6qu"
-path="res://.godot/imported/slime.png-96ce727a1363ab17682b714b148ee24f.ctex"
+uid="uid://4yio6cae7ben"
+path="res://.godot/imported/skeleton-reaper.png-946970b7170dd251e5fca3ac7b9b9282.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/monsters/slime.png"
-dest_files=["res://.godot/imported/slime.png-96ce727a1363ab17682b714b148ee24f.ctex"]
+source_file="res://assets/sprites/monsters/skeleton-reaper.png"
+dest_files=["res://.godot/imported/skeleton-reaper.png-946970b7170dd251e5fca3ac7b9b9282.ctex"]
 
 [params]
 

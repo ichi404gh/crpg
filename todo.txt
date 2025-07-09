@@ -2,8 +2,18 @@
 ✅ ai/player controlled flag
 ✅ ai for units
 ❕ content diversity
+❕ targeting strategy
+❕ ai action preset selection strategy
 ❕ limited slots support for player units
+❕ combat log
+❕ damage floaing text
+
+❕ action providers
 ❕ inventory, item actions, consumables
+
+❕ equipment system
+	❕ ui
+	❕ uquipment action provider
 
 
 ❕✅❌

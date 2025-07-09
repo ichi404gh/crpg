@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://d00w56ml886iu"]
+
+[ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_woxgn"]
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_hn107"]
+[ext_resource type="Texture2D" uid="uid://4yio6cae7ben" path="res://assets/sprites/monsters/skeleton-reaper.png" id="2_woxgn"]
+[ext_resource type="PackedScene" uid="uid://dwximysfqkgwt" path="res://scenes/units/skeleton_reaper.tscn" id="4_1f8qn"]
+
+[resource]
+script = ExtResource("2_hn107")
+name = "Reaper"
+max_hp = 20
+unit_ui = ExtResource("4_1f8qn")
+portrait = ExtResource("2_woxgn")
+metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

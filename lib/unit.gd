@@ -6,6 +6,7 @@ class_name Unit
 @export var alive: bool = true
 @export var unit_data: UnitData
 @export var ai_controlled: bool
+@export var status_effects: Array[StatusEffect]
 
 var unit_view: UnitBaseUI
 

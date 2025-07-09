@@ -78,7 +78,13 @@ func apply_damage(target: Unit, amount: int):
 		target.alive = false
 
 func apply_heal(target: Unit, amount: int):
-	target.hp += amount
+	target.hp = min(target.unit_data.max_hp, target.hp + amount)
+
+func apply_status_effect(target: Unit, status_effect: StatusEffect):
+	target.status_effects.append(status_effect)
+	# TODO reapply effect
+	# TODO handle effect
+	# TODO clean effect
 
 class SimulationData:
 	var previous_stage_result: Array[CombatEvent]
