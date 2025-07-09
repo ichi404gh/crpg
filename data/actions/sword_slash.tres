@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="Action" load_steps=7 format=3 uid="uid://cf5ul8llmqy0c"]
+[gd_resource type="Resource" script_class="Action" load_steps=8 format=3 uid="uid://cf5ul8llmqy0c"]
 
-[ext_resource type="PackedScene" uid="uid://ckvc2hc6l5skt" path="res://data/actions/sword_slash/sword_slash.tscn" id="1_h70gr"]
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_ovj3u"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1hcsd"]
 [ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_yn1tf"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/action_effects/targeting/random_enemy.gd" id="3_h70gr"]
 [ext_resource type="Texture2D" uid="uid://c1d384ok0bo5s" path="res://assets/sprites/actions/31.png" id="4_h70gr"]
+
+[sub_resource type="Resource" id="Resource_tj7m5"]
+script = ExtResource("3_h70gr")
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
 
 [sub_resource type="Resource" id="Resource_yn1tf"]
 script = ExtResource("2_yn1tf")
-amount = 4
+targeting = SubResource("Resource_tj7m5")
 metadata/_custom_type_script = "uid://mmchhhj8417w"
 
 [resource]
@@ -16,5 +20,5 @@ script = ExtResource("2_1hcsd")
 title = "Sword slash"
 effects = Array[ExtResource("1_ovj3u")]([SubResource("Resource_yn1tf")])
 texture = ExtResource("4_h70gr")
-effect_scene = ExtResource("1_h70gr")
+source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"

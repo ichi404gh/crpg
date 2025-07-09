@@ -141,7 +141,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6i4t"]
-size = Vector2(100, 144)
+size = Vector2(131, 173)
 
 [node name="Mousefolk" type="Node2D"]
 script = ExtResource("1_lybww")
@@ -152,12 +152,6 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="ClickArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
-position = Vector2(-1, -69)
-shape = SubResource("RectangleShape2D_m6i4t")
-
 [node name="AnimationProxy" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="AnimationProxy"]
@@ -165,3 +159,9 @@ position = Vector2(-32.999996, -125)
 scale = Vector2(0.5542071, 0.5542071)
 texture = ExtResource("2_m6i4t")
 offset = Vector2(21.652561, 70.99855)
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(-16.5, -83.5)
+shape = SubResource("RectangleShape2D_m6i4t")

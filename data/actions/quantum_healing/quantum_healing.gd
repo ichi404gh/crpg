@@ -9,6 +9,10 @@ func play_charge():
 	pass
 
 func play_impact():
+	_run()
+	await get_tree().create_timer(0.3).timeout
+
+func _run():
 	audio_stream_player.play()
 	await get_tree().create_timer(0.3).timeout
 	particles.emitting = false

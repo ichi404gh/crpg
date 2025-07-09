@@ -12,6 +12,11 @@ var order: Array[Unit]
 var stage: int = 0
 var meta: Meta = Meta.new()
 
+
+var damage_mananger: DamageManager = DamageManager.new(self)
+var healing_manager: HealingManager = HealingManager.new(self)
+
+
 func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	player_party = player
 	enemy_party = enemy
@@ -20,7 +25,7 @@ func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 
 
 func simulate_stage():
-	var events: Array[CombatEvent] = []
+	var events: Array[AbstractBattleEevnt] = []
 	var round_number: int = 0
 
 	while round_number < 4:
@@ -34,22 +39,23 @@ func simulate_stage():
 				continue
 
 			var action = unit_actions[round_number]
-			for effect: ActionEffect in action.effects:
-				if effect is DamageEffect:
-					var target = _get_opposite_alive_party(unit).pick_random()
-					if not target:
-						continue
-					effect.apply(unit, target, self)
-					events.append(CombatEvent.attacks(unit, target, effect.amount, action.effect_scene))
-					if !target.alive:
-						events.append(CombatEvent.dies(target))
-				elif effect is HealEffect:
-					var target = _get_own_alive_party(unit).pick_random()
-					effect.apply(unit, target, self)
-					events.append(CombatEvent.interact(target, -effect.amount, action.effect_scene))
+			var interaction_event: InteractionEvent = action.produce_event(unit)
+			var action_events: Array[AbstractBattleEevnt] = []
 
-				else:
-					push_error("unknown action type")
+			for effect: ActionEffect in action.effects:
+				if not effect.have_targets(unit, self):
+					continue
+				var targets = effect.get_targets(unit, self)
+				for target in targets:
+					var event_effects = effect.apply(unit, target, self, action)
+					for event_effect in event_effects:
+						if event_effect is InteractionEvent.TargetEffect:
+							interaction_event.target_effects.append(event_effect)
+						else:
+							action_events.append(event_effect)
+			if not interaction_event.target_effects.is_empty():
+				events.append(interaction_event)
+			events.append_array(action_events)
 		round_number += 1
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new(events, order))
@@ -72,14 +78,6 @@ func _get_turn_order() -> Array[Unit]:
 	return _order
 
 
-func apply_damage(target: Unit, amount: int):
-	target.hp -= amount
-	if target.hp <= 0:
-		target.alive = false
-
-func apply_heal(target: Unit, amount: int):
-	target.hp = min(target.unit_data.max_hp, target.hp + amount)
-
 func apply_status_effect(target: Unit, status_effect: StatusEffect):
 	target.status_effects.append(status_effect)
 	# TODO reapply effect
@@ -87,10 +85,10 @@ func apply_status_effect(target: Unit, status_effect: StatusEffect):
 	# TODO clean effect
 
 class SimulationData:
-	var previous_stage_result: Array[CombatEvent]
+	var previous_stage_result: Array[AbstractBattleEevnt]
 	var next_turn_order: Array[Unit]
 
-	func _init(events: Array[CombatEvent], order: Array[Unit]) -> void:
+	func _init(events: Array[AbstractBattleEevnt], order: Array[Unit]) -> void:
 		previous_stage_result = events
 		next_turn_order = order
 

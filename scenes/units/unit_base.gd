@@ -2,8 +2,10 @@
 class_name UnitBaseUI
 extends Node2D
 
-
+@warning_ignore("unused_signal")
 signal hit_moment
+
+@warning_ignore("unused_signal")
 signal clicked
 
 @abstract

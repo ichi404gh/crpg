@@ -9,7 +9,6 @@
 
 [sub_resource type="Resource" id="Resource_rr1mg"]
 script = ExtResource("2_8pc2t")
-amount = 3
 metadata/_custom_type_script = "uid://mmchhhj8417w"
 
 [sub_resource type="Resource" id="Resource_f4sif"]
@@ -28,4 +27,5 @@ metadata/_custom_type_script = "uid://h625835j74oo"
 script = ExtResource("2_1ymbi")
 title = "Poisoned sickle"
 effects = Array[ExtResource("1_g0j1m")]([SubResource("Resource_rr1mg"), SubResource("Resource_wdvfq")])
+source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"

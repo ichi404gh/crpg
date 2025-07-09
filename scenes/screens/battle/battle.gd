@@ -18,17 +18,18 @@ var unit_to_pawn: Dictionary[Unit, Pawn] = {}
 @export var spacing = 30.0
 @export var sprite_size = 100
 
+
 func _ready() -> void:
 	connect_signals()
 	setup_stub()
 	arrange_slots()
-
 
 func setup_stub():
 	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
 	const SKELETON = preload("uid://nqkobm5ii7rg")
 	const SKELETON_REAPER = preload("uid://d00w56ml886iu")
 	const BAT = preload("uid://hwd0lxpta2ko")
+
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
@@ -108,26 +109,53 @@ func _on_stage_result(data: BattleManager.SimulationData):
 	actions_panel.hide()
 	print(data.previous_stage_result)
 
-	for event: CombatEvent in data.previous_stage_result:
-		if event is CombatEvent.Attacks:
-			await event.source.unit_view.attack()
-			unit_to_pawn[event.target].update_status(-event.damage)
-			if event.effect_scene:
-				var scene: ActionFX = event.effect_scene.instantiate()
-				unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
-				scene.play_impact()
-			await event.target.unit_view.hurt()
-			await event.source.unit_view.finish_animations()
-			await event.target.unit_view.finish_animations()
-		elif event is CombatEvent.Dies:
+	for event: AbstractBattleEevnt in data.previous_stage_result:
+		if event is InteractionEvent:
+			if event.source:
+				if event.source_fx:
+					var scene: ActionFX = event.source_fx.instantiate()
+					unit_to_pawn[event.source].get_node("%EffectRoot").add_child(scene)
+					await scene.play_impact()
+				match event.source_animation:
+					InteractionEvent.AnimationKind.Attack:
+						await event.source.unit_view.attack()
+					InteractionEvent.AnimationKind.Interact:
+						await event.source.unit_view.interact()
+			for target_effect: InteractionEvent.TargetEffect in event.target_effects:
+				match target_effect.animation:
+					InteractionEvent.AnimationKind.Hurt:
+						target_effect.target.unit_view.hurt()
+				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change)
+				if target_effect.fx:
+					var scene: ActionFX = target_effect.fx.instantiate()
+					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
+					await scene.play_impact()
+			if event.source:
+				await event.source.unit_view.finish_animations()
+		elif event is UnitDeadEvent:
+			# TODO: disable ui for dead pawn
 			await event.who.unit_view.die()
-		elif event is CombatEvent.Interact:
-			await event.target.unit_view.interact()
-			unit_to_pawn[event.target].update_status(-event.damage)
-			if event.effect_scene:
-				var scene: ActionFX = event.effect_scene.instantiate()
-				unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
-				scene.play_impact()
+
+		#if event is CombatEvent.Attacks:
+
+			#await event.source.unit_view.attack()
+			#unit_to_pawn[event.target].update_status(-event.damage)
+			#if event.effect_scene:
+				#var scene: ActionFX = event.effect_scene.instantiate()
+				#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
+				#scene.play_impact()
+			#await event.target.unit_view.hurt()
+			#await event.source.unit_view.finish_animations()
+			#await event.target.unit_view.finish_animations()
+		#elif event is CombatEvent.Dies:
+			#await event.who.unit_view.die()
+		#elif event is CombatEvent.Interact:
+			#await event.target.unit_view.interact()
+			#unit_to_pawn[event.target].update_status(-event.damage)
+			#if event.effect_scene:
+				#var scene: ActionFX = event.effect_scene.instantiate()
+				#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
+				#scene.play_impact()
 
 	_update_order_panel()
 	set_ai_actions()

@@ -1,13 +1,19 @@
-[gd_resource type="Resource" script_class="Action" load_steps=7 format=3 uid="uid://bh8avx15y0r84"]
+[gd_resource type="Resource" script_class="Action" load_steps=9 format=3 uid="uid://bh8avx15y0r84"]
 
 [ext_resource type="PackedScene" uid="uid://dnbb81gsdvagc" path="res://data/actions/quantum_healing/quantum_healing.tscn" id="1_qfgin"]
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_vby44"]
 [ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/action_effects/heal_effect.gd" id="2_vby44"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="3_bqmvk"]
 [ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="3_w2p41"]
+[ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://data/action_effects/targeting/random_ally_not_self.gd" id="4_bqmvk"]
+
+[sub_resource type="Resource" id="Resource_3itet"]
+script = ExtResource("4_bqmvk")
+metadata/_custom_type_script = "uid://b3pmigr60y7l5"
 
 [sub_resource type="Resource" id="Resource_vby44"]
 script = ExtResource("2_vby44")
+targeting = SubResource("Resource_3itet")
 metadata/_custom_type_script = "uid://c5d87g5vabc7n"
 
 [resource]
@@ -16,4 +22,5 @@ title = "Quantum healing"
 effects = Array[ExtResource("1_vby44")]([SubResource("Resource_vby44")])
 texture = ExtResource("3_w2p41")
 effect_scene = ExtResource("1_qfgin")
+source_animation = 1
 metadata/_custom_type_script = "uid://crhahprxps0vr"

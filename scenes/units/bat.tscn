@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bde3g874eny2l"]
+[gd_scene load_steps=8 format=3 uid="uid://bde3g874eny2l"]
 
 [ext_resource type="Script" uid="uid://dklljbjqgo2h7" path="res://scenes/units/bat.gd" id="1_n6t22"]
 [ext_resource type="Texture2D" uid="uid://diatt1qayd5t7" path="res://assets/sprites/monsters/bat.png" id="2_kd41l"]
@@ -361,10 +361,249 @@ tracks/15/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base:position:x")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base:position:y")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/LW:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-50, -31)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/RW:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(45, -28)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("AnimationProxy:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.5058745, 0.5058745)]
+}
+
+[sub_resource type="Animation" id="Animation_ymjlu"]
+resource_name = "hurt"
+length = 0.697
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 51.396145, -0.03334832, -8.566025, 0, 0, 120.58327, -0.029660761, -11.531187, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.6333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 34.32384, -0.03334832, -5.7206407, 0, 0, -3.2348785, -0.029660761, 6.2597866, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.6333333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/LW:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-50, -0.25, 0, 0.25, 0, -50, -0.031424377, 0, 0, 0, -39.694637, -0.03126405, -1.7175606, 0, 0, -50, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.18845636, 0.33140942, 0.6333333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/LW:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-31, -0.25, 0, 0.25, 0, -31, -0.031424377, 0, 0, 0, -39.384132, -0.03126405, 1.3973554, 0, 0, -31, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.18845636, 0.33140942, 0.6333333)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/LW:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.68618304, -0.031424377, 0.11436384, 0, 0, -0.23721191, -0.03126405, -0.07482853, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.18845636, 0.33140942, 0.6333333)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/RW:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(45, -0.25, 0, 0.25, 0, 45, -0.03174503, 0, 0, 0, 45, -0.02693518, 0, 0, 0, 45, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.19038029, 0.30736014, 0.6333333)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/RW:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-28, -0.25, 0, 0.25, 0, -28, -0.03174503, 0, 0, 0, -28, -0.02693518, 0, 0, 0, -28, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.19038029, 0.30736014, 0.6333333)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/RW:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.6863134, -0.03174503, -0.11438557, 0, 0, 0.052542686, -0.02693518, 0.10562845, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.19038029, 0.30736014, 0.6333333)
+}
+
+[sub_resource type="Animation" id="Animation_m7etv"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20105188, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -36.840054), Vector2(0, 137.11612)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/LW:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1837364, 0.40979952),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-50, -31), Vector2(-50, -31), Vector2(-50, -31)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/LW:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1837364, 0.40979952),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.959508, 0.3250171]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/RW:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1837364, 0.40979952),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(45, -28), Vector2(45, -28), Vector2(45, -28)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationProxy/Bat/Skeleton2D/Base/Body/RW:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1837364, 0.40979952),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.70027614, 0.089743376]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationProxy:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.32322216, 0.4954149),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.5058745, 0.5058745), Vector2(-0.5058745, 0.5058745), Vector2(-0.506, 0.196)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ymjlu"]
 _data = {
 &"RESET": SubResource("Animation_5cij8"),
+&"die": SubResource("Animation_m7etv"),
+&"hurt": SubResource("Animation_ymjlu"),
 &"idle": SubResource("Animation_kd41l")
 }
 
@@ -414,3 +653,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_ymjlu")
 }
 autoplay = "idle"
+blend_times = [&"hurt", &"idle", 0.3, &"idle", &"die", 0.1, &"idle", &"hurt", 0.1]
