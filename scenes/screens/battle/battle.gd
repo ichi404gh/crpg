@@ -112,7 +112,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 	actions_panel.hide()
 	print(data.previous_stage_result)
 
-	for event: AbstractBattleEevnt in data.previous_stage_result:
+	for event: AbstractBattleEvent in data.previous_stage_result:
 		if event is InteractionEvent:
 			if event.source:
 				if event.source_fx:
@@ -148,6 +148,14 @@ func _on_stage_result(data: BattleManager.SimulationData):
 				#callbacks.append(effect.target.unit_view.finish_animations)
 			#var helper = JoinHelper.join(callbacks)
 			#await helper.done
+		elif event is OffInteractionDamageEvent:
+			if event.hurt:
+				await event.target.unit_view.hurt()
+			#const DAMAGE_INDICATOR = preload("uid://bbkvpkjbemqiw")
+			#var scene = DAMAGE_INDICATOR.instantiate()
+			#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
+			#scene.setup(-event.hp_change)
+			unit_to_pawn[event.target].update_status(event.hp_change)
 
 		elif event is UnitDeadEvent:
 			# TODO: disable ui for dead pawn

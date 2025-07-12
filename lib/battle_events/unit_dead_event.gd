@@ -1,5 +1,5 @@
 class_name UnitDeadEvent
-extends AbstractBattleEevnt
+extends AbstractBattleEvent
 
 var who: Unit
 

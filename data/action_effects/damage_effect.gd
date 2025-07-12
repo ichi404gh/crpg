@@ -4,8 +4,8 @@ class_name DamageEffect
 @export var amount_min: int = 1
 @export var amount_max: int = 5
 
-func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: Action) -> Array[AbstractBattleEevnt]:
-	var events: Array[AbstractBattleEevnt] = []
+func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: Action) -> Array[AbstractBattleEvent]:
+	var events: Array[AbstractBattleEvent] = []
 
 	var damage = randi_range(amount_min, amount_max)
 

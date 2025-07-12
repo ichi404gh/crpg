@@ -3,7 +3,7 @@ extends Resource
 class_name Action
 
 @export var title: String
-@export var effects: Array[ActionEffect]
+@export var effect_groups: Array[ActionEffectGroup]
 @export var texture: Texture2D
 @export var effect_scene: PackedScene
 @export var source_animation: InteractionEvent.AnimationKind = InteractionEvent.AnimationKind.None

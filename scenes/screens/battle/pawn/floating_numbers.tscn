@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsy2hrnd3i4np"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p4pkh"]
+font_color = Color(0.58724755, 0.15757349, 0.15392458, 1)
+outline_size = 2
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.8)
+
+[node name="FloatingNumbers" type="Label"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -11.166667
+offset_right = 9.5
+offset_bottom = 11.166667
+grow_horizontal = 2
+grow_vertical = 2
+text = "123"
+label_settings = SubResource("LabelSettings_p4pkh")

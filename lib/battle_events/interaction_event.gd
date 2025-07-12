@@ -1,5 +1,5 @@
 class_name InteractionEvent
-extends AbstractBattleEevnt
+extends AbstractBattleEvent
 
 var source: Unit
 var source_animation: AnimationKind
@@ -12,7 +12,7 @@ func add_effects(te: Array[TargetEffect]):
 func _to_string() -> String:
 	return "Interaction %s %s" % [source_animation, self.target_effects.map(func (e: TargetEffect): return e)]
 
-class TargetEffect extends AbstractBattleEevnt:
+class TargetEffect extends AbstractBattleEvent:
 	var target: Unit
 	var animation: AnimationKind
 	var hp_change: int

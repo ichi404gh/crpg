@@ -1,16 +1,47 @@
-[gd_resource type="Resource" script_class="Action" load_steps=5 format=3 uid="uid://cyhi26yqebnth"]
+[gd_resource type="Resource" script_class="Action" load_steps=15 format=3 uid="uid://cyhi26yqebnth"]
 
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_g0j1m"]
+[ext_resource type="Script" uid="uid://n48fqjstmmly" path="res://data/action_effects/action_effect_group.gd" id="1_tm4yk"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1ymbi"]
 [ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_8pc2t"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/status_effects/status_effect.gd" id="3_ktxwd"]
+[ext_resource type="Script" uid="uid://c4gfidkjcl2un" path="res://data/status_effects/damage_over_time.gd" id="4_tm4yk"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/action_effects/apply_status_effects.gd" id="5_athi6"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/action_effects/targeting/random_enemy.gd" id="7_athi6"]
+[ext_resource type="Texture2D" uid="uid://mi7uyk4fwy1y" path="res://assets/sprites/actions/sickle.png" id="9_athi6"]
 
-[sub_resource type="Resource" id="Resource_1ymbi"]
+[sub_resource type="Resource" id="Resource_rr1mg"]
 script = ExtResource("2_8pc2t")
+amount_max = 3
 metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_f4sif"]
+script = ExtResource("4_tm4yk")
+damage = 1
+title = "Poison"
+default_duration = 2
+ticks_after_round = true
+metadata/_custom_type_script = "uid://c4gfidkjcl2un"
+
+[sub_resource type="Resource" id="Resource_wdvfq"]
+script = ExtResource("5_athi6")
+effects = Array[ExtResource("3_ktxwd")]([SubResource("Resource_f4sif")])
+metadata/_custom_type_script = "uid://h625835j74oo"
+
+[sub_resource type="Resource" id="Resource_b4264"]
+script = ExtResource("7_athi6")
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_3lfr3"]
+script = ExtResource("1_tm4yk")
+targeting = SubResource("Resource_b4264")
+effects = Array[ExtResource("1_g0j1m")]([SubResource("Resource_rr1mg"), SubResource("Resource_wdvfq")])
+metadata/_custom_type_script = "uid://n48fqjstmmly"
 
 [resource]
 script = ExtResource("2_1ymbi")
 title = "Poisoned sickle"
-effects = Array[ExtResource("1_g0j1m")]([SubResource("Resource_1ymbi"), null])
+effect_groups = Array[ExtResource("1_tm4yk")]([SubResource("Resource_3lfr3")])
+texture = ExtResource("9_athi6")
 source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"

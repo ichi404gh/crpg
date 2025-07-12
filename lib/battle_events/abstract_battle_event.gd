@@ -1,1 +1,1 @@
-@abstract class_name AbstractBattleEevnt
+@abstract class_name AbstractBattleEvent

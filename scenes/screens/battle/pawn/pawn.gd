@@ -9,7 +9,10 @@ signal clicked
 @onready var prepared_actions_bar: HBoxContainer = %PreparedActionsBar
 @onready var unit_root: Node2D = %UnitRoot
 @onready var hp_label: Label = %Label
+@onready var damage_numbers_root: Node2D = %DamageNumbersRoot
 
+const DMG_COLOR: Color = Color.FIREBRICK
+const HEAL_COLOR: Color = Color.WEB_GREEN
 
 func setup(unit: Unit, flip: bool = false):
 	self.unit = unit
@@ -32,6 +35,22 @@ func update_status(hp_increnemnt: int):
 
 	var tween = create_tween()
 	tween.tween_property(hp_bar, "value", hp_value, 0.4).set_ease(Tween.EASE_IN)
+
+	const FLOATING_NUMBERS = preload("uid://dsy2hrnd3i4np")
+	var number = FLOATING_NUMBERS.instantiate()
+	damage_numbers_root.add_child(number)
+	if hp_increnemnt > 0:
+		number.label_settings.font_color = HEAL_COLOR
+	else:
+		number.label_settings.font_color = DMG_COLOR
+	number.text = str(abs(hp_increnemnt))
+#
+	number.modulate.a = 1
+	tween.parallel().tween_property(number, "position:y", -50, 0.9)
+	tween.parallel().tween_property(number, "modulate:a", 0, 0.9)
+	await tween.finished
+	number.position.y = 0
+	number.modulate.a = 0
 
 func _on_selected_actions_changed(actions: Array[Action]):
 	const PREPARED_ACTION_UI = preload("uid://cjad02w8v2per")

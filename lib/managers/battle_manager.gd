@@ -23,9 +23,8 @@ func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new([], order))
 
-
 func simulate_stage():
-	var events: Array[AbstractBattleEevnt] = []
+	var events: Array[AbstractBattleEvent] = []
 	var round_number: int = 0
 
 
@@ -37,7 +36,7 @@ func simulate_stage():
 			if round_number == 0:
 				for ase in unit.status_effects:
 					if ase.status_effect.ticks_before_round:
-						ase.status_effect.tick(unit, self)
+						events.append_array(ase.status_effect.tick(unit, self))
 
 			var unit_actions: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
 
@@ -46,19 +45,20 @@ func simulate_stage():
 
 			var action = unit_actions[round_number]
 			var interaction_event: InteractionEvent = action.produce_event(unit)
-			var action_events: Array[AbstractBattleEevnt] = []
+			var action_events: Array[AbstractBattleEvent] = []
 
-			for effect: ActionEffect in action.effects:
-				if not effect.have_targets(unit, self):
+			for effect_group: ActionEffectGroup in action.effect_groups:
+				if not effect_group.have_targets(unit, self):
 					continue
-				var targets = effect.get_targets(unit, self)
-				for target in targets:
-					var event_effects = effect.apply(unit, target, self, action)
-					for event_effect in event_effects:
-						if event_effect is InteractionEvent.TargetEffect:
-							interaction_event.target_effects.append(event_effect)
-						else:
-							action_events.append(event_effect)
+				var targets = effect_group.get_targets(unit, self)
+				for effect: ActionEffect in effect_group.effects:
+					for target: Unit in targets:
+						var event_effects = effect.apply(unit, target, self, action)
+						for event_effect in event_effects:
+							if event_effect is InteractionEvent.TargetEffect:
+								interaction_event.target_effects.append(event_effect)
+							else:
+								action_events.append(event_effect)
 			if not interaction_event.target_effects.is_empty():
 				events.append(interaction_event)
 			events.append_array(action_events)
@@ -70,7 +70,7 @@ func simulate_stage():
 			continue
 		for ase in unit.status_effects:
 			if ase.status_effect.ticks_after_round:
-				ase.status_effect.tick(unit, self)
+				events.append_array(ase.status_effect.tick(unit, self))
 
 		status_effect_manager.expire_effects(unit)
 
@@ -96,10 +96,10 @@ func _get_turn_order() -> Array[Unit]:
 
 
 class SimulationData:
-	var previous_stage_result: Array[AbstractBattleEevnt]
+	var previous_stage_result: Array[AbstractBattleEvent]
 	var next_turn_order: Array[Unit]
 
-	func _init(events: Array[AbstractBattleEevnt], order: Array[Unit]) -> void:
+	func _init(events: Array[AbstractBattleEvent], order: Array[Unit]) -> void:
 		previous_stage_result = events
 		next_turn_order = order
 

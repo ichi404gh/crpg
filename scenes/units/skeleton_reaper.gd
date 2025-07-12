@@ -4,11 +4,15 @@ extends UnitBaseUI
 @onready var area_2d: Area2D = $Area2D
 
 func attack():
-	pass
+	attack_animation()
+	await hit_moment
+
 func die():
-	pass
+	await die_animation()
+
 func hurt():
-	pass
+	await hurt_animation()
+
 func interact():
 	pass
 

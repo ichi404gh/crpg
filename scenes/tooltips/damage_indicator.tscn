@@ -49,6 +49,7 @@ polygon = PackedVector2Array(-29, -17, -16, -27, -18, -47, -7, -31, 10, -26, 21,
 [node name="LabelAncor" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="LabelAncor"]
+visible = false
 offset_left = -66.0
 offset_top = -175.0
 offset_right = 67.0

@@ -2,18 +2,35 @@
 ✅ ai/player controlled flag
 ✅ ai for units
 ❕ content diversity
-❕ targeting strategy
-❕ ai action preset selection strategy
-❕ limited slots support for player units
-❕ combat log
-❕ damage floaing text
+✅ targeting strategy
+✅ ai action preset selection strategy
+❌ combat log
+✅ damage floaing text
 
-❕ action providers
-❕ inventory, item actions, consumables
+❌ bonuses between rounds
+	❌ active bonus ui
 
-❕ equipment system
-	❕ ui
-	❕ uquipment action provider
+❌ statuses ui
+	❌ polish tooltips - statuses and actions
+
+❌ unit window
+	❌ info tab - parameters and statuses
+	❌ actions tab - same as actions panel
+	❌ equipment system
+		❌ ui
+		❌ uquipment action provider
+		❌ inventory, item actions, consumables
+
+❌ limited slots support for player units
+❌ action providers
+❌ unique actions
+❌ action cooldowns
+
+❌ save unit between battles
+❌ multi-waves battles
+❌ end battle ui
 
 
-❕✅❌
+✅ - done
+❕ - in progress
+❌ - not started
