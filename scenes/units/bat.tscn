@@ -653,4 +653,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_ymjlu")
 }
 autoplay = "idle"
-blend_times = [&"hurt", &"idle", 0.3, &"idle", &"die", 0.1, &"idle", &"hurt", 0.1]

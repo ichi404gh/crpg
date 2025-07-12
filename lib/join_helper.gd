@@ -11,6 +11,7 @@ func _init():
 
 func _on_one_done():
 	waiting -= 1
+
 	if waiting == 0:
 		done.emit()
 

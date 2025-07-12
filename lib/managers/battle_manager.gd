@@ -15,7 +15,7 @@ var meta: Meta = Meta.new()
 
 var damage_mananger: DamageManager = DamageManager.new(self)
 var healing_manager: HealingManager = HealingManager.new(self)
-
+var status_effect_manager: StatusEffectManager = StatusEffectManager.new(self)
 
 func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	player_party = player
@@ -28,10 +28,16 @@ func simulate_stage():
 	var events: Array[AbstractBattleEevnt] = []
 	var round_number: int = 0
 
+
 	while round_number < 4:
 		for unit in order:
-			if !unit.alive:
+			if not unit.alive:
 				continue
+
+			if round_number == 0:
+				for ase in unit.status_effects:
+					if ase.status_effect.ticks_before_round:
+						ase.status_effect.tick(unit, self)
 
 			var unit_actions: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
 
@@ -57,6 +63,17 @@ func simulate_stage():
 				events.append(interaction_event)
 			events.append_array(action_events)
 		round_number += 1
+
+
+	for unit in order:
+		if not unit.alive:
+			continue
+		for ase in unit.status_effects:
+			if ase.status_effect.ticks_after_round:
+				ase.status_effect.tick(unit, self)
+
+		status_effect_manager.expire_effects(unit)
+
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new(events, order))
 
@@ -77,12 +94,6 @@ func _get_turn_order() -> Array[Unit]:
 	_order.shuffle()
 	return _order
 
-
-func apply_status_effect(target: Unit, status_effect: StatusEffect):
-	target.status_effects.append(status_effect)
-	# TODO reapply effect
-	# TODO handle effect
-	# TODO clean effect
 
 class SimulationData:
 	var previous_stage_result: Array[AbstractBattleEevnt]

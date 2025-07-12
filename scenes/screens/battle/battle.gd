@@ -6,6 +6,7 @@ var enemy_party: Array[Unit] = []
 var selected_pawn: Pawn
 
 var unit_to_pawn: Dictionary[Unit, Pawn] = {}
+var unit_to_order_item: Dictionary[Unit, OrderPanelItem] = {}
 
 @onready var battle_manager: BattleManager = %BattleManager
 @onready var actions_panel: ActionPanel = %ActionsPanel
@@ -41,6 +42,8 @@ func setup_stub():
 	enemy_party = [
 		SKELETON.instantiate(),
 		SKELETON_REAPER.instantiate(),
+		#BAT.instantiate(),
+		#BAT.instantiate(),
 		BAT.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
@@ -125,6 +128,13 @@ func _on_stage_result(data: BattleManager.SimulationData):
 				match target_effect.animation:
 					InteractionEvent.AnimationKind.Hurt:
 						target_effect.target.unit_view.hurt()
+				if target_effect.hp_change < 0:
+					const DAMAGE_INDICATOR = preload("uid://bbkvpkjbemqiw")
+					var scene = DAMAGE_INDICATOR.instantiate()
+					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
+					scene.setup(-target_effect.hp_change)
+
+
 				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change)
 				if target_effect.fx:
 					var scene: ActionFX = target_effect.fx.instantiate()
@@ -132,9 +142,17 @@ func _on_stage_result(data: BattleManager.SimulationData):
 					await scene.play_impact()
 			if event.source:
 				await event.source.unit_view.finish_animations()
+#
+			#var callbacks: Array[Callable] = []
+			#for effect: InteractionEvent.TargetEffect in event.target_effects:
+				#callbacks.append(effect.target.unit_view.finish_animations)
+			#var helper = JoinHelper.join(callbacks)
+			#await helper.done
+
 		elif event is UnitDeadEvent:
 			# TODO: disable ui for dead pawn
-			await event.who.unit_view.die()
+			event.who.unit_view.die()
+			order_panel.remove_child(unit_to_order_item[event.who])
 
 		#if event is CombatEvent.Attacks:
 
@@ -156,18 +174,12 @@ func _on_stage_result(data: BattleManager.SimulationData):
 				#var scene: ActionFX = event.effect_scene.instantiate()
 				#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
 				#scene.play_impact()
-
+	print("battle stopped")
 	_update_order_panel()
 	set_ai_actions()
-	#arrange_slots()
 
 func set_ai_actions():
-	for u in player_party:
-		if u.ai_controlled:
-			u.selected_actions = ActionManager.select_action_for_ai_unit(u)
-			u.selected_actions_changed.emit(u.selected_actions)
-
-	for u in enemy_party:
+	for u in player_party + enemy_party:
 		if u.ai_controlled:
 			u.selected_actions = ActionManager.select_action_for_ai_unit(u)
 			u.selected_actions_changed.emit(u.selected_actions)
@@ -177,14 +189,25 @@ func _on_panel_closed():
 	selected_pawn = null
 
 func _update_order_panel():
-	for c in order_panel.get_children():
-		c.queue_free()
+	# clean unwanted
+	for item in order_panel.get_children():
+		if item not in unit_to_order_item.values():
+			order_panel.remove_child(item)
 
+	# add new items
 	for unit in battle_manager.order:
-		const ORDER_PANEL_ITEM = preload("res://scenes/screens/battle/panels/order_panel_item.tscn")
-		var item = ORDER_PANEL_ITEM.instantiate()
-		order_panel.add_child(item)
-		item.setup(unit, battle_manager)
+		if not unit_to_order_item.has(unit):
+			const ORDER_PANEL_ITEM = preload("res://scenes/screens/battle/panels/order_panel_item.tscn")
+			var item = ORDER_PANEL_ITEM.instantiate()
+			order_panel.add_child(item)
+			item.setup(unit, battle_manager)
+			unit_to_order_item.set(unit, item)
+
+	# rorder
+	for i in battle_manager.order.size():
+		order_panel.move_child(unit_to_order_item[battle_manager.order[i]], i)
+
+
 
 func _on_run_battle_pressed():
 	battle_manager.simulate_stage()

@@ -2,7 +2,7 @@ extends Node2D
 class_name Pawn
 
 var unit: Unit
-
+var hp_value: int
 signal clicked
 
 @onready var hp_bar: ProgressBar = %HpBar
@@ -13,6 +13,7 @@ signal clicked
 
 func setup(unit: Unit, flip: bool = false):
 	self.unit = unit
+	self.hp_value = unit.hp
 	var scene: UnitBaseUI = unit.instantiate_ui()
 	scene.clicked.connect(clicked.emit.bind(self))
 	unit.selected_actions_changed.connect(_on_selected_actions_changed)
@@ -26,8 +27,11 @@ func setup(unit: Unit, flip: bool = false):
 
 
 func update_status(hp_increnemnt: int):
-	hp_bar.value += hp_increnemnt
-	hp_label.text = "%s/%s" % [int(hp_bar.value), unit.unit_data.max_hp]
+	hp_value += hp_increnemnt
+	hp_label.text = "%s/%s" % [clamp(hp_value, 0, unit.unit_data.max_hp), unit.unit_data.max_hp]
+
+	var tween = create_tween()
+	tween.tween_property(hp_bar, "value", hp_value, 0.4).set_ease(Tween.EASE_IN)
 
 func _on_selected_actions_changed(actions: Array[Action]):
 	const PREPARED_ACTION_UI = preload("uid://cjad02w8v2per")

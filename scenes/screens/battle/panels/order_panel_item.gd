@@ -1,3 +1,4 @@
+class_name OrderPanelItem
 extends Control
 
 @export var ally_color: Color = Color("254f40")

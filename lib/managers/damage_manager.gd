@@ -7,7 +7,8 @@ func _init(bm: BattleManager):
 func apply_damage(target: Unit, amount: int) -> Array[AbstractBattleEevnt]:
 	var events: Array[AbstractBattleEevnt] = []
 	target.hp -= amount
-
+	print("damage ", amount)
+	print("hp ",  target.hp)
 	if target.hp <= 0:
 		target.alive = false
 		var event = UnitDeadEvent.new()

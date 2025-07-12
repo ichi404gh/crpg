@@ -35,7 +35,7 @@ func die():
 
 func finish_animations():
 	if animation_player.current_animation != 'idle':
-		await animation_player.animation_finished
+		var res = await animation_player.current_animation_changed
 
 func interact():
 	pass
@@ -43,19 +43,21 @@ func interact():
 func attack_animation():
 	animation_player.stop()
 	animation_player.play("attack")
-	await animation_player.animation_finished
-	animation_player.play("idle")
+	animation_player.queue("idle")
+
+	await animation_player.current_animation_changed
 
 func hurt_animation():
 	animation_player.stop()
 	animation_player.play("hurt")
-	await animation_player.animation_finished
-	animation_player.play("idle")
+	animation_player.queue("idle")
+
+	await animation_player.current_animation_changed
 
 func die_animation():
 	animation_player.stop()
 	animation_player.play("die")
-	await animation_player.animation_finished
+	await animation_player.current_animation_changed
 
 
 func _on_attack_hit_moment():

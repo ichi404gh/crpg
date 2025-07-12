@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://bbkvpkjbemqiw"]
+
+[ext_resource type="Script" uid="uid://cujpcejm0nu7j" path="res://scenes/tooltips/damage_indicator.gd" id="1_ohapt"]
+[ext_resource type="Shader" uid="uid://da1us5808rtx1" path="res://scenes/tooltips/blur.gdshader" id="2_egw18"]
+[ext_resource type="Texture2D" uid="uid://dd2ocmdpmk8ba" path="res://assets/ui/damage.png" id="2_loh5k"]
+[ext_resource type="Texture2D" uid="uid://chso13bnpb4hk" path="res://assets/ui/Hit.png" id="5_7eg7b"]
+[ext_resource type="AudioStream" uid="uid://cto7ci745grf1" path="res://assets/sfx/hit-by-a-wood-230542.mp3" id="5_ffuja"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fh3ym"]
+shader = ExtResource("2_egw18")
+shader_parameter/blur_radius = 1.1999999999970896
+
+[sub_resource type="Curve" id="Curve_r85cj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3632959), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n8p5k"]
+curve = SubResource("Curve_r85cj")
+
+[sub_resource type="Curve" id="Curve_n8p5k"]
+_data = [Vector2(0.001706481, 0.6404494), 0.0, 0.0, 0, 0, Vector2(0.06313993, 0.9625468), 0.0, 0.0, 0, 0, Vector2(0.9846416, 0.917603), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q7pnj"]
+curve = SubResource("Curve_n8p5k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7pnj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 20, 1)
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.13
+scale_curve = SubResource("CurveTexture_q7pnj")
+color = Color(0.74758554, 0.09215347, 0.19160092, 1)
+alpha_curve = SubResource("CurveTexture_n8p5k")
+
+[node name="DamagfeIndicator" type="Node2D"]
+script = ExtResource("1_ohapt")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_fh3ym")
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+polygon = PackedVector2Array(-29, -17, -16, -27, -18, -47, -7, -31, 10, -26, 21, -46, 20, -23, 30, -16, 71, -16, 36, 7, 31, 15, 25, 20, 34, 37, 20, 28, 24, 44, 11, 29, -4, 29, -12, 42, -15, 27, -23, 25, -37, 43, -34, 21, -64, 27, -46, 13, -62, 15, -38, 2, -38, -15)
+
+[node name="LabelAncor" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="LabelAncor"]
+offset_left = -66.0
+offset_top = -175.0
+offset_right = 67.0
+offset_bottom = -90.833336
+theme_override_colors/font_color = Color(0.74051917, 0, 0.10529075, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 26
+text = "33"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="LabelAncor"]
+position = Vector2(0, -45)
+amount = 1
+texture = ExtResource("5_7eg7b")
+lifetime = 0.6900000000000001
+process_material = SubResource("ParticleProcessMaterial_q7pnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.7578503, 0.7578503)
+texture = ExtResource("2_loh5k")
+region_rect = Rect2(247, 47, 198, 137)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ffuja")
+autoplay = true

@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func finish_animations():
 	if animation_player.current_animation != 'idle':
-		await animation_player.animation_finished
+		await animation_player.current_animation_changed
 
 func interact():
 	await get_tree().create_timer(.4).timeout
@@ -43,20 +43,23 @@ func _on_area_input(_viewport: Node, event: InputEvent, _shape_idx: int):
 
 func attack_animation():
 	animation_player.stop()
+	animation_player.clear_queue()
 	animation_player.play("attack")
-	await animation_player.animation_finished
-	animation_player.play("idle")
+	#await animation_player.animation_finished
+	animation_player.queue("idle")
 
 func hurt_animation():
 	animation_player.stop()
+	animation_player.clear_queue()
+
 	animation_player.play("hurt")
-	await animation_player.animation_finished
-	animation_player.play("idle")
+	animation_player.queue("idle")
 
 func die_animation():
 	animation_player.stop()
+	animation_player.clear_queue()
+
 	animation_player.play("die")
-	await animation_player.animation_finished
 
 
 func _on_attack_hit_moment():

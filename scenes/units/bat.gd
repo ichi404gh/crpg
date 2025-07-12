@@ -15,13 +15,20 @@ func hurt():
 	await _play_hurt_animation()
 
 func finish_animations():
-	pass
+	if animation_player.current_animation != 'idle':
+		await animation_player.current_animation_changed
+
 
 func _play_hurt_animation():
+	animation_player.stop()
+	animation_player.clear_queue()
 	animation_player.play("hurt")
-	await animation_player.animation_finished
-	animation_player.play("idle")
+	animation_player.queue("idle")
+	await animation_player.current_animation_changed
+
 
 func _play_die_animation():
 	animation_player.stop()
+	animation_player.clear_queue()
 	animation_player.play("die")
+	await animation_player.current_animation_changed

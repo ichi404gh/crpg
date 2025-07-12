@@ -6,7 +6,8 @@ class_name Unit
 @export var alive: bool = true
 @export var unit_data: UnitData
 @export var ai_controlled: bool
-@export var status_effects: Array[StatusEffect]
+
+var status_effects: Array[Unit.AppliedStatusEffect]
 
 var unit_view: UnitBaseUI
 
@@ -30,3 +31,22 @@ func instantiate_ui():
 
 	unit_view = unit_data.unit_ui.instantiate() as UnitBaseUI
 	return unit_view
+
+func have_status(status_effect: StatusEffect) -> bool:
+	return self.status_effects.any(func (asf: AppliedStatusEffect): return asf.status_effect == status_effect)
+
+func find_applied_status(status_effect: StatusEffect) -> AppliedStatusEffect:
+	for applied_status in self.status_effects:
+		if applied_status.status_effect == status_effect:
+			return applied_status
+	return null
+
+
+class AppliedStatusEffect:
+	var status_effect: StatusEffect
+	var duration: int
+
+
+	func _init(status_effect: StatusEffect, duration: int):
+		self.status_effect = status_effect
+		self.duration = duration
