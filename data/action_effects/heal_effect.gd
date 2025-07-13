@@ -18,3 +18,6 @@ func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: A
 	var healing_events = battle_manager.healing_manager.apply_healing(target, amount)
 	events.append_array(healing_events)
 	return events
+
+func _get_description():
+	return tr("action_effect.heal.description").format({"min": amount_min, "max": amount_max})

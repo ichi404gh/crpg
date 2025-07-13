@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b6et4jbvec03q"
+
+[deps]
+
+files=["res://assets/localization/statusEffects.en.translation", "res://assets/localization/statusEffects.ru.translation"]
+
+source_file="res://assets/localization/statusEffects.csv"
+dest_files=["res://assets/localization/statusEffects.en.translation", "res://assets/localization/statusEffects.ru.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,7 @@
+key,en,ru
+status_effect.constant.status_effect,Status effect,Состояние
+status_effect.constant.expires_in,Expires in [val]{val} rounds[/val],Истекает через [val]{val} раунд(ов)[/val]
+status_effect.poisoned.title,Poisoned,Отравлен
+status_effect.poisoned.flavour,"A slow burn festers within—like a swamp turned inward, breeding rot.","Внутри всё горит и ноет — будто тело стало болотом, и в нём завелась скверна."
+
+status_effect.damage_over_time.description,Takes [dmg]{dmg} damage[/dmg] at the end of every round until expires,Получает [dmg]{dmg} урона[/dmg] в конце кадого раунда до истечения

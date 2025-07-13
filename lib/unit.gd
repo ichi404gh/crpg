@@ -45,10 +45,10 @@ func find_applied_status(status_effect: StatusEffect) -> AppliedStatusEffect:
 class AppliedStatusEffect:
 	var status_effect: StatusEffect
 	var duration: int
-	
+
 	func _to_string() -> String:
 		return "%s, %s" % [status_effect.title, duration]
-	
+
 	func _init(status_effect: StatusEffect, duration: int):
 		self.status_effect = status_effect
 		self.duration = duration

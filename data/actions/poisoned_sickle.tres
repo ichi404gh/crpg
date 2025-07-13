@@ -19,7 +19,8 @@ metadata/_custom_type_script = "uid://mmchhhj8417w"
 [sub_resource type="Resource" id="Resource_f4sif"]
 script = ExtResource("4_tm4yk")
 damage = 1
-title = "Poisoned"
+title = "status_effect.poisoned.title"
+flavour = "status_effect.poisoned.flavour"
 default_duration = 2
 texture = ExtResource("6_rr1mg")
 ticks_after_round = true
@@ -42,7 +43,8 @@ metadata/_custom_type_script = "uid://n48fqjstmmly"
 
 [resource]
 script = ExtResource("2_1ymbi")
-title = "Poisoned sickle"
+title = "action.poisoned_sickle.title"
+flavour_text = "action.poisoned_sickle.flavour"
 effect_groups = Array[ExtResource("1_tm4yk")]([SubResource("Resource_3lfr3")])
 texture = ExtResource("9_athi6")
 source_animation = 0

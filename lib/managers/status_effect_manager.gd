@@ -14,7 +14,7 @@ func aplly_effect(target: Unit, status_effect: StatusEffect) -> Array[AbstractBa
 		target.status_effects.append(Unit.AppliedStatusEffect.new(status_effect, status_effect.default_duration))
 	var ev = StatusEffectsUpdatedEvent.from_unit(target)
 	return [ev]
-	
+
 func expire_effects(target: Unit) -> Array[AbstractBattleEvent]:
 	var updated = false
 	for effect in target.status_effects:

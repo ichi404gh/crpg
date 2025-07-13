@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5qra7yjjcdwd" path="res://scenes/units/skeleton.tscn" id="2_0bo4j"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_g6tim"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_ixclv"]
-[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/sword_slash.tres" id="3_bxwkq"]
+[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="3_bxwkq"]
 
 [sub_resource type="Resource" id="Resource_1neml"]
 script = ExtResource("1_0bo4j")

@@ -1,0 +1,4 @@
+key,en,ru
+action_effect.damage.description,Deals [dmg]{min}-{max} damage[/dmg],Наносит [dmg]{min}-{max} урона[/dmg]
+action_effect.heal.description,Heals for [heal]{min}-{max} hit poinst[heal],Лечит [heal]{min}-{max} единиц здоровья[/heal]
+action_effect.apply_status_effect.description,Applies [val]{effect}[/val] status effect for [val]{dur} rounds[/val],Накладывает состояние [val]{effect}[/val] на [val]{dur} раунд(ов)[/val] 

@@ -140,7 +140,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 					scene.setup(-target_effect.hp_change)
 
 
-				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, []) 
+				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, [])
 				if target_effect.fx:
 					var scene: ActionFX = target_effect.fx.instantiate()
 					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
@@ -161,7 +161,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			event.who.unit_view.die()
 			order_panel.remove_child(unit_to_order_item[event.who])
 
-	
+
 	print("battle stopped")
 	_update_order_panel()
 	set_ai_actions()

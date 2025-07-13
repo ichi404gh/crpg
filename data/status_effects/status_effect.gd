@@ -2,6 +2,8 @@
 extends Resource
 
 @export var title: String
+@export var flavour: String
+
 @export var default_duration: int
 @export var texture: Texture2D
 
@@ -10,3 +12,6 @@ extends Resource
 
 func tick(_target: Unit, _bm: BattleManager) -> Array[AbstractBattleEvent]:
 	return []
+
+func _get_description():
+	""

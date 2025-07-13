@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Action" load_steps=10 format=3 uid="uid://cf5ul8llmqy0c"]
+
+[ext_resource type="Script" uid="uid://n48fqjstmmly" path="res://data/action_effects/action_effect_group.gd" id="1_4vhrk"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="2_2x5ws"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="3_vgvup"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/action_effects/targeting/random_enemy.gd" id="4_t3e1t"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="5_lf8if"]
+[ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="6_8eoxt"]
+
+[sub_resource type="Resource" id="Resource_qxpc7"]
+script = ExtResource("3_vgvup")
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_kgugi"]
+script = ExtResource("4_t3e1t")
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_qykd7"]
+script = ExtResource("1_4vhrk")
+targeting = SubResource("Resource_kgugi")
+effects = Array[ExtResource("2_2x5ws")]([SubResource("Resource_qxpc7")])
+metadata/_custom_type_script = "uid://n48fqjstmmly"
+
+[resource]
+script = ExtResource("5_lf8if")
+title = "action.weapon_strike.title"
+flavour_text = "action.weapon_strike.flavour"
+effect_groups = Array[ExtResource("1_4vhrk")]([SubResource("Resource_qykd7")])
+texture = ExtResource("6_8eoxt")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"

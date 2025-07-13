@@ -24,7 +24,8 @@ metadata/_custom_type_script = "uid://n48fqjstmmly"
 
 [resource]
 script = ExtResource("3_bqmvk")
-title = "Healing"
+title = "action.quantum_healing.title"
+flavour_text = "action.quantum_healing.flavour"
 effect_groups = Array[ExtResource("1_3itet")]([SubResource("Resource_783qg")])
 texture = ExtResource("7_3itet")
 effect_scene = ExtResource("1_qfgin")

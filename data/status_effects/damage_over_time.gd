@@ -14,3 +14,6 @@ func tick(target: Unit, battle_manager: BattleManager) -> Array[AbstractBattleEv
 	events.append(additional_events)
 
 	return events
+
+func _get_description():
+	return tr("status_effect.damage_over_time.description").format({dmg=damage})

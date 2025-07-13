@@ -20,3 +20,7 @@ func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: A
 	var damage_events = battle_manager.damage_mananger.apply_damage(target, damage)
 	events.append_array(damage_events)
 	return events
+
+func _get_description():
+	var ee = tr("action_effect.damage.description")
+	return ee.format({"min":amount_min, "max":amount_max})

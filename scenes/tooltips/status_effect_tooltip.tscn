@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg50b16bgnope"]
+[gd_scene load_steps=11 format=3 uid="uid://bg50b16bgnope"]
 
 [ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="1_3jhlw"]
 [ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="2_pip77"]
 [ext_resource type="Texture2D" uid="uid://cq41280dv55u" path="res://assets/sprites/statuses/poisoned.png" id="3_3kswv"]
 [ext_resource type="Theme" uid="uid://d18xhnyr8y3rd" path="res://game_theme.tres" id="4_omaj6"]
+[ext_resource type="RichTextEffect" uid="uid://b2nx2tx8p2bp5" path="res://lib/bbcodes/dmg.tres" id="5_omaj6"]
+[ext_resource type="RichTextEffect" uid="uid://n4daf6xxn2xy" path="res://lib/bbcodes/heal.tres" id="6_o3spd"]
+[ext_resource type="RichTextEffect" uid="uid://cqscp14jpf10y" path="res://lib/bbcodes/val.tres" id="7_odl22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jhlw"]
 content_margin_left = 0.0
@@ -134,20 +137,26 @@ autowrap_mode = 3
 
 [node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Status effect"
+text = "status_effect.constant.status_effect"
 label_settings = SubResource("LabelSettings_odl22")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+[node name="Effect" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_omaj6")
 bbcode_enabled = true
-text = "Take [color=#d22]2 damage[/color] at the end of every round until expires"
+text = "Take [dmg]2 damage[/dmg] at the end of every round until expires
+Expires in [val]2 rounds[/val] "
 fit_content = true
 scroll_active = false
+custom_effects = [ExtResource("5_omaj6"), ExtResource("6_o3spd"), ExtResource("7_odl22")]
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+[node name="FlavourText" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/default_color = Color(0.5803922, 0.54509807, 0.48235294, 1)
+theme_override_font_sizes/italics_font_size = 14
 bbcode_enabled = true
-text = "Expires in  [color=#da0]2 rounds[/color] "
+text = "[i]Flavour text[/i]"
 fit_content = true
 scroll_active = false

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://pbsa2wewi6p1" path="res://scenes/units/mousefolk.tscn" id="2_ectkk"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_ss7jk"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_xcaa2"]
-[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/sword_slash.tres" id="3_snwdx"]
+[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="3_snwdx"]
 [ext_resource type="Resource" uid="uid://bh8avx15y0r84" path="res://data/actions/quantum_healing.tres" id="4_1iago"]
 
 [sub_resource type="Resource" id="Resource_tawe3"]

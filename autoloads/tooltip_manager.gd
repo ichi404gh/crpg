@@ -18,7 +18,9 @@ func show(data: TooltipData, origin: CanvasItem):
 
 		(action_tooltip_instance.get_node("%ActionLabel") as Label).text = data.action.title
 		(action_tooltip_instance.get_node("%Image") as TextureRect).texture = data.action.texture
-		(action_tooltip_instance.get_node("%Description") as RichTextLabel).text = "[i]Deal[/i] [b]tons[/b] of damage"
+		(action_tooltip_instance.get_node("%EffectsDescriptions") as RichTextLabel).text = data.get_effects_text()
+		(action_tooltip_instance.get_node("%FlavourText") as RichTextLabel).text = "[i]" + data.get_flavour_text() + "[/i]"
+
 	elif data is StatusTooltipData:
 		const STATUS_EFFECT_TOOLTIP = preload("uid://bg50b16bgnope")
 		status_tooltip_instance = STATUS_EFFECT_TOOLTIP.instantiate()
@@ -30,8 +32,9 @@ func show(data: TooltipData, origin: CanvasItem):
 		anchor.add_child(status_tooltip_instance)
 		(status_tooltip_instance.get_node("%Icon") as TextureRect).texture = data.status.status_effect.texture
 		(status_tooltip_instance.get_node("%Title") as Label).text = data.status.status_effect.title
- 
-		
+		(status_tooltip_instance.get_node("%Effect") as RichTextLabel).text = data.get_effects_text()
+		(status_tooltip_instance.get_node("%FlavourText") as RichTextLabel).text = "[i]" + data.get_flavour_text() + "[/i]"
+
 func hide():
 	if action_tooltip_instance:
 		action_tooltip_instance.queue_free()

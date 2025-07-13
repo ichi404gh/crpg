@@ -72,10 +72,10 @@ func simulate_stage():
 			if ase.status_effect.ticks_after_round:
 				var tick_events = ase.status_effect.tick(unit, self)
 				events.append_array(tick_events)
-		
+
 		var expire_events = status_effect_manager.expire_effects(unit)
 		events.append_array(expire_events)
-		
+
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new(events, order))
 

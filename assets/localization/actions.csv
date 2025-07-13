@@ -1,0 +1,10 @@
+key,en,ru
+action.constant.action,Action,Действие
+action.weapon_strike.title,Wepon strike,Удар оружием
+action.weapon_strike.flavour,The blade gleams in the air—then strikes with death’s precision.,Остриё сверкает в воздухе — и обрушивается с точностью смерти.
+action.quantum_healing.title,Healing,Лечение
+action.quantum_healing.flavour,A gentle warmth mends the flesh—but not the pain.,"Лёгкий жар проходит по ране, затягивая плоть, но не боль."
+action.poisoned_sickle.title,Poisoned sickle,Отравленный серп
+action.poisoned_sickle.flavour,"The rusty curve of the blade grazes flesh—followed by poison, creeping like a serpent through the veins.","Ржавый изгиб лезвия скользит по плоти — а следом ползёт яд, как змея по венам."
+
+

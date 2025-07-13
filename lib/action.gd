@@ -3,6 +3,9 @@ extends Resource
 class_name Action
 
 @export var title: String
+@export var description: String
+@export var flavour_text: String
+
 @export var effect_groups: Array[ActionEffectGroup]
 @export var texture: Texture2D
 @export var effect_scene: PackedScene

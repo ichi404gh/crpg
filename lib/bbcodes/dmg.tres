@@ -1,0 +1,7 @@
+[gd_resource type="RichTextEffect" script_class="ColorBBCode" load_steps=2 format=3 uid="uid://b2nx2tx8p2bp5"]
+
+[ext_resource type="Script" uid="uid://ce6tmxi8kbsim" path="res://lib/bbcodes/color_bbcode.gd" id="1_e7mcv"]
+
+[resource]
+script = ExtResource("1_e7mcv")
+metadata/_custom_type_script = "uid://ce6tmxi8kbsim"

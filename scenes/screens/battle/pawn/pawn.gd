@@ -23,7 +23,7 @@ const HOVER_COLOR: Color = Color(1, 0.94313726, 0.8, 1)
 func setup(unit: Unit, flip: bool, battle_manager: BattleManager):
 	self.battle_manager = battle_manager
 	battle_manager.meta.hovered_unit_changed.connect(on_hovered_unit_changed)
-	
+
 	self.unit = unit
 	self.hp_value = unit.hp
 	var scene: UnitBaseUI = unit.instantiate_ui()
@@ -58,14 +58,14 @@ func on_unit_hovered(value: bool):
 	else:
 		if self.battle_manager.meta.hovered_unit == unit:
 			self.battle_manager.meta.hovered_unit = null
-	
+
 
 func update_status(hp_increnemnt: int, statuses: Array[Unit.AppliedStatusEffect]):
 	hp_value += hp_increnemnt
 	hp_label.text = "%s/%s" % [clamp(hp_value, 0, unit.unit_data.max_hp), unit.unit_data.max_hp]
-	
+
 	on_statuses_changed(statuses)
-	
+
 	var tween = create_tween()
 	tween.tween_property(hp_bar, "value", hp_value, 0.4).set_ease(Tween.EASE_IN)
 
@@ -88,10 +88,10 @@ func update_status(hp_increnemnt: int, statuses: Array[Unit.AppliedStatusEffect]
 
 func on_statuses_changed(statuses: Array[Unit.AppliedStatusEffect]):
 	const ACTIVE_STATUS_UI = preload("uid://bnp7660y8su5h")
-	
+
 	for c in status_bar.get_children():
 		c.queue_free()
-	
+
 	for status in statuses:
 		var status_ui: ActiveStatusUI = ACTIVE_STATUS_UI.instantiate()
 		status_bar.add_child(status_ui)

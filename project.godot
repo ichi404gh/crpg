@@ -45,6 +45,10 @@ version_control/autoload_on_startup=true
 theme/default_font_multichannel_signed_distance_field=true
 theme/custom="uid://d18xhnyr8y3rd"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/localization/actions.en.translation", "res://assets/localization/actions.ru.translation", "res://assets/localization/actionEffects.en.translation", "res://assets/localization/actionEffects.ru.translation", "res://assets/localization/statusEffects.en.translation", "res://assets/localization/statusEffects.ru.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
