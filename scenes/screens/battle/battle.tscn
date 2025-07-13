@@ -20,13 +20,35 @@ position = Vector2(645.00006, 379)
 scale = Vector2(0.69321, 0.61378086)
 texture = ExtResource("2_f7stq")
 
-[node name="PlayerParty" type="Node2D" parent="TooltipContext"]
-unique_name_in_owner = true
-position = Vector2(559, 616)
+[node name="Parties" type="HBoxContainer" parent="TooltipContext"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -214.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = 200
 
-[node name="EnemyParty" type="Node2D" parent="TooltipContext"]
+[node name="Control" type="Control" parent="TooltipContext/Parties"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PlayerParty" type="Node2D" parent="TooltipContext/Parties/Control"]
 unique_name_in_owner = true
-position = Vector2(709, 616)
+
+[node name="Marker2D" type="Marker2D" parent="TooltipContext/Parties/Control/PlayerParty"]
+
+[node name="Control2" type="Control" parent="TooltipContext/Parties"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="EnemyParty" type="Node2D" parent="TooltipContext/Parties/Control2"]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="TooltipContext/Parties/Control2/EnemyParty"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="TooltipContext"]
 
@@ -53,8 +75,9 @@ grow_horizontal = 1
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 82.0
+offset_bottom = 90.0
 grow_horizontal = 2
+size_flags_vertical = 3
 alignment = 1
 
 [node name="OrderPanelItem" parent="TooltipContext/CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]

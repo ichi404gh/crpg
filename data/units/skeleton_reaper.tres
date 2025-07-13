@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://b6dc5v4xohux6"
 
 [sub_resource type="Resource" id="Resource_il5rk"]
 script = ExtResource("1_f64vx")
-weight = 0.40000000000873115
+weight = 0.4000000000087311
 preset = Array[ExtResource("2_vavcx")]([ExtResource("3_tn8tj")])
 metadata/_custom_type_script = "uid://b6dc5v4xohux6"
 

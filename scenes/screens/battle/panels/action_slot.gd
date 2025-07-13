@@ -1,8 +1,11 @@
 extends Control
 class_name ActionSlot
 
-@onready var panel: Panel = $Panel
+#@onready var panel = $Node2D
 @onready var hilight_rect: ColorRect = $HilightRect
+#@onready var nine_patch_rect: NinePatchRect = $NinePatchRect
+#@onready var node_2d: Node2D = $Node2D
+@onready var panel: NinePatchRect = %Panel9P
 
 var action: Action
 var hilight: bool = false:

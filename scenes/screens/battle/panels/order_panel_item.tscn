@@ -54,6 +54,8 @@ stretch_mode = 6
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
-theme_override_font_sizes/font_size = 7
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 11
 text = "Name of the unit"
+horizontal_alignment = 1
 autowrap_mode = 2

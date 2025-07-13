@@ -7,11 +7,12 @@
 ❌ combat log
 ✅ damage floaing text
 
-❌ bonuses between rounds
-	❌ active bonus ui
 
 ❌ statuses ui
 	❌ polish tooltips - statuses and actions
+
+❌ bonuses between rounds
+	❌ active bonus ui
 
 ❌ unit window
 	❌ info tab - parameters and statuses

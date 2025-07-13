@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1hcsd"]
 [ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_yn1tf"]
 [ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/action_effects/targeting/random_enemy.gd" id="3_h70gr"]
-[ext_resource type="Texture2D" uid="uid://c1d384ok0bo5s" path="res://assets/sprites/actions/31.png" id="4_h70gr"]
+[ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="6_tj7m5"]
 
 [sub_resource type="Resource" id="Resource_qxpc7"]
 script = ExtResource("2_yn1tf")
@@ -25,6 +25,6 @@ metadata/_custom_type_script = "uid://n48fqjstmmly"
 script = ExtResource("2_1hcsd")
 title = "Sword slash"
 effect_groups = Array[ExtResource("1_tj7m5")]([SubResource("Resource_qykd7")])
-texture = ExtResource("4_h70gr")
+texture = ExtResource("6_tj7m5")
 source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"

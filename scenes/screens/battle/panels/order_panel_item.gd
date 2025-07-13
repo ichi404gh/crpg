@@ -19,7 +19,7 @@ func setup(unit: Unit, battle_manager: BattleManager):
 
 	_reset_color()
 
-	name_label.text = "%s (%s)" % [unit.unit_name, unit.hp]
+	name_label.text = "%s" % [unit.unit_name]
 	if unit.unit_data.portrait:
 		portrait.texture = unit.unit_data.portrait
 

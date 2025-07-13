@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhcty1gknjrlf"]
+[gd_scene load_steps=6 format=3 uid="uid://dhcty1gknjrlf"]
 
 [ext_resource type="Script" uid="uid://61idd8nro0ds" path="res://scenes/screens/battle/panels/action_slot.gd" id="1_x0l4p"]
+[ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="2_yi3ll"]
+[ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="3_4v1l8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5185b"]
+atlas = ExtResource("2_yi3ll")
+region = Rect2(192, 0, 64, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v1l8"]
+atlas = ExtResource("3_4v1l8")
+region = Rect2(192, 0, 64, 64)
 
 [node name="ActionSlot" type="Control"]
 custom_minimum_size = Vector2(48, 48)
@@ -14,15 +25,6 @@ grow_vertical = 2
 script = ExtResource("1_x0l4p")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
 [node name="HilightRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
@@ -33,3 +35,43 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0.65882355, 0.3647059, 0.37254903)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Border9P" type="NinePatchRect" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5185b")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Panel9P" type="NinePatchRect" parent="Control"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_4v1l8")
+patch_margin_left = 15
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14

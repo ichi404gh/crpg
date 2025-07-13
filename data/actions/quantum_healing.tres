@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_vby44"]
 [ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/action_effects/heal_effect.gd" id="2_vby44"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="3_bqmvk"]
-[ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="3_w2p41"]
 [ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://data/action_effects/targeting/random_ally_not_self.gd" id="4_bqmvk"]
+[ext_resource type="Texture2D" uid="uid://bryrd0e2ijm0e" path="res://assets/sprites/actions/healing.png" id="7_3itet"]
 
 [sub_resource type="Resource" id="Resource_0h7rh"]
 script = ExtResource("2_vby44")
@@ -24,9 +24,9 @@ metadata/_custom_type_script = "uid://n48fqjstmmly"
 
 [resource]
 script = ExtResource("3_bqmvk")
-title = "Quantum healing"
+title = "Healing"
 effect_groups = Array[ExtResource("1_3itet")]([SubResource("Resource_783qg")])
-texture = ExtResource("3_w2p41")
+texture = ExtResource("7_3itet")
 effect_scene = ExtResource("1_qfgin")
 source_animation = 1
 metadata/_custom_type_script = "uid://crhahprxps0vr"

@@ -34,16 +34,15 @@ func setup_stub():
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
-		#SKELETON.instantiate(),
 		MOUSEFOLK.instantiate(),
-		#MOUSEFOLK.instantiate(),
+		MOUSEFOLK.instantiate(),
+		MOUSEFOLK.instantiate(),
 	] as Array[Unit]
 
 	enemy_party = [
 		SKELETON.instantiate(),
 		SKELETON_REAPER.instantiate(),
-		#BAT.instantiate(),
-		#BAT.instantiate(),
+		BAT.instantiate(),
 		BAT.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]

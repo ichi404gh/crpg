@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp7u7ranfmgt6"]
+[gd_scene load_steps=8 format=3 uid="uid://cp7u7ranfmgt6"]
 
 [ext_resource type="Script" uid="uid://c15alunhujjym" path="res://scenes/screens/battle/panels/actions_panel.gd" id="1_jr7df"]
 [ext_resource type="PackedScene" uid="uid://b8tr8vcgba8r5" path="res://scenes/screens/battle/panels/action_panel_action.tscn" id="2_06l5s"]
-[ext_resource type="Texture2D" uid="uid://ci0ce4qlihrkq" path="res://assets/ui/9-panel.png" id="2_idy1y"]
+[ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="2_fqhsx"]
+[ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="2_idy1y"]
 [ext_resource type="PackedScene" uid="uid://dhcty1gknjrlf" path="res://scenes/screens/battle/panels/action_slot.tscn" id="2_w1c0d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w4jw"]
+atlas = ExtResource("2_fqhsx")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqhsx"]
+atlas = ExtResource("2_idy1y")
+region = Rect2(0, 384, 64, 64)
 
 [node name="ActionsPanel" type="Control"]
 custom_minimum_size = Vector2(200, 100)
@@ -11,82 +20,103 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -668.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jr7df")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PanelBody" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AtlasTexture_1w4jw")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
+[node name="Border" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_idy1y")
-region_rect = Rect2(0, 0, 10, 10)
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+texture = SubResource("AtlasTexture_fqhsx")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Border"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = -9.0
+offset_bottom = -9.0
 theme_override_constants/separation = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Border/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Border/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Actions:"
 
-[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="CloseButton" type="Button" parent="Border/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[close]"
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Border/VBoxContainer"]
 layout_mode = 2
 
-[node name="SlotsContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+[node name="SlotsContainer" type="HBoxContainer" parent="Border/VBoxContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="ActionSlot" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+[node name="ActionSlot" parent="Border/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
 layout_mode = 2
 
-[node name="ActionSlot2" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+[node name="ActionSlot2" parent="Border/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
 layout_mode = 2
 
-[node name="ActionSlot3" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+[node name="ActionSlot3" parent="Border/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
 layout_mode = 2
 
-[node name="ActionSlot4" parent="Panel/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
+[node name="ActionSlot4" parent="Border/VBoxContainer/CenterContainer/SlotsContainer" instance=ExtResource("2_w1c0d")]
 layout_mode = 2
 
-[node name="ActionsContainer" type="HFlowContainer" parent="Panel/VBoxContainer"]
+[node name="ActionsContainer" type="HFlowContainer" parent="Border/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ActionPanelAction" parent="Panel/VBoxContainer/ActionsContainer" instance=ExtResource("2_06l5s")]
+[node name="ActionPanelAction" parent="Border/VBoxContainer/ActionsContainer" instance=ExtResource("2_06l5s")]
 layout_mode = 2
 
-[node name="ActionPanelAction2" parent="Panel/VBoxContainer/ActionsContainer" instance=ExtResource("2_06l5s")]
+[node name="ActionPanelAction2" parent="Border/VBoxContainer/ActionsContainer" instance=ExtResource("2_06l5s")]
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
