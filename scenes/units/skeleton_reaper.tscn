@@ -223,102 +223,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_kh1nq"]
-resource_name = "hurt"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 0),
-"points": PackedFloat32Array(8, 0, 0, 0.064242736, 0.31325787, -28, -0.017739613, -0.08650119, 0.046503127, 0.22675669, 9.879547, -0.030790899, -4.166668, 0, 0, 14, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.10643767, 0.3854564, 0.76666665)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 0),
-"points": PackedFloat32Array(-119, 0, 0, 0.064242736, 1.0200754, -92.999985, -0.017739613, -0.28167766, 0.046503127, 0.73839784, -112.87955, -0.030790899, -0.33333334, 0, 0, -114, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.10643767, 0.3854564, 0.76666665)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 0),
-"points": PackedFloat32Array(-1.579969, 0, 0, 0.064242736, -0.029824415, -1.8844383, -0.017739613, 0.008235539, 0.046503127, -0.021588879, -1.7589155, -0.030790899, -0.0583755, 0, 0, -1.579969, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.10643767, 0.3854564, 0.76666665)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest/LShoulder/LArm:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.6267638, -0.032438148, -0.1825309, 0.00089518726, 0.0050372584, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.19462888, 0.6842421)
-}
-
-[sub_resource type="Animation" id="Animation_2mvte"]
-resource_name = "idle"
-length = 1.923
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(4.1204567, -0.25, 0, 0.25, 0, 9.536743e-07, -0.07868785, 0, 0.087978825, 0, 4.1204567, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7, 1.9)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-189.12045, -0.25, 0, 0.25, 0, -185.99998, -0.07868785, 0, 0.087978825, 0, -189.12045, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7, 1.9)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.061996236, -0.07868785, 0, 0.087978825, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7, 1.9)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest/LShoulder/LArm:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.23708592, -0.11556089, -0.03951432, 0, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.69336534, 1.9021932)
-}
-
 [sub_resource type="Animation" id="Animation_t2lue"]
 resource_name = "die"
 tracks/0/type = "value"
@@ -430,6 +334,102 @@ tracks/8/keys = {
 "values": [Vector2(0.6435126, 0.6435126), Vector2(0.70806247, 0.12488331)]
 }
 
+[sub_resource type="Animation" id="Animation_kh1nq"]
+resource_name = "hurt"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0),
+"points": PackedFloat32Array(8, 0, 0, 0.064242736, 0.31325787, -28, -0.017739613, -0.08650119, 0.046503127, 0.22675669, 9.879547, -0.030790899, -4.166668, 0, 0, 14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.10643767, 0.3854564, 0.76666665)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0),
+"points": PackedFloat32Array(-119, 0, 0, 0.064242736, 1.0200754, -92.999985, -0.017739613, -0.28167766, 0.046503127, 0.73839784, -112.87955, -0.030790899, -0.33333334, 0, 0, -114, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.10643767, 0.3854564, 0.76666665)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0),
+"points": PackedFloat32Array(-1.579969, 0, 0, 0.064242736, -0.029824415, -1.8844383, -0.017739613, 0.008235539, 0.046503127, -0.021588879, -1.7589155, -0.030790899, -0.0583755, 0, 0, -1.579969, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.10643767, 0.3854564, 0.76666665)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest/LShoulder/LArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.6267638, -0.032438148, -0.1825309, 0.00089518726, 0.0050372584, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.19462888, 0.6842421)
+}
+
+[sub_resource type="Animation" id="Animation_2mvte"]
+resource_name = "idle"
+length = 1.923
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(4.1204567, -0.25, 0, 0.25, 0, 9.536743e-07, -0.07868785, 0, 0.087978825, 0, 4.1204567, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.9)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-189.12045, -0.25, 0, 0.25, 0, -185.99998, -0.07868785, 0, 0.087978825, 0, -189.12045, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.9)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.061996236, -0.07868785, 0, 0.087978825, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.9)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProxy/Skeleton2D/Bottom/Legs/Chest/LShoulder/LArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.23708592, -0.11556089, -0.03951432, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.69336534, 1.9021932)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6c5vy"]
 _data = {
 &"RESET": SubResource("Animation_kgjiq"),
@@ -446,9 +446,11 @@ size = Vector2(104.5, 257)
 script = ExtResource("1_2mvte")
 
 [node name="AnimationProxy" type="Node2D" parent="."]
+use_parent_material = true
 scale = Vector2(0.6435126, 0.6435126)
 
 [node name="Polygon2D" type="Polygon2D" parent="AnimationProxy"]
+use_parent_material = true
 position = Vector2(0, -1)
 offset = Vector2(-253, -524)
 texture = ExtResource("1_vrurc")

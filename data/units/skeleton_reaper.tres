@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=9 format=3 uid="uid://d00w56ml886iu"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://d00w56ml886iu"]
 
 [ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_f64vx"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_hn107"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_6n8ny"]
 script = ExtResource("1_f64vx")
-weight = 0.6000000000058208
+weight = 0.01000000000931322
 metadata/_custom_type_script = "uid://b6dc5v4xohux6"
 
 [sub_resource type="Resource" id="Resource_il5rk"]
@@ -18,11 +18,15 @@ weight = 0.4000000000087311
 preset = Array[ExtResource("2_vavcx")]([ExtResource("3_tn8tj")])
 metadata/_custom_type_script = "uid://b6dc5v4xohux6"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f64vx"]
+atlas = ExtResource("2_woxgn")
+region = Rect2(144.5, 89, 241, 226)
+
 [resource]
 script = ExtResource("2_hn107")
 name = "Reaper"
 max_hp = 20
 unit_ui = ExtResource("4_1f8qn")
-portrait = ExtResource("2_woxgn")
+portrait = SubResource("AtlasTexture_f64vx")
 ai_actions_presets = Array[ExtResource("1_f64vx")]([SubResource("Resource_6n8ny"), SubResource("Resource_il5rk")])
 metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

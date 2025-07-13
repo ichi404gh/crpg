@@ -3,7 +3,6 @@ extends StatusEffect
 
 @export var damage: int
 
-
 func tick(target: Unit, battle_manager: BattleManager) -> Array[AbstractBattleEvent]:
 	var events: Array[AbstractBattleEvent] = []
 	var ev = OffInteractionDamageEvent.new()

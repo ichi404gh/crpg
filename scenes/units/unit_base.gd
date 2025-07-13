@@ -8,6 +8,9 @@ signal hit_moment
 @warning_ignore("unused_signal")
 signal clicked
 
+@warning_ignore("unused_signal")
+signal hovered(value: bool)
+
 @abstract
 func attack()
 

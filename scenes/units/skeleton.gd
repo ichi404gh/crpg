@@ -6,15 +6,16 @@ extends UnitBaseUI
 
 func _ready() -> void:
 	click_area.input_event.connect(_on_area_input)
-	#click_area.mouse_entered.connect(_on_mouse_hover)
-	#click_area.mouse_exited.connect(_on_mouse_leave)
+	click_area.mouse_entered.connect(_on_mouse_hover)
+	click_area.mouse_exited.connect(_on_mouse_leave)
 
 
-#func _on_mouse_hover():
-	#battle_manager.meta.hovered_unit = self.unit
-#
-#func _on_mouse_leave():
-	#battle_manager.meta.hovered_unit = null
+func _on_mouse_hover():
+	self.hovered.emit(true)
+
+func _on_mouse_leave():
+	self.hovered.emit(false)
+
 
 func _on_area_input(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and \

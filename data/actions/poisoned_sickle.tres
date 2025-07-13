@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Action" load_steps=15 format=3 uid="uid://cyhi26yqebnth"]
+[gd_resource type="Resource" script_class="Action" load_steps=16 format=3 uid="uid://cyhi26yqebnth"]
 
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_g0j1m"]
 [ext_resource type="Script" uid="uid://n48fqjstmmly" path="res://data/action_effects/action_effect_group.gd" id="1_tm4yk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/status_effects/status_effect.gd" id="3_ktxwd"]
 [ext_resource type="Script" uid="uid://c4gfidkjcl2un" path="res://data/status_effects/damage_over_time.gd" id="4_tm4yk"]
 [ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/action_effects/apply_status_effects.gd" id="5_athi6"]
+[ext_resource type="Texture2D" uid="uid://cq41280dv55u" path="res://assets/sprites/statuses/poisoned.png" id="6_rr1mg"]
 [ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/action_effects/targeting/random_enemy.gd" id="7_athi6"]
 [ext_resource type="Texture2D" uid="uid://mi7uyk4fwy1y" path="res://assets/sprites/actions/sickle.png" id="9_athi6"]
 
@@ -18,8 +19,9 @@ metadata/_custom_type_script = "uid://mmchhhj8417w"
 [sub_resource type="Resource" id="Resource_f4sif"]
 script = ExtResource("4_tm4yk")
 damage = 1
-title = "Poison"
+title = "Poisoned"
 default_duration = 2
+texture = ExtResource("6_rr1mg")
 ticks_after_round = true
 metadata/_custom_type_script = "uid://c4gfidkjcl2un"
 

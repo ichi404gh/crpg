@@ -15,7 +15,18 @@ script = ExtResource("2_kqxcs")
 node = NodePath("CanvasLayer/TooltipAnchor")
 metadata/_custom_type_script = "uid://bxp51gh1s6ktl"
 
-[node name="Background" type="Sprite2D" parent="TooltipContext"]
+[node name="Background" type="TextureRect" parent="TooltipContext"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f7stq")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Background1" type="Sprite2D" parent="TooltipContext"]
+visible = false
 position = Vector2(645.00006, 379)
 scale = Vector2(0.69321, 0.61378086)
 texture = ExtResource("2_f7stq")
@@ -59,6 +70,7 @@ offset_left = 49.0
 offset_top = 190.0
 offset_right = 244.0
 offset_bottom = 460.0
+mouse_filter = 2
 
 [node name="ActionsPanel" parent="TooltipContext/CanvasLayer" instance=ExtResource("7_xcah6")]
 unique_name_in_owner = true

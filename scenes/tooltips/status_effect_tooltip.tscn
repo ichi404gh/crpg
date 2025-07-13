@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dart6y5fjuscr"]
+[gd_scene load_steps=8 format=3 uid="uid://bg50b16bgnope"]
 
-[ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="1_of53n"]
-[ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="2_5k5wv"]
-[ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="3_of53n"]
-[ext_resource type="Theme" uid="uid://d18xhnyr8y3rd" path="res://game_theme.tres" id="4_ra40m"]
+[ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="1_3jhlw"]
+[ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="2_pip77"]
+[ext_resource type="Texture2D" uid="uid://cq41280dv55u" path="res://assets/sprites/statuses/poisoned.png" id="3_3kswv"]
+[ext_resource type="Theme" uid="uid://d18xhnyr8y3rd" path="res://game_theme.tres" id="4_omaj6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knrll"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jhlw"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
@@ -18,33 +18,32 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_8jgj7"]
+[sub_resource type="LabelSettings" id="LabelSettings_3jhlw"]
 font_size = 20
 font_color = Color(0.8235294, 0.7137255, 0.5058824, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_wngb7"]
+[sub_resource type="LabelSettings" id="LabelSettings_odl22"]
 font_color = Color(0.5803922, 0.54509807, 0.48235294, 1)
 
-[node name="ActionTooltip" type="PanelContainer"]
+[node name="StatusEffectTooltip" type="PanelContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(40, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -123.5
+offset_left = -123.9375
 offset_top = -85.0
-offset_right = 123.5
+offset_right = 123.9375
 offset_bottom = 85.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_knrll")
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jhlw")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_of53n")
+texture = ExtResource("1_3jhlw")
 region_rect = Rect2(256, 128, 64, 64)
 patch_margin_left = 15
 patch_margin_top = 15
@@ -58,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_5k5wv")
+texture = ExtResource("2_pip77")
 region_rect = Rect2(256, 128, 64, 64)
 patch_margin_left = 15
 patch_margin_top = 15
@@ -85,7 +84,7 @@ theme_override_constants/separation = 6
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("1_of53n")
+texture = ExtResource("1_3jhlw")
 region_rect = Rect2(64, 448, 64, 64)
 patch_margin_left = 15
 patch_margin_top = 15
@@ -103,10 +102,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_5k5wv")
+texture = ExtResource("2_pip77")
 region_rect = Rect2(64, 448, 64, 64)
 
-[node name="Image" type="TextureRect" parent="MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect/NinePatchRect"]
+[node name="Icon" type="TextureRect" parent="MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect/NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -114,7 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_of53n")
+texture = ExtResource("3_3kswv")
 expand_mode = 1
 stretch_mode = 6
 
@@ -123,33 +122,32 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="ActionLabel" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
-theme = ExtResource("4_ra40m")
+theme = ExtResource("4_omaj6")
 theme_override_font_sizes/font_size = 18
-text = "Weapon strike"
-label_settings = SubResource("LabelSettings_8jgj7")
+text = "Poisoned"
+label_settings = SubResource("LabelSettings_3jhlw")
 autowrap_mode = 3
 
 [node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Action"
-label_settings = SubResource("LabelSettings_wngb7")
+text = "Status effect"
+label_settings = SubResource("LabelSettings_odl22")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_ra40m")
+theme = ExtResource("4_omaj6")
 bbcode_enabled = true
-text = "Deals  [color=#d22]1-5 damage[/color]"
+text = "Take [color=#d22]2 damage[/color] at the end of every round until expires"
 fit_content = true
 scroll_active = false
 
-[node name="Description" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[i]What a flavorful text, can smell it from here"
+text = "Expires in  [color=#da0]2 rounds[/color] "
 fit_content = true
 scroll_active = false

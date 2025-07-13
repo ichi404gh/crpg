@@ -1,5 +1,4 @@
 extends Control
-class_name ActionSlot
 
 @onready var panel: Panel = $Panel
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dsimkfd6rd5f2"
-path="res://.godot/imported/YsabeauOffice-Medium.ttf-27900ebc1f8a24713a1221b8aedec089.fontdata"
+uid="uid://dtdbk522888f7"
+path="res://.godot/imported/YsabeauOffice-Italic-VariableFont_wght.ttf-626583615f012788a898a9ad05b62726.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/YsabeauOffice-Medium.ttf"
-dest_files=["res://.godot/imported/YsabeauOffice-Medium.ttf-27900ebc1f8a24713a1221b8aedec089.fontdata"]
+source_file="res://assets/fonts/YsabeauOffice-Italic-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/YsabeauOffice-Italic-VariableFont_wght.ttf-626583615f012788a898a9ad05b62726.fontdata"]
 
 [params]
 

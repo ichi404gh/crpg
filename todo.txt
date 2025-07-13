@@ -7,9 +7,8 @@
 ❌ combat log
 ✅ damage floaing text
 
-
-❌ statuses ui
-	❌ polish tooltips - statuses and actions
+✅ statuses ui
+	✅ polish tooltips - statuses and actions
 
 ❌ bonuses between rounds
 	❌ active bonus ui

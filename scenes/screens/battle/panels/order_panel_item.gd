@@ -24,12 +24,13 @@ func setup(unit: Unit, battle_manager: BattleManager):
 		portrait.texture = unit.unit_data.portrait
 
 	self.battle_manager = battle_manager
+	self.battle_manager.meta.hovered_unit_changed.connect(on_hevered_unit_changed)
 
 	mouse_entered.connect(_on_mouse_enter)
 	mouse_exited.connect(_on_mouse_exit)
 
-func _process(_delta: float) -> void:
-	if battle_manager.meta.hovered_unit == self.unit:
+func on_hevered_unit_changed(unit: Unit):
+	if unit == self.unit:
 		color_rect.color = hover_color
 	else:
 		_reset_color()

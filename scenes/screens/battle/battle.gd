@@ -82,7 +82,7 @@ func arrange_slots():
 
 		_width += sprite_size + spacing
 		player_party_node.add_child(pawn_ui)
-		pawn_ui.setup(unit)
+		pawn_ui.setup(unit, false, battle_manager)
 
 	_width -= spacing
 
@@ -97,10 +97,16 @@ func arrange_slots():
 
 		_width += sprite_size + spacing
 		enemy_party_node.add_child(pawn_ui)
-		pawn_ui.setup(unit, true)
+		pawn_ui.setup(unit, true, battle_manager)
 
 	_width -= spacing
 
+func _on_unit_hover(unit: Unit, value: bool):
+	if value:
+		battle_manager.meta.hovered_unit = unit
+	else:
+		if battle_manager.meta.hovered_unit == unit:
+			battle_manager.meta.hovered_unit = null
 
 func _on_pawn_click(pwn: Pawn):
 	selected_pawn = pwn
@@ -134,7 +140,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 					scene.setup(-target_effect.hp_change)
 
 
-				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change)
+				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, []) 
 				if target_effect.fx:
 					var scene: ActionFX = target_effect.fx.instantiate()
 					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
@@ -142,45 +148,20 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			if event.source:
 				await event.source.unit_view.finish_animations()
 #
-			#var callbacks: Array[Callable] = []
-			#for effect: InteractionEvent.TargetEffect in event.target_effects:
-				#callbacks.append(effect.target.unit_view.finish_animations)
-			#var helper = JoinHelper.join(callbacks)
-			#await helper.done
+
 		elif event is OffInteractionDamageEvent:
 			if event.hurt:
 				await event.target.unit_view.hurt()
-			#const DAMAGE_INDICATOR = preload("uid://bbkvpkjbemqiw")
-			#var scene = DAMAGE_INDICATOR.instantiate()
-			#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
-			#scene.setup(-event.hp_change)
-			unit_to_pawn[event.target].update_status(event.hp_change)
 
+			unit_to_pawn[event.target].update_status(event.hp_change, [])
+		elif event is StatusEffectsUpdatedEvent:
+			unit_to_pawn[event.target].update_status(0, event.effects)
 		elif event is UnitDeadEvent:
 			# TODO: disable ui for dead pawn
 			event.who.unit_view.die()
 			order_panel.remove_child(unit_to_order_item[event.who])
 
-		#if event is CombatEvent.Attacks:
-
-			#await event.source.unit_view.attack()
-			#unit_to_pawn[event.target].update_status(-event.damage)
-			#if event.effect_scene:
-				#var scene: ActionFX = event.effect_scene.instantiate()
-				#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
-				#scene.play_impact()
-			#await event.target.unit_view.hurt()
-			#await event.source.unit_view.finish_animations()
-			#await event.target.unit_view.finish_animations()
-		#elif event is CombatEvent.Dies:
-			#await event.who.unit_view.die()
-		#elif event is CombatEvent.Interact:
-			#await event.target.unit_view.interact()
-			#unit_to_pawn[event.target].update_status(-event.damage)
-			#if event.effect_scene:
-				#var scene: ActionFX = event.effect_scene.instantiate()
-				#unit_to_pawn[event.target].get_node("%EffectRoot").add_child(scene)
-				#scene.play_impact()
+	
 	print("battle stopped")
 	_update_order_panel()
 	set_ai_actions()

@@ -70,10 +70,12 @@ func simulate_stage():
 			continue
 		for ase in unit.status_effects:
 			if ase.status_effect.ticks_after_round:
-				events.append_array(ase.status_effect.tick(unit, self))
-
-		status_effect_manager.expire_effects(unit)
-
+				var tick_events = ase.status_effect.tick(unit, self)
+				events.append_array(tick_events)
+		
+		var expire_events = status_effect_manager.expire_effects(unit)
+		events.append_array(expire_events)
+		
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new(events, order))
 
@@ -104,4 +106,9 @@ class SimulationData:
 		next_turn_order = order
 
 class Meta:
-	var hovered_unit: Unit
+	signal hovered_unit_changed(unit: Unit)
+	var hovered_unit: Unit:
+		set(value):
+			if hovered_unit != value:
+				hovered_unit_changed.emit(value)
+			hovered_unit = value
