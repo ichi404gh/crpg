@@ -34,13 +34,13 @@ func setup_stub():
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
-		MOUSEFOLK.instantiate(),
-		MOUSEFOLK.instantiate(),
-		MOUSEFOLK.instantiate(),
+		#MOUSEFOLK.instantiate(),
+		#MOUSEFOLK.instantiate(),
+		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
 
 	enemy_party = [
-		SKELETON.instantiate(),
+		#SKELETON.instantiate(),
 		SKELETON_REAPER.instantiate(),
 		BAT.instantiate(),
 		BAT.instantiate(),
@@ -140,7 +140,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 					scene.setup(-target_effect.hp_change)
 
 
-				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, [])
+				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, null)
 				if target_effect.fx:
 					var scene: ActionFX = target_effect.fx.instantiate()
 					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
@@ -153,7 +153,7 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			if event.hurt:
 				await event.target.unit_view.hurt()
 
-			unit_to_pawn[event.target].update_status(event.hp_change, [])
+			unit_to_pawn[event.target].update_status(event.hp_change, null)
 		elif event is StatusEffectsUpdatedEvent:
 			unit_to_pawn[event.target].update_status(0, event.effects)
 		elif event is UnitDeadEvent:

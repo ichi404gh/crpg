@@ -1,5 +1,5 @@
 class_name DamageOverTimeEffect
-extends StatusEffect
+extends Buff
 
 @export var damage: int
 
@@ -10,8 +10,8 @@ func tick(target: Unit, battle_manager: BattleManager) -> Array[AbstractBattleEv
 	ev.hp_change = -damage
 	events.append(ev)
 
-	var additional_events = battle_manager.damage_mananger.apply_damage(target, damage)
-	events.append(additional_events)
+	var additional_events: Array[AbstractBattleEvent] = battle_manager.damage_mananger.apply_damage(target, damage)
+	events.append_array(additional_events)
 
 	return events
 

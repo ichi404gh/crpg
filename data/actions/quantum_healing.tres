@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Action" load_steps=9 format=3 uid="uid://bh8avx15y0r84"]
 
 [ext_resource type="PackedScene" uid="uid://dnbb81gsdvagc" path="res://data/actions/quantum_healing/quantum_healing.tscn" id="1_qfgin"]
-[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_vby44"]
-[ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/action_effects/heal_effect.gd" id="2_vby44"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_vby44"]
+[ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/effects/heal_effect.gd" id="2_vby44"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="3_bqmvk"]
-[ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://data/action_effects/targeting/random_ally_not_self.gd" id="4_bqmvk"]
+[ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://lib/targeting/random_ally_not_self.gd" id="4_bqmvk"]
 [ext_resource type="Texture2D" uid="uid://bryrd0e2ijm0e" path="res://assets/sprites/actions/healing.png" id="7_3itet"]
 
 [sub_resource type="Resource" id="Resource_bqmvk"]

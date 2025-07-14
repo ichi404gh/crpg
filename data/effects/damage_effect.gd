@@ -1,4 +1,4 @@
-extends ActionEffect
+extends Effect
 class_name DamageEffect
 
 @export var amount_min: int = 1

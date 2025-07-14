@@ -7,7 +7,7 @@ class_name Action
 @export var flavour_text: String
 
 @export var targeting: TargetingStrategy
-@export var effects: Array[ActionEffect]
+@export var effects: Array[Effect]
 
 @export var texture: Texture2D
 @export var effect_scene: PackedScene
@@ -28,7 +28,7 @@ func apply(source: Unit, bm: BattleManager) -> Array[AbstractBattleEvent]:
 	if not targets:
 		return []
 
-	for effect: ActionEffect in effects:
+	for effect: Effect in effects:
 		for target: Unit in targets:
 			var event_effects = effect.apply(source, target, bm, self)
 			for event_effect in event_effects:

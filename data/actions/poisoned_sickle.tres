@@ -1,45 +1,52 @@
-[gd_resource type="Resource" script_class="Action" load_steps=14 format=3 uid="uid://cyhi26yqebnth"]
+[gd_resource type="Resource" script_class="Action" load_steps=16 format=3 uid="uid://cyhi26yqebnth"]
 
-[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/action_effects/action_effect.gd" id="1_g0j1m"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_rr1mg"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1ymbi"]
-[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/action_effects/damage_effect.gd" id="2_8pc2t"]
-[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/status_effects/status_effect.gd" id="3_ktxwd"]
-[ext_resource type="Script" uid="uid://c4gfidkjcl2un" path="res://data/status_effects/damage_over_time.gd" id="4_tm4yk"]
-[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/action_effects/apply_status_effects.gd" id="5_athi6"]
-[ext_resource type="Texture2D" uid="uid://cq41280dv55u" path="res://assets/sprites/statuses/poisoned.png" id="6_rr1mg"]
-[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/action_effects/targeting/random_enemy.gd" id="7_athi6"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="2_rr1mg"]
+[ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_f4sif"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="3_wdvfq"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://lib/targeting/random_enemy.gd" id="4_ktxwd"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="5_3lfr3"]
+[ext_resource type="Script" uid="uid://c4gfidkjcl2un" path="res://data/buffs/damage_over_time.gd" id="5_b4264"]
+[ext_resource type="Texture2D" uid="uid://cq41280dv55u" path="res://assets/sprites/statuses/poisoned.png" id="6_3lfr3"]
 [ext_resource type="Texture2D" uid="uid://mi7uyk4fwy1y" path="res://assets/sprites/actions/sickle.png" id="9_athi6"]
 
-[sub_resource type="Resource" id="Resource_athi6"]
-script = ExtResource("2_8pc2t")
+[sub_resource type="Resource" id="Resource_rr1mg"]
+script = ExtResource("2_rr1mg")
 amount_max = 2
 metadata/_custom_type_script = "uid://mmchhhj8417w"
 
-[sub_resource type="Resource" id="Resource_rr1mg"]
-script = ExtResource("4_tm4yk")
+[sub_resource type="Resource" id="Resource_f4sif"]
+script = ExtResource("5_b4264")
 damage = 2
-title = "status_effect.poisoned.title"
-flavour = "status_effect.poisoned.flavour"
-default_duration = 2
-texture = ExtResource("6_rr1mg")
 ticks_after_round = true
 metadata/_custom_type_script = "uid://c4gfidkjcl2un"
 
-[sub_resource type="Resource" id="Resource_f4sif"]
-script = ExtResource("5_athi6")
-effects = Array[ExtResource("3_ktxwd")]([SubResource("Resource_rr1mg")])
+[sub_resource type="Resource" id="Resource_b4264"]
+script = ExtResource("3_f4sif")
+title = "status_effect.poisoned.title"
+flavour = "status_effect.poisoned.flavour"
+buffs = Array[ExtResource("5_3lfr3")]([SubResource("Resource_f4sif")])
+duration = 2
+texture = ExtResource("6_3lfr3")
+metadata/_custom_type_script = "uid://dn82jj5sqjvr7"
+
+[sub_resource type="Resource" id="Resource_3lfr3"]
+script = ExtResource("3_wdvfq")
+statuses = Array[ExtResource("3_f4sif")]([SubResource("Resource_b4264")])
 metadata/_custom_type_script = "uid://h625835j74oo"
 
 [sub_resource type="Resource" id="Resource_wdvfq"]
-script = ExtResource("7_athi6")
+script = ExtResource("4_ktxwd")
 metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
 
 [resource]
 script = ExtResource("2_1ymbi")
 title = "action.poisoned_sickle.title"
+description = null
 flavour_text = "action.poisoned_sickle.flavour"
 targeting = SubResource("Resource_wdvfq")
-effects = Array[ExtResource("1_g0j1m")]([SubResource("Resource_athi6"), SubResource("Resource_f4sif")])
+effects = Array[ExtResource("1_rr1mg")]([SubResource("Resource_rr1mg"), SubResource("Resource_3lfr3")])
 texture = ExtResource("9_athi6")
 source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"

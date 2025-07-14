@@ -30,8 +30,8 @@ func show(data: TooltipData, origin: CanvasItem):
 
 		status_tooltip_instance.set_anchors_preset(Control.PRESET_CENTER_TOP)
 		anchor.add_child(status_tooltip_instance)
-		(status_tooltip_instance.get_node("%Icon") as TextureRect).texture = data.status.status_effect.texture
-		(status_tooltip_instance.get_node("%Title") as Label).text = data.status.status_effect.title
+		(status_tooltip_instance.get_node("%Icon") as TextureRect).texture = data.status.texture
+		(status_tooltip_instance.get_node("%Title") as Label).text = data.status.title
 		(status_tooltip_instance.get_node("%Effect") as RichTextLabel).text = data.get_effects_text()
 		(status_tooltip_instance.get_node("%FlavourText") as RichTextLabel).text = "[i]" + data.get_flavour_text() + "[/i]"
 

@@ -60,7 +60,7 @@ func on_unit_hovered(value: bool):
 			self.battle_manager.meta.hovered_unit = null
 
 
-func update_status(hp_increnemnt: int, statuses: Array[Unit.AppliedStatusEffect]):
+func update_status(hp_increnemnt: int, statuses):
 	hp_value += hp_increnemnt
 	hp_label.text = "%s/%s" % [clamp(hp_value, 0, unit.unit_data.max_hp), unit.unit_data.max_hp]
 
@@ -86,13 +86,15 @@ func update_status(hp_increnemnt: int, statuses: Array[Unit.AppliedStatusEffect]
 		number.position.y = 0
 		number.modulate.a = 0
 
-func on_statuses_changed(statuses: Array[Unit.AppliedStatusEffect]):
+func on_statuses_changed(statuses):
+	if statuses == null:
+		return
 	const ACTIVE_STATUS_UI = preload("uid://bnp7660y8su5h")
 
 	for c in status_bar.get_children():
 		c.queue_free()
 
-	for status in statuses:
+	for status in statuses as Array[Status]:
 		var status_ui: ActiveStatusUI = ACTIVE_STATUS_UI.instantiate()
 		status_bar.add_child(status_ui)
 		status_ui.setup(status)

@@ -3,7 +3,7 @@ extends Control
 
 @onready var status_texture: TextureRect = %StatusTexture
 
-var status: Unit.AppliedStatusEffect
+var status: Status
 
 func _ready() -> void:
 	mouse_entered.connect(_on_hover)
@@ -17,6 +17,6 @@ func _on_hover():
 func _on_stop_hover():
 	TooltipManager.hide()
 
-func setup(status: Unit.AppliedStatusEffect):
+func setup(status: Status):
 	self.status = status
-	status_texture.texture = status.status_effect.texture
+	status_texture.texture = status.texture

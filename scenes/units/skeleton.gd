@@ -36,7 +36,7 @@ func die():
 
 func finish_animations():
 	if animation_player.current_animation != 'idle':
-		var res = await animation_player.current_animation_changed
+		await animation_player.current_animation_changed
 
 func interact():
 	pass

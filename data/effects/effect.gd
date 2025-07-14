@@ -1,6 +1,6 @@
 @abstract
 extends Resource
-class_name ActionEffect
+class_name Effect
 
 @abstract
 func apply(source: Unit, target: Unit, battle_manager: BattleManager, action: Action) -> Array[AbstractBattleEvent]

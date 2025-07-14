@@ -7,7 +7,7 @@ class_name Unit
 @export var unit_data: UnitData
 @export var ai_controlled: bool
 
-var status_effects: Array[Unit.AppliedStatusEffect]
+var status_effects: Array[Status]
 
 var unit_view: UnitBaseUI
 
@@ -32,23 +32,11 @@ func instantiate_ui():
 	unit_view = unit_data.unit_ui.instantiate() as UnitBaseUI
 	return unit_view
 
-func have_status(status_effect: StatusEffect) -> bool:
-	return self.status_effects.any(func (asf: AppliedStatusEffect): return asf.status_effect == status_effect)
+func have_status(status: Status) -> bool:
+	return find_applied_status(status) != null
 
-func find_applied_status(status_effect: StatusEffect) -> AppliedStatusEffect:
-	for applied_status in self.status_effects:
-		if applied_status.status_effect == status_effect:
-			return applied_status
+func find_applied_status(status: Status) -> Status:
+	for unit_status in self.status_effects:
+		if unit_status.title == status.title: # FIXME
+			return unit_status
 	return null
-
-
-class AppliedStatusEffect:
-	var status_effect: StatusEffect
-	var duration: int
-
-	func _to_string() -> String:
-		return "%s, %s" % [status_effect.title, duration]
-
-	func _init(status_effect: StatusEffect, duration: int):
-		self.status_effect = status_effect
-		self.duration = duration

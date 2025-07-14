@@ -26,17 +26,19 @@ func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 func tick_before_round_buffs(round_number: int, unit: Unit) -> Array[AbstractBattleEvent]:
 	var events = [] as Array[AbstractBattleEvent]
 	if round_number == 0:
-		for ase in unit.status_effects:
-			if ase.status_effect.ticks_before_round:
-				events.append(ase.status_effect.tick(unit, self))
+		for status in unit.status_effects:
+			for buff in status.buffs:
+				if buff.ticks_before_round:
+					events.append_array(buff.tick(unit, self))
 	return events
 
 func tick_after_round_buffs(unit: Unit) -> Array[AbstractBattleEvent]:
 	var events: Array[AbstractBattleEvent] = []
-	for ase in unit.status_effects:
-		if ase.status_effect.ticks_after_round:
-			var tick_events = ase.status_effect.tick(unit, self)
-			events.append_array(tick_events)
+	for status in unit.status_effects:
+		for buff in status.buffs:
+			if buff.ticks_after_round:
+				var tick_events = buff.tick(unit, self)
+				events.append_array(tick_events)
 	return events
 
 func simulate_stage():
@@ -62,8 +64,7 @@ func simulate_stage():
 			continue
 
 		events.append_array(tick_after_round_buffs(unit))
-		var expire_events = status_effect_manager.expire_effects(unit)
-		events.append_array(expire_events)
+		events.append_array(status_effect_manager.expire_statuses(unit))
 
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new(events, order))
