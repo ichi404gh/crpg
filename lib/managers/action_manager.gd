@@ -5,7 +5,8 @@ class_name ActionManager
 static func get_actions_selection_for_unit(_unit: Unit) -> Array[Action]:
 	return [
 		preload("uid://cf5ul8llmqy0c"),
-		preload("uid://bh8avx15y0r84")
+		preload("uid://bh8avx15y0r84"),
+		preload("uid://bdn4xdv5r32bi"),
 	]
 
 static func select_action_for_ai_unit(unit: Unit) -> Array[Action]:

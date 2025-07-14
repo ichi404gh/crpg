@@ -5,13 +5,18 @@ extends Buff
 
 func tick(target: Unit, battle_manager: BattleManager) -> Array[AbstractBattleEvent]:
 	var events: Array[AbstractBattleEvent] = []
+
+
+	var damage_result = battle_manager.damage_mananger.apply_damage(null, target, damage)
+
+
 	var ev = OffInteractionDamageEvent.new()
 	ev.target = target
-	ev.hp_change = -damage
+	ev.hp_change = -damage_result.final_damage
+
 	events.append(ev)
 
-	var additional_events: Array[AbstractBattleEvent] = battle_manager.damage_mananger.apply_damage(target, damage)
-	events.append_array(additional_events)
+	events.append_array(damage_result.events)
 
 	return events
 

@@ -12,10 +12,13 @@ var order: Array[Unit]
 var stage: int = 0
 var meta: Meta = Meta.new()
 
+var modificator_registry: ModificatorRegistry = ModificatorRegistry.new()
+
 
 var damage_mananger: DamageManager = DamageManager.new(self)
 var healing_manager: HealingManager = HealingManager.new(self)
 var status_effect_manager: StatusEffectManager = StatusEffectManager.new(self)
+
 
 func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	player_party = player

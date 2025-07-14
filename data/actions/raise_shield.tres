@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Action" load_steps=10 format=3 uid="uid://bdn4xdv5r32bi"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_u8yf8"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_2hbd6"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_e4wyu"]
+[ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_i8xem"]
+[ext_resource type="Resource" uid="uid://fun5apkcplon" path="res://data/statuses/shielded.tres" id="4_pcc0o"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://lib/targeting/self.gd" id="6_cf3e4"]
+[ext_resource type="Texture2D" uid="uid://dvkffb2m22tq" path="res://assets/sprites/actions/19.png" id="7_tmh3w"]
+
+[sub_resource type="Resource" id="Resource_tnfv7"]
+script = ExtResource("2_e4wyu")
+statuses = Array[ExtResource("3_i8xem")]([ExtResource("4_pcc0o")])
+metadata/_custom_type_script = "uid://h625835j74oo"
+
+[sub_resource type="Resource" id="Resource_xhwye"]
+script = ExtResource("6_cf3e4")
+metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
+
+[resource]
+script = ExtResource("2_2hbd6")
+title = "Raise shield"
+description = "You raises shield, redusing incoming damage"
+targeting = SubResource("Resource_xhwye")
+effects = Array[ExtResource("1_u8yf8")]([SubResource("Resource_tnfv7")])
+texture = ExtResource("7_tmh3w")
+metadata/_custom_type_script = "uid://crhahprxps0vr"

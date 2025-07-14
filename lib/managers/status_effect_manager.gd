@@ -12,6 +12,9 @@ func aplly_status(target: Unit, status: Status) -> Array[AbstractBattleEvent]:
 		unit_status.duration = max(unit_status.duration, status.duration)
 	else:
 		target.status_effects.append(status.duplicate())
+		for buff in status.buffs:
+			if buff.modificator_provider is ModificatorProvider:
+				bm.modificator_registry.register(buff.modificator_provider, buff.modificator_provider.provides, [target])
 	var ev = StatusEffectsUpdatedEvent.from_unit(target)
 	return [ev]
 
@@ -22,7 +25,9 @@ func expire_statuses(target: Unit) -> Array[AbstractBattleEvent]:
 		updated = true
 	var to_remove = target.status_effects.filter(func (s: Status): return s.duration <= 0)
 	for status in to_remove:
-		# unsubscribe provider
+		for buff in status.buffs:
+			if buff.modificator_provider is ModificatorProvider:
+				bm.modificator_registry.unregister(buff.modificator_provider)
 		target.status_effects.erase(status)
 	if updated:
 		var ev = StatusEffectsUpdatedEvent.from_unit(target)

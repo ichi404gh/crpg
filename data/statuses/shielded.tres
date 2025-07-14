@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Status" load_steps=11 format=3 uid="uid://fun5apkcplon"]
+
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="1_laass"]
+[ext_resource type="Script" uid="uid://18pyry3sq7u6" path="res://lib/modificators/modificator.gd" id="2_2xslh"]
+[ext_resource type="Script" uid="uid://cxb6em4iapri5" path="res://data/buffs/reduce_damage.gd" id="2_npkyf"]
+[ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="2_ssgkr"]
+[ext_resource type="Script" uid="uid://d4i1bconmotfx" path="res://lib/modificators/receiving_damage_modificator.gd" id="3_7hpy3"]
+[ext_resource type="Texture2D" uid="uid://dvkffb2m22tq" path="res://assets/sprites/actions/19.png" id="3_ssgkr"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="4_7hpy3"]
+
+[sub_resource type="Resource" id="Resource_pp6su"]
+script = ExtResource("3_7hpy3")
+multiplicative_bonus = 0.5
+metadata/_custom_type_script = "uid://d4i1bconmotfx"
+
+[sub_resource type="Resource" id="Resource_shn73"]
+script = ExtResource("4_7hpy3")
+provides = Array[ExtResource("2_2xslh")]([SubResource("Resource_pp6su")])
+metadata/_custom_type_script = "uid://dx113vxf7sk78"
+
+[sub_resource type="Resource" id="Resource_e4nrb"]
+script = ExtResource("2_npkyf")
+title = "Damage reduction"
+modificator_provider = SubResource("Resource_shn73")
+metadata/_custom_type_script = "uid://cxb6em4iapri5"
+
+[resource]
+script = ExtResource("2_ssgkr")
+title = "Shielded"
+description = "You receive less damage"
+buffs = Array[ExtResource("1_laass")]([SubResource("Resource_e4nrb")])
+duration = 3
+texture = ExtResource("3_ssgkr")
+metadata/_custom_type_script = "uid://dn82jj5sqjvr7"
