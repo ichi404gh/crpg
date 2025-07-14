@@ -8,7 +8,6 @@ func get_flavour_text() -> String:
 
 func get_effects_text() -> String:
 	var strs = []
-	for effect_group in action.effect_groups:
-		for effect in effect_group.effects:
-			strs.append(effect._get_description())
+	for effect in action.effects:
+		strs.append(effect._get_description())
 	return "\n".join(strs)

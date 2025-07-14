@@ -23,56 +23,45 @@ func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	order = _get_turn_order()
 	stage_simulation_ready.emit(SimulationData.new([], order))
 
+func tick_before_round_buffs(round_number: int, unit: Unit) -> Array[AbstractBattleEvent]:
+	var events = [] as Array[AbstractBattleEvent]
+	if round_number == 0:
+		for ase in unit.status_effects:
+			if ase.status_effect.ticks_before_round:
+				events.append(ase.status_effect.tick(unit, self))
+	return events
+
+func tick_after_round_buffs(unit: Unit) -> Array[AbstractBattleEvent]:
+	var events: Array[AbstractBattleEvent] = []
+	for ase in unit.status_effects:
+		if ase.status_effect.ticks_after_round:
+			var tick_events = ase.status_effect.tick(unit, self)
+			events.append_array(tick_events)
+	return events
+
 func simulate_stage():
 	var events: Array[AbstractBattleEvent] = []
-	var round_number: int = 0
 
-
-	while round_number < 4:
+	for round_number in 4:
 		for unit in order:
 			if not unit.alive:
 				continue
 
-			if round_number == 0:
-				for ase in unit.status_effects:
-					if ase.status_effect.ticks_before_round:
-						events.append_array(ase.status_effect.tick(unit, self))
-
+			events.append_array(tick_before_round_buffs(round_number, unit))
 			var unit_actions: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
 
 			if unit_actions.size() <= round_number:
 				continue
 
 			var action = unit_actions[round_number]
-			var interaction_event: InteractionEvent = action.produce_event(unit)
-			var action_events: Array[AbstractBattleEvent] = []
-
-			for effect_group: ActionEffectGroup in action.effect_groups:
-				if not effect_group.have_targets(unit, self):
-					continue
-				var targets = effect_group.get_targets(unit, self)
-				for effect: ActionEffect in effect_group.effects:
-					for target: Unit in targets:
-						var event_effects = effect.apply(unit, target, self, action)
-						for event_effect in event_effects:
-							if event_effect is InteractionEvent.TargetEffect:
-								interaction_event.target_effects.append(event_effect)
-							else:
-								action_events.append(event_effect)
-			if not interaction_event.target_effects.is_empty():
-				events.append(interaction_event)
-			events.append_array(action_events)
-		round_number += 1
+			events.append_array(action.apply(unit, self))
 
 
 	for unit in order:
 		if not unit.alive:
 			continue
-		for ase in unit.status_effects:
-			if ase.status_effect.ticks_after_round:
-				var tick_events = ase.status_effect.tick(unit, self)
-				events.append_array(tick_events)
 
+		events.append_array(tick_after_round_buffs(unit))
 		var expire_events = status_effect_manager.expire_effects(unit)
 		events.append_array(expire_events)
 
