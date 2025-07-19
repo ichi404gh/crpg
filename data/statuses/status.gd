@@ -8,3 +8,4 @@ extends Resource
 @export var buffs: Array[Buff]
 @export var duration: int
 @export var texture: Texture2D
+@export var reactions: Array[Reaction]

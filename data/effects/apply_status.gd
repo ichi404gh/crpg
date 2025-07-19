@@ -3,7 +3,7 @@ class_name ApplyStatusEffects
 
 @export var statuses: Array[Status]
 
-func apply(_source: Unit, target: Unit, battle_manager: BattleManager, _action: Action) -> Array[AbstractBattleEvent]:
+func apply(_source: Unit, target: Unit, battle_manager: BattleManager, _action: Action = null) -> Array[AbstractBattleEvent]:
 	var events: Array[AbstractBattleEvent] = []
 	for status in statuses:
 		events = battle_manager.status_effect_manager.aplly_status(target, status)

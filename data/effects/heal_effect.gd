@@ -4,7 +4,7 @@ class_name HealEffect
 @export var amount_min: int = 1
 @export var amount_max: int = 3
 
-func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: Action):
+func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: Action = null):
 	var amount = randi_range(amount_min, amount_max)
 	var events = []
 

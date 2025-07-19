@@ -18,7 +18,7 @@ var modificator_registry: ModificatorRegistry = ModificatorRegistry.new()
 var damage_mananger: DamageManager = DamageManager.new(self)
 var healing_manager: HealingManager = HealingManager.new(self)
 var status_effect_manager: StatusEffectManager = StatusEffectManager.new(self)
-
+var reaction_manager: ReactionManager = ReactionManager.new(self)
 
 func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	player_party = player

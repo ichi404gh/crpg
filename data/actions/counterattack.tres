@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="Action" load_steps=20 format=3 uid="uid://bwk7vs1anmvcn"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_y7sdy"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_4sojl"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_cc4ea"]
+[ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_q1fpj"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="4_1tqa4"]
+[ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="5_0ifvy"]
+[ext_resource type="Texture2D" uid="uid://cger1spn6nu8k" path="res://icon.svg" id="5_jswov"]
+[ext_resource type="Script" uid="uid://76lcd1r0fjt" path="res://data/reactions/effects/reaction_effect.gd" id="6_ritom"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="7_0ifvy"]
+[ext_resource type="Script" uid="uid://d37hc2c680u25" path="res://data/reactions/effects/block_damage.gd" id="7_u64c6"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="8_ritom"]
+[ext_resource type="Script" uid="uid://cus33u03ywj4c" path="res://data/reactions/effects/apply_effect.gd" id="9_u64c6"]
+
+[sub_resource type="Resource" id="Resource_lncra"]
+script = ExtResource("7_u64c6")
+metadata/_custom_type_script = "uid://d37hc2c680u25"
+
+[sub_resource type="Resource" id="Resource_th32v"]
+script = ExtResource("8_ritom")
+amount_min = 2
+amount_max = 4
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_ld2v0"]
+script = ExtResource("9_u64c6")
+effects = Array[ExtResource("1_y7sdy")]([SubResource("Resource_th32v")])
+metadata/_custom_type_script = "uid://cus33u03ywj4c"
+
+[sub_resource type="Resource" id="Resource_8hewe"]
+script = ExtResource("5_0ifvy")
+effects = Array[ExtResource("6_ritom")]([SubResource("Resource_lncra"), SubResource("Resource_ld2v0")])
+metadata/_custom_type_script = "uid://b2rthyh48tmlp"
+
+[sub_resource type="Resource" id="Resource_ritom"]
+script = ExtResource("3_q1fpj")
+title = "Ready to counterattack"
+duration = 3
+texture = ExtResource("5_jswov")
+reactions = Array[ExtResource("5_0ifvy")]([SubResource("Resource_8hewe")])
+metadata/_custom_type_script = "uid://dn82jj5sqjvr7"
+
+[sub_resource type="Resource" id="Resource_u64c6"]
+script = ExtResource("2_4sojl")
+statuses = Array[ExtResource("3_q1fpj")]([SubResource("Resource_ritom")])
+metadata/_custom_type_script = "uid://h625835j74oo"
+
+[sub_resource type="Resource" id="Resource_7mvmb"]
+script = ExtResource("7_0ifvy")
+metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
+
+[resource]
+script = ExtResource("2_cc4ea")
+title = "Counterattack"
+targeting = SubResource("Resource_7mvmb")
+effects = Array[ExtResource("1_y7sdy")]([SubResource("Resource_u64c6")])
+texture = ExtResource("5_jswov")
+metadata/_custom_type_script = "uid://crhahprxps0vr"

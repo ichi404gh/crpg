@@ -7,12 +7,13 @@ static func get_actions_selection_for_unit(_unit: Unit) -> Array[Action]:
 	const QUANTUM_HEALING = preload("uid://bh8avx15y0r84")
 	const RAISE_SHIELD = preload("uid://bdn4xdv5r32bi")
 	const WEAPON_STRIKE = preload("uid://cf5ul8llmqy0c")
-
+	const COUNTERATTACK = preload("uid://bwk7vs1anmvcn")
 	return [
 		WEAPON_STRIKE,
 		QUANTUM_HEALING,
 		RAISE_SHIELD,
-		BLOOD_RAGE
+		BLOOD_RAGE,
+		COUNTERATTACK
 	]
 
 static func select_action_for_ai_unit(unit: Unit) -> Array[Action]:

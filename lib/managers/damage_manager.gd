@@ -8,27 +8,42 @@ func _init(bm: BattleManager):
 	self.bm = bm
 	dmr.registry = bm.modificator_registry
 
-func apply_damage(source: Unit, target: Unit, base_amount: int) -> Result:
+func apply_damage(source: Unit, target: Unit, base_min: int, base_max: int) -> Result:
 	var res = Result.new()
 
-	var amount = base_amount
+	var damage = DamagePipeline.new()
+	damage.min_flat = base_min
+	damage.max_flat = base_max
+
 	for mod: DealingDamageModificator in dmr.get_dealing_mods_for_unit(source):
 		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):
-			amount = mod.modify(amount)
+			mod.modify(damage)
 	for mod: ReceivingDamageModificator in dmr.get_receiving_mods_for_unit(target):
 		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):
-			amount = mod.modify(amount)
+			mod.modify(damage)
 
-	amount = max(amount, 0)
-	res.final_damage = amount
+	var reactions = bm.reaction_manager.get_on_damage_taken_reaction_for_unit(target)
 
-	target.hp -= amount
+	var reaction_context = ReactionContext.new()
+	reaction_context.bm = bm
+	reaction_context.damage = damage
+	reaction_context.source = target # damage receiver is reaction source
+	reaction_context.target = source # damage dealer is reaction target, but can be overriden
+
+	var reaction_events = []
+	for reaction in reactions:
+		reaction_events.append_array(reaction.apply(reaction_context))
+
+	damage.resolve()
+	res.final_damage = damage.resolved_value
+
+	target.hp -= damage.resolved_value
 	if target.hp <= 0:
 		target.alive = false
 		var event = UnitDeadEvent.new()
 		event.who = target
 		res.events.append(event)
-
+	res.events.append_array(reaction_events)
 	return res
 
 class Result:

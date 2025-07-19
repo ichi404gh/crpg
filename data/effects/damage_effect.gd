@@ -4,12 +4,13 @@ class_name DamageEffect
 @export var amount_min: int = 1
 @export var amount_max: int = 5
 
-func apply(source: Unit, target: Unit, battle_manager: BattleManager, action: Action) -> Array[AbstractBattleEvent]:
+func apply(source: Unit, target: Unit, battle_manager: BattleManager, action: Action = null) -> Array[AbstractBattleEvent]:
 	var events: Array[AbstractBattleEvent] = []
 
-	var base_damage = randi_range(amount_min, amount_max)
+	if not target:
+		return events
 
-	var damage_result = battle_manager.damage_mananger.apply_damage(source, target, base_damage)
+	var damage_result = battle_manager.damage_mananger.apply_damage(source, target, amount_min, amount_max)
 	var interaction_effect = InteractionEvent.TargetEffect.new()
 	interaction_effect.animation = InteractionEvent.AnimationKind.Hurt
 	if action:
