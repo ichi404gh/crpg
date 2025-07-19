@@ -3,10 +3,16 @@ class_name ActionManager
 
 
 static func get_actions_selection_for_unit(_unit: Unit) -> Array[Action]:
+	const BLOOD_RAGE = preload("uid://dbeheok7fyhml")
+	const QUANTUM_HEALING = preload("uid://bh8avx15y0r84")
+	const RAISE_SHIELD = preload("uid://bdn4xdv5r32bi")
+	const WEAPON_STRIKE = preload("uid://cf5ul8llmqy0c")
+
 	return [
-		preload("uid://cf5ul8llmqy0c"),
-		preload("uid://bh8avx15y0r84"),
-		preload("uid://bdn4xdv5r32bi"),
+		WEAPON_STRIKE,
+		QUANTUM_HEALING,
+		RAISE_SHIELD,
+		BLOOD_RAGE
 	]
 
 static func select_action_for_ai_unit(unit: Unit) -> Array[Action]:

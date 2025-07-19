@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="Action" load_steps=20 format=3 uid="uid://dbeheok7fyhml"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_0k87q"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_6fk1p"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_rxvmi"]
+[ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_waicq"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="4_yrerl"]
+[ext_resource type="Script" uid="uid://18pyry3sq7u6" path="res://lib/modificators/modificator.gd" id="5_rb0qa"]
+[ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="6_avdd6"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://lib/targeting/self.gd" id="6_f34ed"]
+[ext_resource type="Script" uid="uid://cpenrhosxxqsg" path="res://lib/modificators/mod_conditions/target_hp_less_than_percent.gd" id="6_vs1o0"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="7_vs1o0"]
+[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://lib/targeting/wounded_targeting_provider.gd" id="8_8ay5b"]
+
+[sub_resource type="Resource" id="Resource_8ay5b"]
+script = ExtResource("6_vs1o0")
+percent = 0.5
+metadata/_custom_type_script = "uid://cpenrhosxxqsg"
+
+[sub_resource type="Resource" id="Resource_f86qh"]
+script = ExtResource("6_avdd6")
+flat_bonus = 5
+mod_condition = SubResource("Resource_8ay5b")
+metadata/_custom_type_script = "uid://3akyn7qc8p3s"
+
+[sub_resource type="Resource" id="Resource_0v8ca"]
+script = ExtResource("7_vs1o0")
+provides = Array[ExtResource("5_rb0qa")]([SubResource("Resource_f86qh")])
+metadata/_custom_type_script = "uid://dx113vxf7sk78"
+
+[sub_resource type="Resource" id="Resource_roiyt"]
+script = ExtResource("8_8ay5b")
+weight = 3.0000000000000004
+metadata/_custom_type_script = "uid://ft1uabvag5c6"
+
+[sub_resource type="Resource" id="Resource_c4w4b"]
+script = ExtResource("4_yrerl")
+modificator_provider = SubResource("Resource_0v8ca")
+targeting_provider = SubResource("Resource_roiyt")
+metadata/_custom_type_script = "uid://v0oglr7it854"
+
+[sub_resource type="Resource" id="Resource_rb0qa"]
+script = ExtResource("3_waicq")
+title = "Raging"
+description = "Deals more damage to wounded, targets wounded"
+buffs = Array[ExtResource("4_yrerl")]([SubResource("Resource_c4w4b")])
+duration = 4
+metadata/_custom_type_script = "uid://dn82jj5sqjvr7"
+
+[sub_resource type="Resource" id="Resource_avdd6"]
+script = ExtResource("2_6fk1p")
+statuses = Array[ExtResource("3_waicq")]([SubResource("Resource_rb0qa")])
+metadata/_custom_type_script = "uid://h625835j74oo"
+
+[sub_resource type="Resource" id="Resource_vs1o0"]
+script = ExtResource("6_f34ed")
+metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
+
+[resource]
+script = ExtResource("2_rxvmi")
+title = "Blood Rage"
+description = "Deals more damage to wounded, targets wounded"
+targeting = SubResource("Resource_vs1o0")
+effects = Array[ExtResource("1_0k87q")]([SubResource("Resource_avdd6")])
+metadata/_custom_type_script = "uid://crhahprxps0vr"

@@ -11,15 +11,15 @@ func _init(bm: BattleManager):
 func apply_damage(source: Unit, target: Unit, base_amount: int) -> Result:
 	var res = Result.new()
 
-	print("before mods: %s" % base_amount)
 	var amount = base_amount
 	for mod: DealingDamageModificator in dmr.get_dealing_mods_for_unit(source):
-		amount = mod.modify(amount)
+		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):
+			amount = mod.modify(amount)
 	for mod: ReceivingDamageModificator in dmr.get_receiving_mods_for_unit(target):
-		amount = mod.modify(amount)
+		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):
+			amount = mod.modify(amount)
 
 	amount = max(amount, 0)
-	print("after mods: %s" % amount)
 	res.final_damage = amount
 
 	target.hp -= amount
