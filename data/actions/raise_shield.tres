@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_e4wyu"]
 [ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_i8xem"]
 [ext_resource type="Resource" uid="uid://fun5apkcplon" path="res://data/statuses/shielded.tres" id="4_pcc0o"]
-[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://lib/targeting/self.gd" id="6_cf3e4"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="6_e4wyu"]
 [ext_resource type="Texture2D" uid="uid://dvkffb2m22tq" path="res://assets/sprites/actions/19.png" id="7_tmh3w"]
 
 [sub_resource type="Resource" id="Resource_tnfv7"]
@@ -14,7 +14,7 @@ statuses = Array[ExtResource("3_i8xem")]([ExtResource("4_pcc0o")])
 metadata/_custom_type_script = "uid://h625835j74oo"
 
 [sub_resource type="Resource" id="Resource_xhwye"]
-script = ExtResource("6_cf3e4")
+script = ExtResource("6_e4wyu")
 metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
 
 [resource]

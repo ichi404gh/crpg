@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="2_2x5ws"]
 [ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="3_vgvup"]
-[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://lib/targeting/random_enemy.gd" id="4_t3e1t"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="4_okts1"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="5_lf8if"]
 [ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="6_8eoxt"]
 
@@ -11,7 +11,7 @@ script = ExtResource("3_vgvup")
 metadata/_custom_type_script = "uid://mmchhhj8417w"
 
 [sub_resource type="Resource" id="Resource_4vhrk"]
-script = ExtResource("4_t3e1t")
+script = ExtResource("4_okts1")
 metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
 
 [resource]

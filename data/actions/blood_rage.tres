@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="4_yrerl"]
 [ext_resource type="Script" uid="uid://18pyry3sq7u6" path="res://lib/modificators/modificator.gd" id="5_rb0qa"]
 [ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="6_avdd6"]
-[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://lib/targeting/self.gd" id="6_f34ed"]
 [ext_resource type="Script" uid="uid://cpenrhosxxqsg" path="res://lib/modificators/mod_conditions/target_hp_less_than_percent.gd" id="6_vs1o0"]
 [ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="7_vs1o0"]
-[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://lib/targeting/wounded_targeting_provider.gd" id="8_8ay5b"]
+[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_provider.gd" id="9_avdd6"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="11_vs1o0"]
 
 [sub_resource type="Resource" id="Resource_8ay5b"]
 script = ExtResource("6_vs1o0")
@@ -29,7 +29,7 @@ provides = Array[ExtResource("5_rb0qa")]([SubResource("Resource_f86qh")])
 metadata/_custom_type_script = "uid://dx113vxf7sk78"
 
 [sub_resource type="Resource" id="Resource_roiyt"]
-script = ExtResource("8_8ay5b")
+script = ExtResource("9_avdd6")
 weight = 3.0000000000000004
 metadata/_custom_type_script = "uid://ft1uabvag5c6"
 
@@ -53,7 +53,7 @@ statuses = Array[ExtResource("3_waicq")]([SubResource("Resource_rb0qa")])
 metadata/_custom_type_script = "uid://h625835j74oo"
 
 [sub_resource type="Resource" id="Resource_vs1o0"]
-script = ExtResource("6_f34ed")
+script = ExtResource("11_vs1o0")
 metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
 
 [resource]
