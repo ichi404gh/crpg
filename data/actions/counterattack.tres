@@ -36,7 +36,7 @@ metadata/_custom_type_script = "uid://b2rthyh48tmlp"
 [sub_resource type="Resource" id="Resource_ritom"]
 script = ExtResource("3_q1fpj")
 title = "Ready to counterattack"
-duration = 3
+uses = 4
 texture = ExtResource("5_jswov")
 reactions = Array[ExtResource("5_0ifvy")]([SubResource("Resource_8hewe")])
 metadata/_custom_type_script = "uid://dn82jj5sqjvr7"

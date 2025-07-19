@@ -19,17 +19,28 @@ func aplly_status(target: Unit, status: Status) -> Array[AbstractBattleEvent]:
 	return [ev]
 
 func expire_statuses(target: Unit) -> Array[AbstractBattleEvent]:
-	var updated = false
 	for effect in target.status_effects:
-		effect.duration -= 1
-		updated = true
-	var to_remove = target.status_effects.filter(func (s: Status): return s.duration <= 0)
+		if effect.duration and not effect.uses:
+			effect.duration -= 1
+
+	return clean(target)
+
+func decrement_uses_by_reaction(target: Unit, reaction: Reaction):
+	for status in target.status_effects:
+		if reaction in status.reactions:
+			if status.uses and not status.duration:
+				status.uses -= 1
+	return clean(target)
+
+func clean(target: Unit) -> Array[AbstractBattleEvent]:
+	var to_remove = target.status_effects.filter(func (s: Status): return s.duration <= 0 and s.uses <= 0)
+	if not to_remove:
+		return []
 	for status in to_remove:
 		for buff in status.buffs:
 			if buff.modificator_provider is ModificatorProvider:
 				bm.modificator_registry.unregister(buff.modificator_provider)
 		target.status_effects.erase(status)
-	if updated:
-		var ev = StatusEffectsUpdatedEvent.from_unit(target)
-		return [ev]
-	return []
+
+	var ev = StatusEffectsUpdatedEvent.from_unit(target)
+	return [ev]

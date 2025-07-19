@@ -31,7 +31,7 @@ func apply_damage(source: Unit, target: Unit, base_min: int, base_max: int) -> R
 	reaction_context.target = source # damage dealer is reaction target, but can be overriden
 
 	var reaction_events = []
-	for reaction in reactions:
+	for reaction: Reaction in reactions:
 		reaction_events.append_array(reaction.apply(reaction_context))
 
 	damage.resolve()
