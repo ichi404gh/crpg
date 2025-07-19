@@ -13,6 +13,18 @@
 ❌ bonuses between rounds
 	❌ active bonus ui
 
+❌ orders between rounds
+	❌ ui
+
+✅ reactions
+	✅ effects on reaction
+
+✅ modificators
+	✅ conditional modificators
+
+✅ targeting providers - adjust targeting weights
+
+
 ❌ unit window
 	❌ info tab - parameters, statuses and modificators
 	❌ actions tab - same as actions panel
