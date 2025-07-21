@@ -1,4 +1,3 @@
-extends Node
 class_name ActionManager
 
 
@@ -8,6 +7,7 @@ static func get_actions_selection_for_unit(_unit: Unit) -> Array[Action]:
 	const RAISE_SHIELD = preload("uid://bdn4xdv5r32bi")
 	const WEAPON_STRIKE = preload("uid://cf5ul8llmqy0c")
 	const COUNTERATTACK = preload("uid://bwk7vs1anmvcn")
+
 	return [
 		WEAPON_STRIKE,
 		QUANTUM_HEALING,

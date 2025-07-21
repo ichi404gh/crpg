@@ -336,6 +336,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_kh1nq"]
 resource_name = "hurt"
+length = 0.78
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true

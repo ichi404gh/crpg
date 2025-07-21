@@ -1,5 +1,5 @@
-class_name WoundedTargetingProvider
-extends TargetingProvider
+class_name WoundedTargetingRule
+extends TargetingRule
 
 @export_range(0.0, 1.0, 0.1) var threshold_percent: float = 0.8
 

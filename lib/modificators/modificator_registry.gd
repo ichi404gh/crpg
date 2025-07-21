@@ -3,9 +3,10 @@ class_name ModificatorRegistry
 
 var records: Array[Record] = []
 
-func register(provider: ModificatorProvider, mods: Array[Modificator], for_units: Array[Unit]):
+func register(provider: ModificatorProvider, for_units: Array[Unit]):
+	print("registering provider")
 	for unit in for_units:
-		for mod in mods:
+		for mod in provider.provides:
 			var record = Record.new()
 			record.mod = mod
 			record.provider = provider
@@ -14,6 +15,8 @@ func register(provider: ModificatorProvider, mods: Array[Modificator], for_units
 			records.append(record)
 
 func unregister(provider: ModificatorProvider):
+	print("unregistering provider")
+
 	records = records.filter(func (r: Record): return r.provider != provider)
 
 class Record:

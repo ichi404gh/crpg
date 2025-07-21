@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_4sojl"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_cc4ea"]
 [ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_q1fpj"]
-[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="4_1tqa4"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="4_ritom"]
 [ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="5_0ifvy"]
 [ext_resource type="Texture2D" uid="uid://cger1spn6nu8k" path="res://icon.svg" id="5_jswov"]
 [ext_resource type="Script" uid="uid://76lcd1r0fjt" path="res://data/reactions/effects/reaction_effect.gd" id="6_ritom"]

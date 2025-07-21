@@ -13,8 +13,8 @@
 ❌ bonuses between rounds
 	❌ active bonus ui
 
-❌ orders between rounds
-	❌ ui
+✅ orders between rounds
+	❕ ui
 
 ✅ reactions
 	✅ effects on reaction
@@ -33,10 +33,12 @@
 		❌ uquipment action provider
 		❌ inventory, item actions, consumables
 
-❌ limited slots support for player units
+❕ limited slots support for player units
 ❌ action providers
 ❌ unique actions
-❌ action cooldowns
+❕ action cooldowns
+❌ auto select actions
+
 
 ❌ save unit between battles
 ❌ multi-waves battles

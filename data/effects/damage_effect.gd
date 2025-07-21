@@ -10,7 +10,11 @@ func apply(source: Unit, target: Unit, battle_manager: BattleManager, action: Ac
 	if not target:
 		return events
 
-	var damage_result = battle_manager.damage_mananger.apply_damage(source, target, amount_min, amount_max)
+	var damage = DamagePipeline.new()
+	damage.min_flat = amount_min
+	damage.max_flat = amount_max
+
+	var damage_result = battle_manager.damage_mananger.apply_damage(source, target, damage)
 	var interaction_effect = InteractionEvent.TargetEffect.new()
 	interaction_effect.animation = InteractionEvent.AnimationKind.Hurt
 	if action:

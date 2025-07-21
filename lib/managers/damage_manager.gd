@@ -8,12 +8,8 @@ func _init(bm: BattleManager):
 	self.bm = bm
 	dmr.registry = bm.modificator_registry
 
-func apply_damage(source: Unit, target: Unit, base_min: int, base_max: int) -> Result:
+func apply_damage(source: Unit, target: Unit, damage: DamagePipeline) -> Result:
 	var res = Result.new()
-
-	var damage = DamagePipeline.new()
-	damage.min_flat = base_min
-	damage.max_flat = base_max
 
 	for mod: DealingDamageModificator in dmr.get_dealing_mods_for_unit(source):
 		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):

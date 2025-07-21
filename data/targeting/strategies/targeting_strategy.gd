@@ -7,10 +7,8 @@ func get_targets(source: Unit, battle_manager: BattleManager) -> Array[Unit]
 func get_weighted(source: Unit, candidates: Array[Unit], battle_manager: BattleManager) -> Array:
 	var weighted_candidates = candidates.map(func (c: Unit): return [1.0, c])
 
-	for status in source.status_effects:
-		for buff in status.buffs:
-			if buff.targeting_provider:
-				buff.targeting_provider.modify_weights(weighted_candidates, battle_manager)
+	for targeting_rule: TargetingRule in battle_manager.targeting_registry.get_for_unit(source):
+		targeting_rule.modify_weights(weighted_candidates, battle_manager)
 	return weighted_candidates
 
 func pick_one(weighted_candidates: Array) -> Array[Unit]:

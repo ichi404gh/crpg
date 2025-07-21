@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6vs1yn5jv11w"]
+[gd_scene load_steps=9 format=3 uid="uid://c6vs1yn5jv11w"]
 
 [ext_resource type="Script" uid="uid://dv5rr6wkps7v2" path="res://scenes/screens/battle/battle.gd" id="1_po8hi"]
 [ext_resource type="Texture2D" uid="uid://4i25p2vwchd7" path="res://assets/bg/2304x1296.png" id="2_f7stq"]
 [ext_resource type="Script" uid="uid://bxp51gh1s6ktl" path="res://scenes/tooltips/tooltip_context.gd" id="2_kqxcs"]
 [ext_resource type="Script" uid="uid://bnby2sebjora2" path="res://lib/managers/battle_manager.gd" id="3_4grbx"]
-[ext_resource type="PackedScene" uid="uid://c152odigw4gcw" path="res://scenes/screens/battle/bonus/bonus_screen.tscn" id="6_xcah6"]
+[ext_resource type="PackedScene" uid="uid://dqq7ayqqlh1js" path="res://scenes/screens/battle/orders/active_order_ui.tscn" id="4_m4bs7"]
+[ext_resource type="PackedScene" uid="uid://c152odigw4gcw" path="res://scenes/screens/battle/orders/order_screen.tscn" id="6_xcah6"]
 [ext_resource type="PackedScene" uid="uid://cp7u7ranfmgt6" path="res://scenes/screens/battle/panels/actions_panel.tscn" id="7_xcah6"]
 [ext_resource type="PackedScene" uid="uid://cprgcwiqvm0r" path="res://scenes/screens/battle/panels/order_panel_item.tscn" id="8_m4bs7"]
 
@@ -64,6 +65,15 @@ unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="TooltipContext"]
 
+[node name="ActiveOrderUI" parent="TooltipContext/CanvasLayer" instance=ExtResource("4_m4bs7")]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_right = 25.0
+grow_vertical = 0
+
 [node name="TooltipAnchor" type="Control" parent="TooltipContext/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -84,7 +94,7 @@ anchor_bottom = 0.8
 offset_left = -300.0
 grow_horizontal = 1
 
-[node name="OrderPanel" type="HBoxContainer" parent="TooltipContext/CanvasLayer"]
+[node name="TurnOrderPanel" type="HBoxContainer" parent="TooltipContext/CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
@@ -93,29 +103,48 @@ grow_horizontal = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="OrderPanelItem" parent="TooltipContext/CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]
+[node name="OrderPanelItem" parent="TooltipContext/CanvasLayer/TurnOrderPanel" instance=ExtResource("8_m4bs7")]
 layout_mode = 2
 
-[node name="OrderPanelItem2" parent="TooltipContext/CanvasLayer/OrderPanel" instance=ExtResource("8_m4bs7")]
+[node name="OrderPanelItem2" parent="TooltipContext/CanvasLayer/TurnOrderPanel" instance=ExtResource("8_m4bs7")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="TooltipContext/CanvasLayer"]
+[node name="OrdersScreen" parent="TooltipContext/CanvasLayer" instance=ExtResource("6_xcah6")]
 unique_name_in_owner = true
+visible = false
+anchors_preset = -1
+anchor_top = 0.12200001
+anchor_bottom = 0.84200007
+offset_left = 50.0
+offset_top = 0.3999939
+offset_right = -50.0
+offset_bottom = 0.39996338
+
+[node name="BottomButtons" type="PanelContainer" parent="TooltipContext/CanvasLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -57.0
-offset_right = 48.0
-offset_bottom = -26.0
+offset_left = -72.5
+offset_top = -103.0
+offset_right = 72.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "Start battle"
 
-[node name="BonusScreen" parent="TooltipContext/CanvasLayer" instance=ExtResource("6_xcah6")]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="TooltipContext/CanvasLayer/BottomButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OrdersButton" type="Button" parent="TooltipContext/CanvasLayer/BottomButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Orders"
+
+[node name="StartRoundButton" type="Button" parent="TooltipContext/CanvasLayer/BottomButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start battle"
 
 [node name="BattleManager" type="Node" parent="TooltipContext"]
 unique_name_in_owner = true

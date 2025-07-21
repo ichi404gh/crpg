@@ -8,23 +8,30 @@ var is_running
 var player_party: Array[Unit] = []
 var enemy_party: Array[Unit] = []
 
-var order: Array[Unit]
+var turn_order: Array[Unit]
 var stage: int = 0
 var meta: Meta = Meta.new()
 
 var modificator_registry: ModificatorRegistry = ModificatorRegistry.new()
+var targeting_registry: TargetingRegistry = TargetingRegistry.new()
 
 
 var damage_mananger: DamageManager = DamageManager.new(self)
 var healing_manager: HealingManager = HealingManager.new(self)
 var status_effect_manager: StatusEffectManager = StatusEffectManager.new(self)
 var reaction_manager: ReactionManager = ReactionManager.new(self)
+var orders_manager: OrdersManager = OrdersManager.new(self)
+
 
 func setup(player: Array[Unit], enemy: Array[Unit]) -> void:
 	player_party = player
 	enemy_party = enemy
-	order = _get_turn_order()
-	stage_simulation_ready.emit(SimulationData.new([], order))
+	turn_order = _get_turn_order()
+
+
+	var orders: Array[Order] = orders_manager.get_orders()
+	orders.shuffle()
+	stage_simulation_ready.emit(SimulationData.new([], turn_order, orders))
 
 func tick_before_round_buffs(round_number: int, unit: Unit) -> Array[AbstractBattleEvent]:
 	var events = [] as Array[AbstractBattleEvent]
@@ -48,7 +55,7 @@ func simulate_stage():
 	var events: Array[AbstractBattleEvent] = []
 
 	for round_number in 4:
-		for unit in order:
+		for unit in turn_order:
 			if not unit.alive:
 				continue
 
@@ -62,15 +69,18 @@ func simulate_stage():
 			events.append_array(action.apply(unit, self))
 
 
-	for unit in order:
+	for unit in turn_order:
 		if not unit.alive:
 			continue
 
 		events.append_array(tick_after_round_buffs(unit))
 		events.append_array(status_effect_manager.expire_statuses(unit))
 
-	order = _get_turn_order()
-	stage_simulation_ready.emit(SimulationData.new(events, order))
+	turn_order = _get_turn_order()
+	var orders = orders_manager.get_orders()
+	orders.shuffle()
+
+	stage_simulation_ready.emit(SimulationData.new(events, turn_order, orders))
 
 func _get_own_alive_party(unit: Unit) -> Array[Unit]:
 	if unit not in player_party:
@@ -93,10 +103,12 @@ func _get_turn_order() -> Array[Unit]:
 class SimulationData:
 	var previous_stage_result: Array[AbstractBattleEvent]
 	var next_turn_order: Array[Unit]
+	var unit_orders: Array[Order]
 
-	func _init(events: Array[AbstractBattleEvent], order: Array[Unit]) -> void:
+	func _init(events: Array[AbstractBattleEvent], order: Array[Unit], orders: Array[Order]) -> void:
 		previous_stage_result = events
 		next_turn_order = order
+		unit_orders = orders
 
 class Meta:
 	signal hovered_unit_changed(unit: Unit)

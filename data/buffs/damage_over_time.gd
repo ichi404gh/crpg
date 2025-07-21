@@ -6,8 +6,10 @@ extends Buff
 func tick(target: Unit, battle_manager: BattleManager) -> Array[AbstractBattleEvent]:
 	var events: Array[AbstractBattleEvent] = []
 
-
-	var damage_result = battle_manager.damage_mananger.apply_damage(null, target, damage, damage)
+	var damage_pl = DamagePipeline.new()
+	damage_pl.min_flat = damage
+	damage_pl.max_flat = damage
+	var damage_result = battle_manager.damage_mananger.apply_damage(null, target, damage_pl)
 
 
 	var ev = OffInteractionDamageEvent.new()

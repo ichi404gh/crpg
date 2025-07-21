@@ -40,10 +40,6 @@ project/assembly_name="crpg"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
-
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true

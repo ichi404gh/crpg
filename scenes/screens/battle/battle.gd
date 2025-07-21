@@ -10,20 +10,44 @@ var unit_to_order_item: Dictionary[Unit, OrderPanelItem] = {}
 
 @onready var battle_manager: BattleManager = %BattleManager
 @onready var actions_panel: ActionPanel = %ActionsPanel
-@onready var order_panel: HBoxContainer = %OrderPanel
-@onready var start_battle_button: Button = %Button
+@onready var turn_order_panel: HBoxContainer = %TurnOrderPanel
+
+@onready var start_battle_button: Button = %StartRoundButton
+@onready var orders_button: Button = %OrdersButton
+
+const OrderScreen = preload("uid://c0d4x3t463v02")
+@onready var orders_screen: OrderScreen = %OrdersScreen
+
+const ActiveOrderUI = preload("uid://vgnqq1u781jt")
+@onready var active_order_ui: ActiveOrderUI = %ActiveOrderUI
 
 @onready var player_party_node: Node2D = %PlayerParty
 @onready var enemy_party_node: Node2D = %EnemyParty
 
-@export var spacing = 30.0
-@export var sprite_size = 100
+@export var spacing: float = 30.0
+@export var sprite_size: float = 100.0
 
+var orders_anchor_top: float
+var orders_anchor_bottom: float
+
+var showing_orders: bool = false
+var buttons_enabled: bool = true
 
 func _ready() -> void:
 	connect_signals()
+	setup_ui()
+
 	setup_stub()
 	arrange_slots()
+
+func setup_ui():
+	orders_screen.visible = true
+	orders_anchor_top = orders_screen.anchor_top
+	orders_anchor_bottom = orders_screen.anchor_bottom
+
+	orders_screen.anchor_bottom += 1.0
+	orders_screen.anchor_top += 1.0
+	showing_orders = false
 
 func setup_stub():
 	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
@@ -51,9 +75,8 @@ func setup_stub():
 	for u in enemy_party:
 		u.ai_controlled = true
 
+
 	battle_manager.setup(player_party, enemy_party)
-	#for e in enemy_party:
-		#e.set_actions(0, SWORD_SLASH)
 	set_ai_actions()
 
 
@@ -61,7 +84,8 @@ func connect_signals():
 	battle_manager.stage_simulation_ready.connect(_on_stage_result)
 	actions_panel.closed.connect(_on_panel_closed)
 	start_battle_button.pressed.connect(_on_run_battle_pressed)
-
+	orders_button.pressed.connect(_on_orders_button_pressed)
+	orders_screen.order_selected.connect(_on_order_selected)
 
 func arrange_slots():
 
@@ -101,6 +125,11 @@ func arrange_slots():
 
 	_width -= spacing
 
+func _on_order_selected(order: Order):
+	battle_manager.orders_manager.active_order = order
+	active_order_ui.setup(order)
+	hide_orders()
+
 func _on_unit_hover(unit: Unit, value: bool):
 	if value:
 		battle_manager.meta.hovered_unit = unit
@@ -109,6 +138,8 @@ func _on_unit_hover(unit: Unit, value: bool):
 			battle_manager.meta.hovered_unit = null
 
 func _on_pawn_click(pwn: Pawn):
+	if !buttons_enabled:
+		return
 	selected_pawn = pwn
 	actions_panel.setup(pwn.unit)
 	actions_panel.show()
@@ -159,12 +190,15 @@ func _on_stage_result(data: BattleManager.SimulationData):
 		elif event is UnitDeadEvent:
 			# TODO: disable ui for dead pawn
 			event.who.unit_view.die()
-			order_panel.remove_child(unit_to_order_item[event.who])
+			turn_order_panel.remove_child(unit_to_order_item[event.who])
 
 
 	print("battle stopped")
 	_update_order_panel()
 	set_ai_actions()
+	orders_screen.setup(data.unit_orders)
+	#show_orders()
+	set_buttons_enabled(true)
 
 func set_ai_actions():
 	for u in player_party + enemy_party:
@@ -178,24 +212,52 @@ func _on_panel_closed():
 
 func _update_order_panel():
 	# clean unwanted
-	for item in order_panel.get_children():
+	for item in turn_order_panel.get_children():
 		if item not in unit_to_order_item.values():
-			order_panel.remove_child(item)
+			turn_order_panel.remove_child(item)
 
 	# add new items
-	for unit in battle_manager.order:
+	for unit in battle_manager.turn_order:
 		if not unit_to_order_item.has(unit):
 			const ORDER_PANEL_ITEM = preload("res://scenes/screens/battle/panels/order_panel_item.tscn")
 			var item = ORDER_PANEL_ITEM.instantiate()
-			order_panel.add_child(item)
+			turn_order_panel.add_child(item)
 			item.setup(unit, battle_manager)
 			unit_to_order_item.set(unit, item)
 
-	# rorder
-	for i in battle_manager.order.size():
-		order_panel.move_child(unit_to_order_item[battle_manager.order[i]], i)
+	# reorder
+	for i in battle_manager.turn_order.size():
+		turn_order_panel.move_child(unit_to_order_item[battle_manager.turn_order[i]], i)
 
 
 
 func _on_run_battle_pressed():
+	set_buttons_enabled(false)
+	hide_orders()
 	battle_manager.simulate_stage()
+
+func set_buttons_enabled(value: bool):
+	start_battle_button.disabled = !value
+	orders_button.disabled = !value
+	buttons_enabled = value
+
+
+func _on_orders_button_pressed():
+	if showing_orders:
+		hide_orders()
+	else:
+		show_orders()
+
+func hide_orders():
+	var duration := 0.5
+	var t = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	t.tween_property(orders_screen, "anchor_bottom", orders_anchor_bottom + 1.0, duration)
+	t.parallel().tween_property(orders_screen, "anchor_top", orders_anchor_top + 1.0, duration)
+	showing_orders = false
+
+func show_orders():
+	var duration := 0.5
+	var t = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	t.tween_property(orders_screen, "anchor_top", orders_anchor_top, duration)
+	t.parallel().tween_property(orders_screen, "anchor_bottom", orders_anchor_bottom, duration)
+	showing_orders = true

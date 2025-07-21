@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Action" load_steps=20 format=3 uid="uid://dbeheok7fyhml"]
+[gd_resource type="Resource" script_class="Action" load_steps=21 format=3 uid="uid://dbeheok7fyhml"]
 
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_0k87q"]
 [ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_6fk1p"]
@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="6_avdd6"]
 [ext_resource type="Script" uid="uid://cpenrhosxxqsg" path="res://lib/modificators/mod_conditions/target_hp_less_than_percent.gd" id="6_vs1o0"]
 [ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="7_vs1o0"]
-[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_provider.gd" id="9_avdd6"]
+[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_rule.gd" id="9_avdd6"]
+[ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="10_vs1o0"]
 [ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="11_vs1o0"]
 
 [sub_resource type="Resource" id="Resource_8ay5b"]

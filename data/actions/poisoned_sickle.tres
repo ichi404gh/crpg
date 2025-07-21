@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Action" load_steps=16 format=3 uid="uid://cyhi26yqebnth"]
+[gd_resource type="Resource" script_class="Action" load_steps=17 format=3 uid="uid://cyhi26yqebnth"]
 
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_rr1mg"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_1ymbi"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="5_3lfr3"]
 [ext_resource type="Script" uid="uid://c4gfidkjcl2un" path="res://data/buffs/damage_over_time.gd" id="5_b4264"]
 [ext_resource type="Texture2D" uid="uid://cq41280dv55u" path="res://assets/sprites/statuses/poisoned.png" id="6_3lfr3"]
+[ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="7_f4sif"]
 [ext_resource type="Texture2D" uid="uid://mi7uyk4fwy1y" path="res://assets/sprites/actions/sickle.png" id="9_athi6"]
 [ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="9_rr1mg"]
 

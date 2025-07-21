@@ -14,7 +14,9 @@ func aplly_status(target: Unit, status: Status) -> Array[AbstractBattleEvent]:
 		target.status_effects.append(status.duplicate())
 		for buff in status.buffs:
 			if buff.modificator_provider is ModificatorProvider:
-				bm.modificator_registry.register(buff.modificator_provider, buff.modificator_provider.provides, [target])
+				bm.modificator_registry.register(buff.modificator_provider, [target])
+			if buff.targeting_provider is TargetingProvider:
+				bm.targeting_registry.register(buff.targeting_provider, [target])
 	var ev = StatusEffectsUpdatedEvent.from_unit(target)
 	return [ev]
 
@@ -35,12 +37,14 @@ func decrement_uses_by_reaction(target: Unit, reaction: Reaction):
 func clean(target: Unit) -> Array[AbstractBattleEvent]:
 	var to_remove = target.status_effects.filter(func (s: Status): return s.duration <= 0 and s.uses <= 0)
 	if not to_remove:
-		return []
-	for status in to_remove:
-		for buff in status.buffs:
+		return [] as Array[AbstractBattleEvent]
+	for status: Status in to_remove:
+		for buff: Buff in status.buffs:
 			if buff.modificator_provider is ModificatorProvider:
 				bm.modificator_registry.unregister(buff.modificator_provider)
+			if buff.targeting_provider is TargetingProvider:
+				bm.targeting_registry.unregister(buff.targeting_provider)
 		target.status_effects.erase(status)
 
 	var ev = StatusEffectsUpdatedEvent.from_unit(target)
-	return [ev]
+	return [ev] as Array[AbstractBattleEvent]
