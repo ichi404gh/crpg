@@ -7,17 +7,53 @@ class_name Unit
 @export var unit_data: UnitData
 @export var ai_controlled: bool
 
+@export var action_points: int = 3
+
 var status_effects: Array[Status]
 
 var unit_view: UnitBaseUI
 
 signal selected_actions_changed(actions: Array[Action])
 
-var selected_actions: Array[Action] = [null, null, null, null]
+var selected_actions: Array[Action] = []
+var cooldowns: Dictionary[String, int] = {}
 
-func set_actions(index: int, action: Action):
-	selected_actions[index] = action
+func remove_actions(index: int):
+	selected_actions.remove_at(index)
 	selected_actions_changed.emit(selected_actions)
+
+func add_action(action: Action):
+	if combined_cost() + action.cost > action_points:
+		return
+	if cooldowns.has(action.key):
+		return
+	if action.cooldown > 0 and have_plannet_action_with_key(action.key):
+		return
+	selected_actions.append(action)
+	selected_actions_changed.emit(selected_actions)
+
+func have_plannet_action_with_key(key: String):
+	for a in selected_actions:
+		if a.key == key:
+			return true
+	return false
+
+func clear_cooling_down_actions():
+	var old_size = selected_actions.size()
+	selected_actions = selected_actions.filter(func(a: Action): return not cooldowns.has(a.key))
+	if selected_actions.size() != old_size:
+		selected_actions_changed.emit(selected_actions)
+
+
+func combined_cost():
+	return selected_actions.map(func(a: Action): return a.cost).reduce(func(a,b): return a+b, 0)
+
+func tick_cooldowns():
+	for key in cooldowns:
+		cooldowns[key] -= 1
+		if cooldowns[key] <= 0:
+			cooldowns.erase(key)
+
 
 func _to_string() -> String:
 	return "%s, (%s)" % [unit_name, hp]

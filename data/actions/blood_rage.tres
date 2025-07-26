@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Action" load_steps=21 format=3 uid="uid://dbeheok7fyhml"]
+[gd_resource type="Resource" script_class="Action" load_steps=22 format=3 uid="uid://dbeheok7fyhml"]
 
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_0k87q"]
 [ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_6fk1p"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_rule.gd" id="9_avdd6"]
 [ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="10_vs1o0"]
 [ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="11_vs1o0"]
+[ext_resource type="Texture2D" uid="uid://cger1spn6nu8k" path="res://icon.svg" id="13_8ay5b"]
 
 [sub_resource type="Resource" id="Resource_8ay5b"]
 script = ExtResource("6_vs1o0")
@@ -46,6 +47,7 @@ title = "Raging"
 description = "Deals more damage to wounded, targets wounded"
 buffs = Array[ExtResource("4_yrerl")]([SubResource("Resource_c4w4b")])
 duration = 4
+texture = ExtResource("13_8ay5b")
 metadata/_custom_type_script = "uid://dn82jj5sqjvr7"
 
 [sub_resource type="Resource" id="Resource_avdd6"]
@@ -59,8 +61,11 @@ metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
 
 [resource]
 script = ExtResource("2_rxvmi")
+cooldown = 2
 title = "Blood Rage"
 description = "Deals more damage to wounded, targets wounded"
+key = "action.blood_rage"
 targeting = SubResource("Resource_vs1o0")
 effects = Array[ExtResource("1_0k87q")]([SubResource("Resource_avdd6")])
+texture = ExtResource("13_8ay5b")
 metadata/_custom_type_script = "uid://crhahprxps0vr"

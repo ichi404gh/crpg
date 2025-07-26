@@ -52,7 +52,9 @@ metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
 
 [resource]
 script = ExtResource("2_cc4ea")
+cooldown = 1
 title = "Counterattack"
+key = "action.counterattack"
 targeting = SubResource("Resource_7mvmb")
 effects = Array[ExtResource("1_y7sdy")]([SubResource("Resource_u64c6")])
 texture = ExtResource("5_jswov")

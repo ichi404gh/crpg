@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_fiay5"]
 script = ExtResource("2_fiay5")
 flat_bonus = 1
-additive_bonus = 0.10000000000000009
+additive_bonus = 0.10000000000000007
 metadata/_custom_type_script = "uid://3akyn7qc8p3s"
 
 [sub_resource type="Resource" id="Resource_lfxfc"]

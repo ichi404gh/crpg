@@ -44,8 +44,8 @@ metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
 [resource]
 script = ExtResource("2_1ymbi")
 title = "action.poisoned_sickle.title"
-description = null
 flavour_text = "action.poisoned_sickle.flavour"
+key = "action.poisoned_sickle"
 targeting = SubResource("Resource_wdvfq")
 effects = Array[ExtResource("1_rr1mg")]([SubResource("Resource_rr1mg"), SubResource("Resource_3lfr3")])
 texture = ExtResource("9_athi6")

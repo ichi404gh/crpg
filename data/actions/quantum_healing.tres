@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://b3pmigr60y7l5"
 script = ExtResource("3_bqmvk")
 title = "action.quantum_healing.title"
 flavour_text = "action.quantum_healing.flavour"
+key = "action.quantum_healing"
 targeting = SubResource("Resource_3itet")
 effects = Array[ExtResource("1_vby44")]([SubResource("Resource_bqmvk")])
 texture = ExtResource("7_3itet")

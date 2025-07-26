@@ -53,19 +53,21 @@ func tick_after_round_buffs(unit: Unit) -> Array[AbstractBattleEvent]:
 
 func simulate_stage():
 	var events: Array[AbstractBattleEvent] = []
+	var max_round = (player_party + enemy_party)\
+						.map(func(u: Unit): return u.selected_actions.size())\
+						.max()
 
-	for round_number in 4:
+	for round_number in max_round:
 		for unit in turn_order:
 			if not unit.alive:
 				continue
 
 			events.append_array(tick_before_round_buffs(round_number, unit))
-			var unit_actions: Array[Action] = unit.selected_actions.filter(func (a): return a != null)
 
-			if unit_actions.size() <= round_number:
+			if unit.selected_actions.size() <= round_number:
 				continue
 
-			var action = unit_actions[round_number]
+			var action = unit.selected_actions[round_number]
 			events.append_array(action.apply(unit, self))
 
 
@@ -75,12 +77,20 @@ func simulate_stage():
 
 		events.append_array(tick_after_round_buffs(unit))
 		events.append_array(status_effect_manager.expire_statuses(unit))
+		process_unit_cooldowns(unit)
 
 	turn_order = _get_turn_order()
 	var orders = orders_manager.get_orders()
 	orders.shuffle()
 
 	stage_simulation_ready.emit(SimulationData.new(events, turn_order, orders))
+
+func process_unit_cooldowns(unit: Unit):
+	unit.tick_cooldowns()
+	for action in unit.selected_actions:
+		if action.cooldown > 0:
+			unit.cooldowns[action.key] = action.cooldown
+	unit.clear_cooling_down_actions()
 
 func _get_own_alive_party(unit: Unit) -> Array[Unit]:
 	if unit not in player_party:

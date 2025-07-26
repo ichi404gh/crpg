@@ -18,6 +18,7 @@ metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
 script = ExtResource("5_lf8if")
 title = "action.weapon_strike.title"
 flavour_text = "action.weapon_strike.flavour"
+key = "action.weapon_strike"
 targeting = SubResource("Resource_4vhrk")
 effects = Array[ExtResource("2_2x5ws")]([SubResource("Resource_okts1")])
 texture = ExtResource("6_8eoxt")

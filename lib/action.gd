@@ -2,9 +2,15 @@ extends Resource
 
 class_name Action
 
+@export var cost: int = 1
+@export var cooldown: int = 0
+
+
 @export var title: String
 @export var description: String
 @export var flavour_text: String
+@export var key: String
+
 
 @export var targeting: TargetingStrategy
 @export var effects: Array[Effect]

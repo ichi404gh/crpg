@@ -19,8 +19,10 @@ metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
 
 [resource]
 script = ExtResource("2_2hbd6")
+cost = 2
 title = "Raise shield"
 description = "You raises shield, redusing incoming damage"
+key = "action_raise_shield"
 targeting = SubResource("Resource_xhwye")
 effects = Array[ExtResource("1_u8yf8")]([SubResource("Resource_tnfv7")])
 texture = ExtResource("7_tmh3w")

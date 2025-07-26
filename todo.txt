@@ -1,10 +1,10 @@
 ✅ tooltips
 ✅ ai/player controlled flag
 ✅ ai for units
-❕ content diversity
+🔄 content diversity
 ✅ targeting strategy
 ✅ ai action preset selection strategy
-❌ combat log
+⭕️ combat log
 ✅ damage floaing text
 
 ✅ statuses ui
@@ -14,7 +14,7 @@
 	❌ active bonus ui
 
 ✅ orders between rounds
-	❕ ui
+	⭕️ ui
 
 ✅ reactions
 	✅ effects on reaction
@@ -25,26 +25,27 @@
 ✅ targeting providers - adjust targeting weights
 
 
-❌ unit window
-	❌ info tab - parameters, statuses and modificators
-	❌ actions tab - same as actions panel
-	❌ equipment system
-		❌ ui
-		❌ uquipment action provider
-		❌ inventory, item actions, consumables
+⭕️ unit window
+	⭕️ info tab - parameters, statuses and modificators
+	⭕️ actions tab - same as actions panel
+	⭕️ equipment system
+		⭕️ ui
+		⭕️ equipment action provider
+		⭕️ inventory, item actions, consumables
 
-❕ limited slots support for player units
-❌ action providers
-❌ unique actions
-❕ action cooldowns
-❌ auto select actions
+✅ limited action points, slots count changed to ap count
+⭕️ action providers
+⭕️ unique actions
+✅ action cooldowns
+🔄 auto select actions
 
 
-❌ save unit between battles
-❌ multi-waves battles
-❌ end battle ui
+⭕️ save unit between battles
+⭕️ multi-waves battles
+⭕️ end battle ui
 
 
 ✅ - done
-❕ - in progress
-❌ - not started
+🔄 - in progress
+⭕️ - not started
+❌ - cancelled

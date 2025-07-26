@@ -26,6 +26,7 @@ script = ExtResource("1_x0l4p")
 metadata/_edit_use_anchors_ = true
 
 [node name="HilightRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
