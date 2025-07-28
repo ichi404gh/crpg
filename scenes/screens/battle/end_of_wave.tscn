@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://e5swsgo4emby"]
+
+[ext_resource type="Theme" uid="uid://l7sf8j0owpre" path="res://golden panels.tres" id="1_5vofa"]
+[ext_resource type="Script" uid="uid://b5x4is3ugxehx" path="res://scenes/screens/battle/end_of_wave.gd" id="2_gs0yr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gs0yr"]
+font_size = 36
+
+[node name="EndOfWave" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.22890624
+anchor_bottom = 0.16625
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5vofa")
+script = ExtResource("2_gs0yr")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Wave cleared"
+label_settings = SubResource("LabelSettings_gs0yr")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 34
+
+[node name="Retreat" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retreat"
+
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Prepare to next wave
+"

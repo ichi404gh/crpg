@@ -1,5 +1,7 @@
 extends Node2D
 
+var encounter: Array
+
 var player_party: Array[Unit] = []
 var enemy_party: Array[Unit] = []
 
@@ -15,6 +17,12 @@ var unit_to_order_item: Dictionary[Unit, OrderPanelItem] = {}
 
 @onready var start_battle_button: Button = %StartRoundButton
 
+const EndOfWave = preload("uid://b5x4is3ugxehx")
+@onready var end_of_wave: EndOfWave = %EndOfWave
+const Fail = preload("uid://b0qhccdsbj3f0")
+@onready var fail: Fail = %Fail
+const Win = preload("uid://bklaph4h7ew7q")
+@onready var win: Win = %Win
 
 @onready var player_party_node: Node2D = %PlayerParty
 @onready var enemy_party_node: Node2D = %EnemyParty
@@ -31,47 +39,84 @@ var hand_y: float
 var buttons_enabled: bool = true
 
 func _ready() -> void:
-	TranslationServer.set_locale("en-us")
 	connect_signals()
 	setup_ui()
 
 	setup_stub()
-	arrange_slots()
+	setup_scene()
 
 func setup_ui():
 	hand_y = hand.position.y
 
 func setup_stub():
-	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
+	const BAT = preload("uid://hwd0lxpta2ko")
 	const SKELETON = preload("uid://nqkobm5ii7rg")
 	const SKELETON_REAPER = preload("uid://d00w56ml886iu")
-	const BAT = preload("uid://hwd0lxpta2ko")
+	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
 
+	encounter.append_array([
+		[
+			BAT.instantiate(),
+			BAT.instantiate(),
+			BAT.instantiate(),
+		],
+		[
+			BAT.instantiate(),
+			SKELETON.instantiate(),
+			SKELETON.instantiate(),
+		],
+		[
+			SKELETON.instantiate(),
+			SKELETON.instantiate(),
+			SKELETON_REAPER.instantiate(),
+		]
+	])
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
 		MOUSEFOLK.instantiate(),
 		MOUSEFOLK.instantiate(),
-		#MOUSEFOLK.instantiate(),
-	] as Array[Unit]
+		MOUSEFOLK.instantiate(),
+	]
 
-	enemy_party = [
-		#SKELETON.instantiate(),
-		SKELETON_REAPER.instantiate(),
-		BAT.instantiate(),
-		BAT.instantiate(),
-		#MOUSEFOLK.instantiate(),
-	] as Array[Unit]
+func setup_scene():
+	if encounter.size() == 0:
+		pass # end encounter screen
+		return
+
+	enemy_party.clear()
+	for unit in encounter.pop_front():
+		enemy_party.append(unit)
 
 
 	battle_manager.setup(player_party, enemy_party)
 	set_ai_actions()
+	arrange_slots()
+
 
 
 func connect_signals():
 	battle_manager.stage_simulation_ready.connect(_on_stage_result)
 	actions_panel.closed.connect(_on_panel_closed)
 	start_battle_button.pressed.connect(_on_run_battle_pressed)
+	end_of_wave.clicked_next.connect(prepare_next_wave)
+	end_of_wave.clicked_retreat.connect(retreat)
+	fail.accepted.connect(failed)
+	win.accepted.connect(won)
+
+func prepare_next_wave():
+	end_of_wave.hide()
+	setup_scene()
+
+func retreat():
+	get_tree().quit()
+
+func failed():
+	get_tree().quit()
+
+func won():
+	get_tree().quit()
+
 
 func arrange_slots():
 
@@ -211,13 +256,31 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			unit_to_pawn[event.who].die()
 			turn_order_panel.remove_child(unit_to_order_item[event.who])
 
+	if enemy_party.all(func(u:Unit): return not u.alive):
+		if encounter.size() > 0:
+			show_end_wave_screen()
+		else:
+			show_win_screen()
+		return
 
-	print("battle stopped")
+	if player_party.all(func(u:Unit): return not u.alive):
+		show_fail_screen()
+		return
+
 	_update_order_panel()
 	set_ai_actions()
 	arrange_hand(data.unit_orders)
 	set_buttons_enabled(true)
 	_on_order_selected(null)
+
+func show_end_wave_screen():
+	end_of_wave.show()
+
+func show_fail_screen():
+	fail.show()
+
+func show_win_screen():
+	win.show()
 
 func set_ai_actions():
 	for u in player_party + enemy_party:

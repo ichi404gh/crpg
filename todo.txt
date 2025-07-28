@@ -14,7 +14,7 @@
 	❌ active bonus ui
 
 ✅ orders between rounds
-	⭕️ ui
+	✅ ui
 
 ✅ reactions
 	✅ effects on reaction
@@ -45,9 +45,9 @@
 
 
 ⭕️ save unit between battles
-⭕️ multi-waves battles
-⭕️ actions between waves
-⭕️ end battle ui
+✅ multi-waves battles
+🔄 actions between waves
+🔄 end battle ui
 
 
 ✅ - done

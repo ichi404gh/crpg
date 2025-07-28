@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0yhujhyw7q4o"]
+
+[ext_resource type="Theme" uid="uid://l7sf8j0owpre" path="res://golden panels.tres" id="1_ksmkh"]
+[ext_resource type="Script" uid="uid://b0qhccdsbj3f0" path="res://scenes/screens/battle/fail.gd" id="2_we4wg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0bdxv"]
+font_size = 36
+
+[node name="Fail" type="PanelContainer"]
+offset_right = 353.0
+offset_bottom = 185.0
+theme = ExtResource("1_ksmkh")
+script = ExtResource("2_we4wg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "All your party meamber are dead"
+label_settings = SubResource("LabelSettings_0bdxv")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 34
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"

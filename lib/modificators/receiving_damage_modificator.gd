@@ -14,7 +14,7 @@ func modify(damage: DamagePipeline):
 	damage.multiplicative_multiplier *= multiplicative_bonus
 
 func _get_description() -> String:
-	var res = "%s: " % tr("modificator.dealing_damage.mod_desc")
+	var res = "%s: " % tr("modificator.receiving_damage.mod_desc")
 
 	var componenets = []
 	if flat_bonus != 0:

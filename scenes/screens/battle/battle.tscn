@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6vs1yn5jv11w"]
+[gd_scene load_steps=12 format=3 uid="uid://c6vs1yn5jv11w"]
 
 [ext_resource type="Script" uid="uid://dv5rr6wkps7v2" path="res://scenes/screens/battle/battle.gd" id="1_po8hi"]
 [ext_resource type="Texture2D" uid="uid://4i25p2vwchd7" path="res://assets/bg/2304x1296.png" id="2_f7stq"]
 [ext_resource type="Script" uid="uid://bxp51gh1s6ktl" path="res://scenes/tooltips/tooltip_context.gd" id="2_kqxcs"]
 [ext_resource type="Script" uid="uid://bnby2sebjora2" path="res://lib/managers/battle_manager.gd" id="3_4grbx"]
+[ext_resource type="PackedScene" uid="uid://e5swsgo4emby" path="res://scenes/screens/battle/end_of_wave.tscn" id="6_h64mr"]
 [ext_resource type="Theme" uid="uid://d18xhnyr8y3rd" path="res://game_theme.tres" id="6_xcah6"]
+[ext_resource type="PackedScene" uid="uid://d0yhujhyw7q4o" path="res://scenes/screens/battle/fail.tscn" id="7_q674m"]
 [ext_resource type="PackedScene" uid="uid://cp7u7ranfmgt6" path="res://scenes/screens/battle/panels/actions_panel.tscn" id="7_xcah6"]
 [ext_resource type="PackedScene" uid="uid://cprgcwiqvm0r" path="res://scenes/screens/battle/panels/order_panel_item.tscn" id="8_m4bs7"]
+[ext_resource type="PackedScene" uid="uid://df0g4viyu8p3q" path="res://scenes/screens/battle/win.tscn" id="8_q674m"]
 [ext_resource type="AudioStream" uid="uid://b4gn0fsyrluc" path="res://assets/music/stealth-battle-205902.mp3" id="8_wocxc"]
 
 [node name="BattleScene" type="Node2D"]
@@ -133,6 +136,49 @@ offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="EndOfWave" parent="TooltipContext/CanvasLayer" instance=ExtResource("6_h64mr")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = -66.5
+offset_right = 146.5
+offset_bottom = 66.5
+
+[node name="Fail" parent="TooltipContext/CanvasLayer" instance=ExtResource("7_q674m")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.75
+offset_top = -92.5
+offset_right = 173.75
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win" parent="TooltipContext/CanvasLayer" instance=ExtResource("8_q674m")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = -92.5
+offset_right = 176.5
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StartRoundButton" type="Button" parent="TooltipContext"]
 unique_name_in_owner = true
