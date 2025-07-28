@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dsy2hrnd3i4np"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p4pkh"]
-font_color = Color(0.58724755, 0.15757349, 0.15392458, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
+font_size = 24
+font_color = Color(0.7137113, 0, 0.094670124, 1)
+outline_size = 10
 shadow_size = 2
 
 [node name="FloatingNumbers" type="Label"]

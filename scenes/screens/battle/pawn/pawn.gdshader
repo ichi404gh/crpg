@@ -3,7 +3,7 @@ shader_type canvas_item;
 instance uniform bool flash = false;
 instance uniform bool outline = false;
 uniform vec4 outline_color: source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float outline_thicness: hint_range(1.0, 5.0) = 1.0;
+uniform float outline_thicness: hint_range(1.0, 10.0) = 1.0;
 
 float is_positive(float value) {
 	return max(0.0, sign(value));

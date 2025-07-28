@@ -1,12 +1,22 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqq7ayqqlh1js"]
 
-[ext_resource type="Script" uid="uid://vgnqq1u781jt" path="res://scenes/screens/battle/orders/active_order_ui.gd" id="1_chlxa"]
+[sub_resource type="GDScript" id="GDScript_eau62"]
+script/source = "extends Control
+
+@onready var texture: TextureRect = %Texture
+
+func setup(order: Order):
+	if not order:
+		texture.texture = NoiseTexture2D.new()
+	else:
+		texture.texture = order.texture
+"
 
 [node name="ActiveOrderUI" type="Control"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_chlxa")
+script = SubResource("GDScript_eau62")
 
 [node name="Texture" type="TextureRect" parent="."]
 unique_name_in_owner = true

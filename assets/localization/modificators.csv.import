@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cfclu237ehviw"
+
+[deps]
+
+files=["res://assets/localization/modificators.en.translation", "res://assets/localization/modificators.ru.translation"]
+
+source_file="res://assets/localization/modificators.csv"
+dest_files=["res://assets/localization/modificators.en.translation", "res://assets/localization/modificators.ru.translation"]
+
+[params]
+
+compress=true
+delimiter=0

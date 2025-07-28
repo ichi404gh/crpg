@@ -14,8 +14,10 @@ signal clicked
 @onready var hp_label: Label = %Label
 @onready var damage_numbers_root: Node2D = %DamageNumbersRoot
 
-const DMG_COLOR: Color = Color.FIREBRICK
-const HEAL_COLOR: Color = Color.WEB_GREEN
+const DMG_COLOR: Color = Color(0.834, 0.29, 0.123, 1.0)
+const DMG_OUTLINE_COLOR: Color = Color(0.514, 0.159, 0.046, 1.0)
+const HEAL_COLOR: Color = Color(0.0, 0.653, 0.372, 1.0)
+const HEAL_OUTLINE_COLOR: Color = Color(0.0, 0.0, 0.0, 1.0)
 
 const HOVER_COLOR: Color = Color(1, 0.94313726, 0.8, 1)
 
@@ -37,6 +39,11 @@ func setup(unit: Unit, flip: bool, battle_manager: BattleManager):
 	hp_bar.max_value = unit.unit_data.max_hp
 	hp_bar.value = unit.hp
 	hp_label.text = "%s/%s" % [unit.hp, unit.unit_data.max_hp]
+
+func die():
+	hp_bar.hide()
+	status_bar.hide()
+	prepared_actions_bar.hide()
 
 func on_hovered_unit_changed(unit: Unit):
 	const OUTLINE = preload("uid://rllvcdkeolch")
@@ -75,8 +82,11 @@ func update_status(hp_increnemnt: int, statuses):
 		damage_numbers_root.add_child(number)
 		if hp_increnemnt > 0:
 			number.label_settings.font_color = HEAL_COLOR
+			number.label_settings.outline_color = HEAL_OUTLINE_COLOR
 		else:
 			number.label_settings.font_color = DMG_COLOR
+			number.label_settings.outline_color = DMG_OUTLINE_COLOR
+
 		number.text = str(abs(hp_increnemnt))
 	#
 		number.modulate.a = 1

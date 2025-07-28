@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Action" load_steps=12 format=3 uid="uid://bh8avx15y0r84"]
+[gd_resource type="Resource" script_class="Action" load_steps=17 format=3 uid="uid://bh8avx15y0r84"]
 
+[ext_resource type="Script" uid="uid://ckghg664ekf64" path="res://data/desirability_evaluators/have_wounded_allies_not_self.gd" id="1_3ju4d"]
 [ext_resource type="PackedScene" uid="uid://dnbb81gsdvagc" path="res://data/actions/quantum_healing/quantum_healing.tscn" id="1_qfgin"]
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_vby44"]
 [ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/effects/heal_effect.gd" id="2_vby44"]
@@ -8,6 +9,14 @@
 [ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://data/targeting/strategies/random_ally_not_self.gd" id="5_bqmvk"]
 [ext_resource type="Script" uid="uid://cj7oyarx823is" path="res://data/actions/tags/once_per_round.gd" id="6_lcv37"]
 [ext_resource type="Texture2D" uid="uid://bryrd0e2ijm0e" path="res://assets/sprites/actions/healing.png" id="7_3itet"]
+[ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="7_783qg"]
+[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_rule.gd" id="8_3ju4d"]
+
+[sub_resource type="Resource" id="Resource_8yloi"]
+script = ExtResource("1_3ju4d")
+weight_match = 1.5
+weight_not_match = 0.2
+metadata/_custom_type_script = "uid://ckghg664ekf64"
 
 [sub_resource type="Resource" id="Resource_bqmvk"]
 script = ExtResource("2_vby44")
@@ -17,8 +26,15 @@ metadata/_custom_type_script = "uid://c5d87g5vabc7n"
 script = ExtResource("6_lcv37")
 metadata/_custom_type_script = "uid://cj7oyarx823is"
 
+[sub_resource type="Resource" id="Resource_4cr0t"]
+script = ExtResource("8_3ju4d")
+threshold_percent = 0.9
+weight = 2.0
+metadata/_custom_type_script = "uid://ft1uabvag5c6"
+
 [sub_resource type="Resource" id="Resource_3itet"]
 script = ExtResource("5_bqmvk")
+implicit_rules = Array[ExtResource("7_783qg")]([SubResource("Resource_4cr0t")])
 metadata/_custom_type_script = "uid://b3pmigr60y7l5"
 
 [resource]
@@ -28,6 +44,7 @@ flavour_text = "action.quantum_healing.flavour"
 key = "action.quantum_healing"
 targeting = SubResource("Resource_3itet")
 effects = Array[ExtResource("1_vby44")]([SubResource("Resource_bqmvk")])
+desirability_evaluator = SubResource("Resource_8yloi")
 texture = ExtResource("7_3itet")
 effect_scene = ExtResource("1_qfgin")
 source_animation = 1

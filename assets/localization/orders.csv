@@ -1,0 +1,11 @@
+key,en,ru
+order.constant.order,Order,Приказ
+order.press_the_attack.title,Press the attack!,Наступаем!
+order.press_the_attack.flavour,No road back—only steel and screams ahead.,Нет пути назад — лишь сталь и крики впереди.
+order.press_the_attack.description,"Boosts attacks, fueling aggression and momentum.","Усиление атак, больше ярости и натиска."
+order.hold_the_line.title,Hold the Line!,Держать строй!
+order.hold_the_line.flavour,"Shields lock like walls, and fear retreats behind their wooden edge.","Щиты смыкаются, словно стены, и страх отступает за их деревянный край."
+order.hold_the_line.description,"Increases defense, reducing incoming damage.","Повышает защиту, снижает урон от врагов."
+order.focus_wounded.title,Finish Them!,Добейте их!
+order.focus_wounded.flavour,No mercy for the faltering: blood calls for more blood.,"Нет жалости для тех, кто спотыкается: кровь зовёт новую кровь."
+order.focus_wounded.description,Units focus on finishing off wounded enemies.,Юниты нацеливаются на раненых врагов.

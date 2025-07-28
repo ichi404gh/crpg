@@ -6,19 +6,31 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_46p1m"]
 line_spacing = -11.0
-font_size = 30
+font_size = 18
 font_color = Color(0.8235294, 0.7137255, 0.5058824, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcyk5"]
 
-[node name="Control" type="PanelContainer"]
-offset_right = 160.0
-offset_bottom = 293.0
-pivot_offset = Vector2(84, 144)
-theme = ExtResource("1_ofbkm")
+[node name="Control" type="Node2D"]
 script = ExtResource("2_vrjhs")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -241.0
+offset_right = 78.5
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(77.5, 241)
+theme = ExtResource("1_ofbkm")
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
@@ -26,34 +38,38 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="Title" type="Label" parent="MarginContainer2/VBoxContainer"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Press the attack"
 label_settings = SubResource("LabelSettings_46p1m")
 autowrap_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("1_ofbkm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Texture" type="TextureRect" parent="PanelContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("PlaceholderTexture2D_hcyk5")
 expand_mode = 1
 
-[node name="Description" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="PanelContainer/MarginContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "Restores [heal]20 hp[/heal] to every  member of your party"
 fit_content = true

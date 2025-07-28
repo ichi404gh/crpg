@@ -5,6 +5,7 @@ extends Resource
 @export var title: String = ""
 @export var description: String = ""
 @export var texture: Texture2D
+@export var flavour_text: String
 
 @export var modificator_provider: ModificatorProvider
 @export var targeting_provider: TargetingProvider

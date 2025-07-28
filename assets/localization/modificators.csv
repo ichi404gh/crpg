@@ -1,0 +1,5 @@
+key,en,ru
+modificator.constant.with_condition,with condition,с условием
+modificator.dealing_damage.mod_desc,Damage dealing,Нанесение урона
+modificator.receiving_damage.mod_desc,Damage receiving,Получение урона
+modificator.condition.hp_less_than,Target HP less than [val]{val}%[/val],Здоровье цели меньше [val]{val}%[/val]

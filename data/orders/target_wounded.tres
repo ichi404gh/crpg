@@ -37,9 +37,10 @@ metadata/_custom_type_script = "uid://calhd2wvi1cgo"
 
 [resource]
 script = ExtResource("1_gopiu")
-title = "Target wounded"
-description = "Target attacks to already wounded enemies"
+title = "order.focus_wounded.title"
+description = "order.focus_wounded.description"
 texture = ExtResource("9_gcw2m")
+flavour_text = "order.focus_wounded.flavour"
 modificator_provider = SubResource("Resource_6qna6")
 targeting_provider = SubResource("Resource_2fkcb")
 metadata/_custom_type_script = "uid://cc6djoemhugti"

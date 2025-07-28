@@ -1,13 +1,15 @@
 @abstract
 class_name TargetingStrategy extends Resource
 
+@export var implicit_rules: Array[TargetingRule]
+
 @abstract
 func get_targets(source: Unit, battle_manager: BattleManager) -> Array[Unit]
 
 func get_weighted(source: Unit, candidates: Array[Unit], battle_manager: BattleManager) -> Array:
 	var weighted_candidates = candidates.map(func (c: Unit): return [1.0, c])
 
-	for targeting_rule: TargetingRule in battle_manager.targeting_registry.get_for_unit(source):
+	for targeting_rule: TargetingRule in battle_manager.targeting_registry.get_for_unit(source) + implicit_rules:
 		targeting_rule.modify_weights(weighted_candidates, battle_manager)
 	return weighted_candidates
 

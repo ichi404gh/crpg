@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbkvpkjbemqiw"]
+[gd_scene load_steps=10 format=3 uid="uid://bbkvpkjbemqiw"]
 
 [ext_resource type="Script" uid="uid://cujpcejm0nu7j" path="res://scenes/tooltips/damage_indicator.gd" id="1_ohapt"]
 [ext_resource type="Texture2D" uid="uid://chso13bnpb4hk" path="res://assets/ui/Hit.png" id="5_7eg7b"]
 [ext_resource type="AudioStream" uid="uid://cto7ci745grf1" path="res://assets/sfx/hit-by-a-wood-230542.mp3" id="5_ffuja"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_egw18"]
+font_size = 26
+font_color = Color(1, 0.5459724, 0.4730503, 1)
+outline_size = 3
+outline_color = Color(0.5531529, 0.17083028, 0.2199215, 1)
 
 [sub_resource type="Curve" id="Curve_r85cj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3632959), 0.0, 0.0, 0, 0]
@@ -43,12 +49,8 @@ offset_left = -66.0
 offset_top = -175.0
 offset_right = 67.0
 offset_bottom = -90.833336
-theme_override_colors/font_color = Color(0.74051917, 0, 0.10529075, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 26
 text = "33"
+label_settings = SubResource("LabelSettings_egw18")
 horizontal_alignment = 1
 vertical_alignment = 1
 

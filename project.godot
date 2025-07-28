@@ -28,6 +28,8 @@ gdscript/warnings/shadowed_variable=0
 window/size/viewport_width=1280
 window/size/viewport_height=800
 window/size/initial_position_type=4
+window/size/window_width_override=2560
+window/size/window_height_override=1600
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 
@@ -47,7 +49,7 @@ theme/custom="uid://d18xhnyr8y3rd"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://assets/localization/actions.en.translation", "res://assets/localization/actions.ru.translation", "res://assets/localization/actionEffects.en.translation", "res://assets/localization/actionEffects.ru.translation", "res://assets/localization/statusEffects.en.translation", "res://assets/localization/statusEffects.ru.translation")
+locale/translations=PackedStringArray("res://assets/localization/actions.en.translation", "res://assets/localization/actions.ru.translation", "res://assets/localization/actionEffects.en.translation", "res://assets/localization/actionEffects.ru.translation", "res://assets/localization/statusEffects.en.translation", "res://assets/localization/statusEffects.ru.translation", "res://assets/localization/orders.en.translation", "res://assets/localization/orders.ru.translation", "res://assets/localization/modificators.en.translation", "res://assets/localization/modificators.ru.translation")
 
 [rendering]
 

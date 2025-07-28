@@ -12,6 +12,9 @@ func setup(orders: Array[Order]):
 		var child: OrderCard
 		if cards_container.get_child_count() > idx:
 			child = cards_container.get_child(idx)
+			for c in child.clicked.get_connections():
+				if c.callable == on_order_selected:
+					child.clicked.disconnect(c.callable)
 		else:
 			child = ORDER_CARD.instantiate()
 			cards_container.add_child(child)

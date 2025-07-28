@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhxcq7vjbp2g6"]
+
+[ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="1_2kgy0"]
+[ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="2_qu2au"]
+[ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="3_gwdsg"]
+[ext_resource type="Theme" uid="uid://d18xhnyr8y3rd" path="res://game_theme.tres" id="4_n5n4l"]
+[ext_resource type="RichTextEffect" uid="uid://b2nx2tx8p2bp5" path="res://lib/bbcodes/dmg.tres" id="5_ba2mx"]
+[ext_resource type="RichTextEffect" uid="uid://cqscp14jpf10y" path="res://lib/bbcodes/val.tres" id="6_c53tf"]
+[ext_resource type="RichTextEffect" uid="uid://n4daf6xxn2xy" path="res://lib/bbcodes/heal.tres" id="7_yjv7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kgy0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_kp4jc"]
+font_size = 20
+font_color = Color(0.8235294, 0.7137255, 0.5058824, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_48cmo"]
+font_color = Color(0.5803922, 0.54509807, 0.48235294, 1)
+
+[node name="OrderTooltip" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = -87.0
+offset_right = 113.5
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kgy0")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_2kgy0")
+region_rect = Rect2(256, 128, 64, 64)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qu2au")
+region_rect = Rect2(256, 128, 64, 64)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_2kgy0")
+region_rect = Rect2(64, 448, 64, 64)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect"]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qu2au")
+region_rect = Rect2(64, 448, 64, 64)
+
+[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect/NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gwdsg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="OrderLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme = ExtResource("4_n5n4l")
+theme_override_font_sizes/font_size = 18
+text = "Press the attack!"
+label_settings = SubResource("LabelSettings_kp4jc")
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "order.constant.order"
+label_settings = SubResource("LabelSettings_48cmo")
+
+[node name="EffectsDescriptions" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_n5n4l")
+bbcode_enabled = true
+text = "Deals [dmg]1-5 damage[/dmg]"
+fit_content = true
+scroll_active = false
+custom_effects = [ExtResource("5_ba2mx"), ExtResource("6_c53tf"), ExtResource("7_yjv7v")]
+
+[node name="FlavourText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0.5803922, 0.54509807, 0.48235294, 1)
+theme_override_font_sizes/italics_font_size = 14
+bbcode_enabled = true
+text = "[i]What a flavorful text, can smell it from here"
+fit_content = true
+scroll_active = false

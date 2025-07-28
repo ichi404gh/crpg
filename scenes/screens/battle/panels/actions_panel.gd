@@ -59,6 +59,9 @@ func setup(unit: Unit, battle_manager: BattleManager):
 	self.bm = battle_manager
 	auto_select_check_button.button_pressed = unit.auto_selects_actions
 
+	for connection in unit.selected_actions_changed.get_connections():
+		if connection.callable == on_unit_action_changed:
+			unit.selected_actions_changed.disconnect(on_unit_action_changed)
 	unit.selected_actions_changed.connect(on_unit_action_changed)
 
 	const ACTION_PANEL_ACTION = preload("res://scenes/screens/battle/panels/action_panel_action.tscn")

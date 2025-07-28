@@ -2,6 +2,7 @@ extends Node
 
 var action_tooltip_instance: Control = null
 var status_tooltip_instance: Control = null
+var order_tooltip_instance: Control = null
 
 
 func show(data: TooltipData, origin: CanvasItem):
@@ -34,12 +35,28 @@ func show(data: TooltipData, origin: CanvasItem):
 		(status_tooltip_instance.get_node("%Title") as Label).text = data.status.title
 		(status_tooltip_instance.get_node("%Effect") as RichTextLabel).text = data.get_effects_text()
 		(status_tooltip_instance.get_node("%FlavourText") as RichTextLabel).text = "[i]" + data.get_flavour_text() + "[/i]"
+	elif data is OrderTooltipData:
+		const ORDER_TOOLTIP = preload("uid://bhxcq7vjbp2g6")
+
+		order_tooltip_instance = ORDER_TOOLTIP.instantiate()
+		var anchor = find_ancor_for(origin)
+		if not anchor:
+			return
+		order_tooltip_instance.set_anchors_preset(Control.PRESET_CENTER_TOP)
+		anchor.add_child(order_tooltip_instance)
+		(order_tooltip_instance.get_node("%OrderLabel") as Label).text = data.order.title
+		(order_tooltip_instance.get_node("%Image") as TextureRect).texture = data.order.texture
+		(order_tooltip_instance.get_node("%EffectsDescriptions") as RichTextLabel).text = data.get_effects_text()
+		(order_tooltip_instance.get_node("%FlavourText") as RichTextLabel).text = "[i]" + data.get_flavour_text() + "[/i]"
+
 
 func hide():
 	if action_tooltip_instance:
 		action_tooltip_instance.queue_free()
 	if status_tooltip_instance:
 		status_tooltip_instance.queue_free()
+	if order_tooltip_instance:
+		order_tooltip_instance.queue_free()
 
 func find_ancor_for(node: Node) -> Control:
 	var current = node
