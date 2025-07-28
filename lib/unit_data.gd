@@ -6,8 +6,9 @@ class_name UnitData
 
 @export var unit_ui: PackedScene
 @export var portrait: Texture2D
+@export var action_points: int = 3
 
-@export var ai_actions_presets: Array[ActionPreset]
+@export var action_set: ActionSet
 
 func instantiate() -> Unit:
 	var unit: Unit = Unit.new()

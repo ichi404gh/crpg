@@ -1,6 +1,4 @@
-extends Resource
-
-class_name Action
+class_name Action extends Resource
 
 @export var cost: int = 1
 @export var cooldown: int = 0
@@ -14,11 +12,12 @@ class_name Action
 
 @export var targeting: TargetingStrategy
 @export var effects: Array[Effect]
+@export var desirability_evaluator: ActionDesirabilityEvaluator
 
 @export var texture: Texture2D
 @export var effect_scene: PackedScene
 @export var source_animation: InteractionEvent.AnimationKind = InteractionEvent.AnimationKind.None
-
+@export var tags: Array[ActionTag]
 
 func produce_event(source: Unit) -> InteractionEvent:
 	var ev := InteractionEvent.new()
@@ -48,3 +47,10 @@ func apply(source: Unit, bm: BattleManager) -> Array[AbstractBattleEvent]:
 	result_events.append_array(action_events)
 
 	return result_events
+
+func has_tag(type: Script):
+	for tag in tags:
+		if tag.get_script() == type:
+			return true
+
+	return false

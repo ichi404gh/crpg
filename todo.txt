@@ -34,14 +34,19 @@
 		⭕️ inventory, item actions, consumables
 
 ✅ limited action points, slots count changed to ap count
-⭕️ action providers
-⭕️ unique actions
+🔄 action providers
+	🔄 innate actions
+	⭕️ class action
+	⭕️ items actions
+		⭕️ consumable items
+✅ unique actions
 ✅ action cooldowns
-🔄 auto select actions
+✅ auto select actions
 
 
 ⭕️ save unit between battles
 ⭕️ multi-waves battles
+⭕️ actions between waves
 ⭕️ end battle ui
 
 

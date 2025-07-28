@@ -4,7 +4,8 @@ extends UnitBaseUI
 @onready var area_2d: Area2D = $Area2D
 
 func attack():
-	pass
+	_play_attack_animation()
+	await hit_moment
 
 func die():
 	await _play_die_animation()
@@ -38,6 +39,11 @@ func finish_animations():
 	if animation_player.current_animation != 'idle':
 		await animation_player.current_animation_changed
 
+func _play_attack_animation():
+	animation_player.stop()
+	animation_player.clear_queue()
+	animation_player.play("attack")
+	animation_player.queue("idle")
 
 func _play_hurt_animation():
 	animation_player.stop()
@@ -47,8 +53,12 @@ func _play_hurt_animation():
 	await animation_player.current_animation_changed
 
 
+
 func _play_die_animation():
 	animation_player.stop()
 	animation_player.clear_queue()
 	animation_player.play("die")
 	await animation_player.current_animation_changed
+
+func _on_attack_hit_moment():
+	hit_moment.emit()

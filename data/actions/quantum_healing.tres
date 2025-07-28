@@ -1,15 +1,21 @@
-[gd_resource type="Resource" script_class="Action" load_steps=9 format=3 uid="uid://bh8avx15y0r84"]
+[gd_resource type="Resource" script_class="Action" load_steps=12 format=3 uid="uid://bh8avx15y0r84"]
 
 [ext_resource type="PackedScene" uid="uid://dnbb81gsdvagc" path="res://data/actions/quantum_healing/quantum_healing.tscn" id="1_qfgin"]
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_vby44"]
 [ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/effects/heal_effect.gd" id="2_vby44"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="3_bqmvk"]
+[ext_resource type="Script" uid="uid://ckvrtvh71magc" path="res://lib/action_tag.gd" id="5_0h7rh"]
 [ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://data/targeting/strategies/random_ally_not_self.gd" id="5_bqmvk"]
+[ext_resource type="Script" uid="uid://cj7oyarx823is" path="res://data/actions/tags/once_per_round.gd" id="6_lcv37"]
 [ext_resource type="Texture2D" uid="uid://bryrd0e2ijm0e" path="res://assets/sprites/actions/healing.png" id="7_3itet"]
 
 [sub_resource type="Resource" id="Resource_bqmvk"]
 script = ExtResource("2_vby44")
 metadata/_custom_type_script = "uid://c5d87g5vabc7n"
+
+[sub_resource type="Resource" id="Resource_783qg"]
+script = ExtResource("6_lcv37")
+metadata/_custom_type_script = "uid://cj7oyarx823is"
 
 [sub_resource type="Resource" id="Resource_3itet"]
 script = ExtResource("5_bqmvk")
@@ -25,4 +31,5 @@ effects = Array[ExtResource("1_vby44")]([SubResource("Resource_bqmvk")])
 texture = ExtResource("7_3itet")
 effect_scene = ExtResource("1_qfgin")
 source_animation = 1
+tags = Array[ExtResource("5_0h7rh")]([SubResource("Resource_783qg")])
 metadata/_custom_type_script = "uid://crhahprxps0vr"

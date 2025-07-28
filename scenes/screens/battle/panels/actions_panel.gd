@@ -8,15 +8,19 @@ const ACTION_SLOT = preload("uid://dhcty1gknjrlf")
 @onready var actions_container: HFlowContainer = %ActionsContainer
 @onready var slots_container: HBoxContainer = %SlotsContainer
 @onready var action_points_label: Label = %ActionPointsLabel
+@onready var acto_select_button: Button = %ActoSelectButton
+@onready var auto_select_check_button: CheckButton = %AutoSelectCheckButton
 
 
 var unit: Unit
+var bm: BattleManager
 
 signal closed
 
 func _ready() -> void:
 	close_button.pressed.connect(on_close)
-
+	acto_select_button.pressed.connect(_on_auto_select_button_clicked)
+	auto_select_check_button.toggled.connect(_on_auto_toggled)
 
 func on_unit_action_changed(actions: Array[Action]):
 	update_ap_label()
@@ -38,17 +42,23 @@ func on_unit_action_changed(actions: Array[Action]):
 func on_close():
 	closed.emit()
 
+func _on_auto_toggled(value: bool):
+	unit.auto_selects_actions = value
+
 func _on_slot_cleared(index: int):
 	unit.remove_actions(index)
 
 func update_ap_label():
-	action_points_label.text = "Action points: %s/%s" % [unit.combined_cost(), unit.action_points]
+	action_points_label.text = "Action points: %s/%s" % [ActionManager.actions_combined_cost_for_unit(unit), unit.unit_data.action_points]
 
 #func on_action_set(action: Action, idx: int):
 	#unit.set_actions(idx, action)
 
-func setup(unit: Unit):
+func setup(unit: Unit, battle_manager: BattleManager):
 	self.unit = unit
+	self.bm = battle_manager
+	auto_select_check_button.button_pressed = unit.auto_selects_actions
+
 	unit.selected_actions_changed.connect(on_unit_action_changed)
 
 	const ACTION_PANEL_ACTION = preload("res://scenes/screens/battle/panels/action_panel_action.tscn")
@@ -69,3 +79,6 @@ func setup(unit: Unit):
 
 func _on_action_selected(action: Action):
 	unit.add_action(action)
+
+func _on_auto_select_button_clicked():
+	ActionManager.auto_select_actions(unit, bm)

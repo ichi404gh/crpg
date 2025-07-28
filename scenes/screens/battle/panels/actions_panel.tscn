@@ -63,6 +63,19 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_constants/separation = 16
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ActoSelectButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Auto select"
+
+[node name="AutoSelectCheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="ActionsContainer" type="HFlowContainer" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2

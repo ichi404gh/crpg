@@ -1,24 +1,17 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://bj5wsdwq6hy7e"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://bj5wsdwq6hy7e"]
 
-[ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_ectkk"]
 [ext_resource type="Texture2D" uid="uid://bk6ypyuckx586" path="res://assets/sprites/monsters/Mousefolk.png" id="1_klq5l"]
 [ext_resource type="PackedScene" uid="uid://pbsa2wewi6p1" path="res://scenes/units/mousefolk.tscn" id="2_ectkk"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_ss7jk"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_xcaa2"]
 [ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="3_snwdx"]
 [ext_resource type="Resource" uid="uid://bh8avx15y0r84" path="res://data/actions/quantum_healing.tres" id="4_1iago"]
+[ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="4_xcaa2"]
 
-[sub_resource type="Resource" id="Resource_tawe3"]
-script = ExtResource("1_ectkk")
-weight = 1.0
-preset = Array[ExtResource("2_xcaa2")]([ExtResource("3_snwdx")])
-metadata/_custom_type_script = "uid://b6dc5v4xohux6"
-
-[sub_resource type="Resource" id="Resource_7hixn"]
-script = ExtResource("1_ectkk")
-weight = 0.4000000000087311
-preset = Array[ExtResource("2_xcaa2")]([ExtResource("3_snwdx"), ExtResource("4_1iago")])
-metadata/_custom_type_script = "uid://b6dc5v4xohux6"
+[sub_resource type="Resource" id="Resource_snwdx"]
+script = ExtResource("4_xcaa2")
+actions = Array[ExtResource("2_xcaa2")]([ExtResource("3_snwdx"), ExtResource("4_1iago")])
+metadata/_custom_type_script = "uid://bysxs6fuocu8a"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45en0"]
 atlas = ExtResource("1_klq5l")
@@ -30,5 +23,5 @@ name = "Mousefolk"
 max_hp = 25
 unit_ui = ExtResource("2_ectkk")
 portrait = SubResource("AtlasTexture_45en0")
-ai_actions_presets = Array[ExtResource("1_ectkk")]([SubResource("Resource_tawe3"), SubResource("Resource_7hixn")])
+action_set = SubResource("Resource_snwdx")
 metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

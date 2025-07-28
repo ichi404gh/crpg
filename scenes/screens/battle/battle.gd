@@ -58,8 +58,8 @@ func setup_stub():
 
 	player_party = [
 		MOUSEFOLK.instantiate(),
-		#MOUSEFOLK.instantiate(),
-		#MOUSEFOLK.instantiate(),
+		MOUSEFOLK.instantiate(),
+		MOUSEFOLK.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
 
@@ -70,10 +70,6 @@ func setup_stub():
 		BAT.instantiate(),
 		#MOUSEFOLK.instantiate(),
 	] as Array[Unit]
-
-
-	for u in enemy_party:
-		u.ai_controlled = true
 
 
 	battle_manager.setup(player_party, enemy_party)
@@ -141,7 +137,7 @@ func _on_pawn_click(pwn: Pawn):
 	if !buttons_enabled:
 		return
 	selected_pawn = pwn
-	actions_panel.setup(pwn.unit)
+	actions_panel.setup(pwn.unit, battle_manager)
 	actions_panel.show()
 
 func _on_stage_result(data: BattleManager.SimulationData):
@@ -202,9 +198,10 @@ func _on_stage_result(data: BattleManager.SimulationData):
 
 func set_ai_actions():
 	for u in player_party + enemy_party:
-		if u.ai_controlled:
-			u.selected_actions = ActionManager.select_action_for_ai_unit(u)
-			u.selected_actions_changed.emit(u.selected_actions)
+		if not u.alive:
+			continue
+		if u.auto_selects_actions:
+			ActionManager.auto_select_actions(u, battle_manager)
 
 func _on_panel_closed():
 	actions_panel.hide()

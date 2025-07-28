@@ -1,9 +1,16 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://hwd0lxpta2ko"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=8 format=3 uid="uid://hwd0lxpta2ko"]
 
-[ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_1vto5"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_mdtk4"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_0wcjl"]
 [ext_resource type="Texture2D" uid="uid://diatt1qayd5t7" path="res://assets/sprites/monsters/bat.png" id="2_krrwq"]
+[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="2_vb4ua"]
+[ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="3_m2yrg"]
 [ext_resource type="PackedScene" uid="uid://bde3g874eny2l" path="res://scenes/units/bat.tscn" id="4_t066e"]
+
+[sub_resource type="Resource" id="Resource_70x6r"]
+script = ExtResource("3_m2yrg")
+actions = Array[ExtResource("1_mdtk4")]([ExtResource("2_vb4ua")])
+metadata/_custom_type_script = "uid://bysxs6fuocu8a"
 
 [resource]
 script = ExtResource("2_0wcjl")
@@ -11,4 +18,6 @@ name = "Bat"
 max_hp = 10
 unit_ui = ExtResource("4_t066e")
 portrait = ExtResource("2_krrwq")
+action_points = 1
+action_set = SubResource("Resource_70x6r")
 metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

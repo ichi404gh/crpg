@@ -5,9 +5,7 @@ class_name Unit
 @export var unit_name: String
 @export var alive: bool = true
 @export var unit_data: UnitData
-@export var ai_controlled: bool
-
-@export var action_points: int = 3
+@export var auto_selects_actions: bool = true
 
 var status_effects: Array[Status]
 
@@ -18,21 +16,19 @@ signal selected_actions_changed(actions: Array[Action])
 var selected_actions: Array[Action] = []
 var cooldowns: Dictionary[String, int] = {}
 
+
+
 func remove_actions(index: int):
 	selected_actions.remove_at(index)
 	selected_actions_changed.emit(selected_actions)
 
 func add_action(action: Action):
-	if combined_cost() + action.cost > action_points:
-		return
-	if cooldowns.has(action.key):
-		return
-	if action.cooldown > 0 and have_plannet_action_with_key(action.key):
+	if not ActionManager.can_add_action_to_unit(self, action):
 		return
 	selected_actions.append(action)
 	selected_actions_changed.emit(selected_actions)
 
-func have_plannet_action_with_key(key: String):
+func have_planned_action_with_key(key: String):
 	for a in selected_actions:
 		if a.key == key:
 			return true
@@ -45,8 +41,6 @@ func clear_cooling_down_actions():
 		selected_actions_changed.emit(selected_actions)
 
 
-func combined_cost():
-	return selected_actions.map(func(a: Action): return a.cost).reduce(func(a,b): return a+b, 0)
 
 func tick_cooldowns():
 	for key in cooldowns:

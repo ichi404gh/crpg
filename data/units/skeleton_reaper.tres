@@ -1,22 +1,17 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://d00w56ml886iu"]
 
-[ext_resource type="Script" uid="uid://b6dc5v4xohux6" path="res://lib/action_preset.gd" id="1_f64vx"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_hn107"]
+[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="2_tn8tj"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="2_vavcx"]
 [ext_resource type="Texture2D" uid="uid://4yio6cae7ben" path="res://assets/sprites/monsters/skeleton-reaper.png" id="2_woxgn"]
 [ext_resource type="Resource" uid="uid://cyhi26yqebnth" path="res://data/actions/poisoned_sickle.tres" id="3_tn8tj"]
 [ext_resource type="PackedScene" uid="uid://dwximysfqkgwt" path="res://scenes/units/skeleton_reaper.tscn" id="4_1f8qn"]
-
-[sub_resource type="Resource" id="Resource_6n8ny"]
-script = ExtResource("1_f64vx")
-weight = 0.01000000000931322
-metadata/_custom_type_script = "uid://b6dc5v4xohux6"
+[ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="4_6n8ny"]
 
 [sub_resource type="Resource" id="Resource_il5rk"]
-script = ExtResource("1_f64vx")
-weight = 0.4000000000087311
-preset = Array[ExtResource("2_vavcx")]([ExtResource("3_tn8tj")])
-metadata/_custom_type_script = "uid://b6dc5v4xohux6"
+script = ExtResource("4_6n8ny")
+actions = Array[ExtResource("2_vavcx")]([ExtResource("2_tn8tj"), ExtResource("3_tn8tj")])
+metadata/_custom_type_script = "uid://bysxs6fuocu8a"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f64vx"]
 atlas = ExtResource("2_woxgn")
@@ -28,5 +23,6 @@ name = "Reaper"
 max_hp = 20
 unit_ui = ExtResource("4_1f8qn")
 portrait = SubResource("AtlasTexture_f64vx")
-ai_actions_presets = Array[ExtResource("1_f64vx")]([SubResource("Resource_6n8ny"), SubResource("Resource_il5rk")])
+action_points = 2
+action_set = SubResource("Resource_il5rk")
 metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"
