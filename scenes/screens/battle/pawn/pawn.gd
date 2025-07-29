@@ -39,7 +39,7 @@ func setup(unit: Unit, flip: bool, battle_manager: BattleManager):
 	hp_bar.max_value = unit.unit_data.max_hp
 	hp_bar.value = unit.hp
 	hp_label.text = "%s/%s" % [unit.hp, unit.unit_data.max_hp]
-
+	update_status(0, unit.status_effects)
 func die():
 	hp_bar.hide()
 	status_bar.hide()

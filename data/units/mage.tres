@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=18 format=3 uid="uid://lvyhifn668b0"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=26 format=3 uid="uid://lvyhifn668b0"]
 
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="1_85r4g"]
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_j17p4"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dfgqoiby8yws1" path="res://scenes/units/mage.tscn" id="6_fknci"]
 [ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="6_p8mpx"]
 [ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="8_p8mpx"]
+[ext_resource type="Script" uid="uid://duacgy3orhigi" path="res://data/desirability_evaluators/self_wounded.gd" id="9_2b2hn"]
+[ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/effects/heal_effect.gd" id="9_yb5qn"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="10_pki6g"]
+[ext_resource type="Texture2D" uid="uid://q2wsny6w2kqd" path="res://assets/ui/green-cross.png" id="12_xw8g3"]
 
 [sub_resource type="Resource" id="Resource_2b2hn"]
 script = ExtResource("4_7la3f")
@@ -35,9 +39,40 @@ texture = ExtResource("8_p8mpx")
 source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"
 
+[sub_resource type="Resource" id="Resource_g832g"]
+script = ExtResource("9_2b2hn")
+threshold = 0.75
+weight_match = 3.0
+weight_not_match = 0.1
+metadata/_custom_type_script = "uid://duacgy3orhigi"
+
+[sub_resource type="Resource" id="Resource_xw8g3"]
+script = ExtResource("9_yb5qn")
+amount_min = 5
+amount_max = 10
+metadata/_custom_type_script = "uid://c5d87g5vabc7n"
+
+[sub_resource type="Resource" id="Resource_fvg5d"]
+script = ExtResource("10_pki6g")
+metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
+
+[sub_resource type="Resource" id="Resource_p74qh"]
+script = ExtResource("1_j17p4")
+cost = 2
+cooldown = 3
+title = "Self healing"
+description = "Strong healing"
+key = "action.self_healing_stong"
+targeting = SubResource("Resource_fvg5d")
+effects = Array[ExtResource("3_fknci")]([SubResource("Resource_xw8g3")])
+desirability_evaluator = SubResource("Resource_g832g")
+texture = ExtResource("12_xw8g3")
+source_animation = 1
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
 [sub_resource type="Resource" id="Resource_eamqp"]
 script = ExtResource("3_qm8lk")
-actions = Array[ExtResource("1_j17p4")]([ExtResource("2_bs4io"), SubResource("Resource_pki6g")])
+actions = Array[ExtResource("1_j17p4")]([ExtResource("2_bs4io"), SubResource("Resource_pki6g"), SubResource("Resource_p74qh")])
 metadata/_custom_type_script = "uid://bysxs6fuocu8a"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7la3f"]

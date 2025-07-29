@@ -254,7 +254,6 @@ func _on_stage_result(data: BattleManager.SimulationData):
 		elif event is StatusEffectsUpdatedEvent:
 			unit_to_pawn[event.target].update_status(0, event.effects)
 		elif event is UnitDeadEvent:
-			# TODO: disable ui for dead pawn
 			event.who.unit_view.die()
 			unit_to_pawn[event.who].die()
 			turn_order_panel.remove_child(unit_to_order_item[event.who])

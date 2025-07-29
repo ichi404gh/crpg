@@ -1,7 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfgqoiby8yws1"]
+[gd_scene load_steps=13 format=3 uid="uid://dfgqoiby8yws1"]
 
-[ext_resource type="Script" uid="uid://gpkmqikwsk0d" path="res://scenes/units/generic_unit_base_ui.gd" id="1_yh3ei"]
+[ext_resource type="Script" uid="uid://bwk4en786et0" path="res://scenes/units/mage.gd" id="1_yh3ei"]
 [ext_resource type="Texture2D" uid="uid://346ch0s3uugk" path="res://assets/sprites/monsters/mage.png" id="2_yh3ei"]
+
+[sub_resource type="Gradient" id="Gradient_yh3ei"]
+colors = PackedColorArray(0.4171854, 0.68746316, 1, 1, 1, 0.25747916, 0.94639987, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6o071"]
+gradient = SubResource("Gradient_yh3ei")
+width = 3
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_og6vj"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -0.06, 0)
+spread = 25.572
+initial_velocity_max = 440.00998
+gravity = Vector3(0, 100.23, 0)
 
 [sub_resource type="Animation" id="Animation_gbb82"]
 length = 0.001
@@ -120,7 +136,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohe78"]
 size = Vector2(67.5, 137)
 
-[node name="Ranger" type="Node2D"]
+[node name="Mage" type="Node2D"]
 script = ExtResource("1_yh3ei")
 
 [node name="AnimationProxy" type="Node2D" parent="."]
@@ -130,6 +146,16 @@ position = Vector2(6.855364, 0.58284754)
 scale = Vector2(0.16398509, 0.16398507)
 texture = ExtResource("2_yh3ei")
 offset = Vector2(0, -560)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="AnimationProxy/Sprite2D"]
+position = Vector2(-279.6313, -960.95844)
+amount = 6
+texture = SubResource("GradientTexture1D_6o071")
+lifetime = 1.81
+speed_scale = 1.9100000000000001
+trail_sections = 2
+trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_og6vj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
