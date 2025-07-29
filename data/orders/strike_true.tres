@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Order" load_steps=17 format=3 uid="uid://cr4eq0iku31la"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_o0yuk"]
+[ext_resource type="Script" uid="uid://h625835j74oo" path="res://data/effects/apply_status.gd" id="2_5pwkv"]
+[ext_resource type="Script" uid="uid://cc6djoemhugti" path="res://data/orders/order.gd" id="2_wedvi"]
+[ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="3_giyj1"]
+[ext_resource type="Texture2D" uid="uid://db40iw5omsgr0" path="res://assets/sprites/orders/strike_true.jpg" id="3_wedvi"]
+[ext_resource type="Script" uid="uid://v0oglr7it854" path="res://data/buffs/buff.gd" id="4_vij8j"]
+[ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="5_2q48a"]
+[ext_resource type="Script" uid="uid://76lcd1r0fjt" path="res://data/reactions/effects/reaction_effect.gd" id="6_ohrvg"]
+[ext_resource type="Script" uid="uid://dk7o4vld3321g" path="res://data/reactions/effects/modify_damage.gd" id="7_giyj1"]
+[ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="8_hyt0f"]
+[ext_resource type="Script" uid="uid://bd5isb5alflib" path="res://data/targeting/strategies/player_party.gd" id="10_giyj1"]
+
+[sub_resource type="Resource" id="Resource_vij8j"]
+script = ExtResource("7_giyj1")
+flat_bonus = 3
+additive_multiplier = 0.5
+metadata/_custom_type_script = "uid://dk7o4vld3321g"
+
+[sub_resource type="Resource" id="Resource_6tkui"]
+script = ExtResource("5_2q48a")
+effects = Array[ExtResource("6_ohrvg")]([SubResource("Resource_vij8j")])
+trigger = 1
+metadata/_custom_type_script = "uid://b2rthyh48tmlp"
+
+[sub_resource type="Resource" id="Resource_mvako"]
+script = ExtResource("3_giyj1")
+title = "True strike"
+description = "Deals additional damage on first strike"
+uses = 1
+texture = ExtResource("3_wedvi")
+reactions = Array[ExtResource("5_2q48a")]([SubResource("Resource_6tkui")])
+metadata/_custom_type_script = "uid://dn82jj5sqjvr7"
+
+[sub_resource type="Resource" id="Resource_sxk8a"]
+script = ExtResource("2_5pwkv")
+statuses = Array[ExtResource("3_giyj1")]([SubResource("Resource_mvako")])
+metadata/_custom_type_script = "uid://h625835j74oo"
+
+[sub_resource type="Resource" id="Resource_2q48a"]
+script = ExtResource("10_giyj1")
+metadata/_custom_type_script = "uid://bd5isb5alflib"
+
+[resource]
+script = ExtResource("2_wedvi")
+title = "Strike true"
+description = "First attack of every your unit deals additional damage"
+texture = ExtResource("3_wedvi")
+effects = Array[ExtResource("1_o0yuk")]([SubResource("Resource_sxk8a")])
+targeting = SubResource("Resource_2q48a")
+metadata/_custom_type_script = "uid://cc6djoemhugti"

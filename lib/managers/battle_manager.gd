@@ -57,6 +57,8 @@ func simulate_stage():
 						.map(func(u: Unit): return u.selected_actions.size())\
 						.max()
 
+	events.append_array(apply_order_effects())
+
 	for round_number in max_round:
 		for unit in turn_order:
 			if not unit.alive:
@@ -84,6 +86,14 @@ func simulate_stage():
 	orders.shuffle()
 
 	stage_simulation_ready.emit(SimulationData.new(events, turn_order, orders))
+
+func apply_order_effects():
+	var events: Array[AbstractBattleEvent] = []
+	var order = orders_manager.active_order
+	for effect: Effect in order.effects:
+		for target in order.targeting.get_targets(null, self):
+			events.append_array(effect.apply(null, target, self))
+	return events
 
 func process_unit_cooldowns(unit: Unit):
 	unit.tick_cooldowns()

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Order" load_steps=11 format=3 uid="uid://dasex8baoacwu"]
+
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_nu4dv"]
+[ext_resource type="Script" uid="uid://18pyry3sq7u6" path="res://lib/modificators/modificator.gd" id="2_iincc"]
+[ext_resource type="Script" uid="uid://cc6djoemhugti" path="res://data/orders/order.gd" id="2_p53qc"]
+[ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="3_7vo11"]
+[ext_resource type="Script" uid="uid://d4i1bconmotfx" path="res://lib/modificators/receiving_damage_modificator.gd" id="4_e14ot"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="5_yelb6"]
+[ext_resource type="Texture2D" uid="uid://d1xnbt5hgairm" path="res://assets/sprites/orders/reckless_attack.jpg" id="7_rlg7g"]
+
+[sub_resource type="Resource" id="Resource_ioi6c"]
+script = ExtResource("3_7vo11")
+additive_bonus = 1.0
+metadata/_custom_type_script = "uid://3akyn7qc8p3s"
+
+[sub_resource type="Resource" id="Resource_gc11h"]
+script = ExtResource("4_e14ot")
+multiplicative_bonus = 1.5000000000000002
+metadata/_custom_type_script = "uid://d4i1bconmotfx"
+
+[sub_resource type="Resource" id="Resource_tyga6"]
+script = ExtResource("5_yelb6")
+provides = Array[ExtResource("2_iincc")]([SubResource("Resource_ioi6c"), SubResource("Resource_gc11h")])
+metadata/_custom_type_script = "uid://dx113vxf7sk78"
+
+[resource]
+script = ExtResource("2_p53qc")
+title = "Reckless attack"
+description = "You attack recklessly, dealing and receiving more damage,"
+texture = ExtResource("7_rlg7g")
+modificator_provider = SubResource("Resource_tyga6")
+metadata/_custom_type_script = "uid://cc6djoemhugti"

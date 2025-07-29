@@ -13,3 +13,12 @@ func get_on_damage_taken_reaction_for_unit(unit: Unit) -> Array[Reaction]:
 				res.append(reaction)
 
 	return res
+
+func get_on_damage_dealt_reaction_for_unit(unit: Unit) -> Array[Reaction]:
+	var res: Array[Reaction]= []
+	for status in unit.status_effects:
+		for reaction in status.reactions:
+			if reaction.trigger == Reaction.TriggeredOn.DamageDealt:
+				res.append(reaction)
+
+	return res

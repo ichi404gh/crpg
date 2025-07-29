@@ -16,4 +16,5 @@ func apply(ctx: ReactionContext):
 
 enum TriggeredOn {
 	DamageTaken,
+	DamageDealt
 }

@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="Order" load_steps=15 format=3 uid="uid://dfvhodnsufs8m"]
+[gd_resource type="Resource" script_class="Order" load_steps=16 format=3 uid="uid://dfvhodnsufs8m"]
 
 [ext_resource type="Script" uid="uid://18pyry3sq7u6" path="res://lib/modificators/modificator.gd" id="1_4t1xl"]
 [ext_resource type="Script" uid="uid://cc6djoemhugti" path="res://data/orders/order.gd" id="1_gopiu"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_i2qfk"]
 [ext_resource type="Script" uid="uid://cpenrhosxxqsg" path="res://lib/modificators/mod_conditions/target_hp_less_than_percent.gd" id="2_42wef"]
 [ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="3_l2dju"]
 [ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="4_a2qte"]
 [ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="6_a2qte"]
 [ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_rule.gd" id="7_gcw2m"]
 [ext_resource type="Script" uid="uid://calhd2wvi1cgo" path="res://data/targeting/providers/targeting_provider.gd" id="8_i2qfk"]
-[ext_resource type="Texture2D" uid="uid://c1d384ok0bo5s" path="res://assets/sprites/actions/31.png" id="9_gcw2m"]
+[ext_resource type="Texture2D" uid="uid://crpfdwk81bkhu" path="res://assets/sprites/orders/assassinate.jpg" id="10_6qna6"]
 
 [sub_resource type="Resource" id="Resource_gcw2m"]
 script = ExtResource("2_42wef")
@@ -39,7 +40,7 @@ metadata/_custom_type_script = "uid://calhd2wvi1cgo"
 script = ExtResource("1_gopiu")
 title = "order.focus_wounded.title"
 description = "order.focus_wounded.description"
-texture = ExtResource("9_gcw2m")
+texture = ExtResource("10_6qna6")
 flavour_text = "order.focus_wounded.flavour"
 modificator_provider = SubResource("Resource_6qna6")
 targeting_provider = SubResource("Resource_2fkcb")

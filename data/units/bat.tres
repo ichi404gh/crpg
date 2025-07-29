@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=22 format=3 uid="uid://hwd0lxpta2ko"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=23 format=3 uid="uid://hwd0lxpta2ko"]
 
 [ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_mdtk4"]
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="2_0wcjl"]
@@ -10,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://bde3g874eny2l" path="res://scenes/units/bat.tscn" id="4_t066e"]
 [ext_resource type="Script" uid="uid://cj7oyarx823is" path="res://data/actions/tags/once_per_round.gd" id="5_bqi72"]
 [ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="5_ifg88"]
-[ext_resource type="Texture2D" uid="uid://cger1spn6nu8k" path="res://icon.svg" id="6_bqi72"]
 [ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="6_ikb1f"]
 [ext_resource type="Script" uid="uid://d2fv6b6twhi1a" path="res://data/targeting/strategies/every_enemy.gd" id="6_r336m"]
+[ext_resource type="Texture2D" uid="uid://bjg5a6u5a1n58" path="res://assets/sprites/actions/bat.png" id="8_62di2"]
+[ext_resource type="Texture2D" uid="uid://dlp52a6w2gj63" path="res://assets/sprites/actions/bite.png" id="10_2ddq1"]
 
 [sub_resource type="Resource" id="Resource_r336m"]
 script = ExtResource("3_qoctu")
@@ -34,7 +35,7 @@ title = "Bat scream"
 key = "action.bat_scream"
 targeting = SubResource("Resource_silkv")
 effects = Array[ExtResource("3_70x6r")]([SubResource("Resource_r336m")])
-texture = ExtResource("6_bqi72")
+texture = ExtResource("8_62di2")
 source_animation = 0
 tags = Array[ExtResource("4_qoctu")]([SubResource("Resource_sqpf8")])
 metadata/_custom_type_script = "uid://crhahprxps0vr"
@@ -54,7 +55,7 @@ script = ExtResource("1_mdtk4")
 title = "Bat bite"
 targeting = SubResource("Resource_ikb1f")
 effects = Array[ExtResource("3_70x6r")]([SubResource("Resource_bqi72")])
-texture = ExtResource("6_bqi72")
+texture = ExtResource("10_2ddq1")
 source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"
 
