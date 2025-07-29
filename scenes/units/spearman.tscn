@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjm3iulok4inx"]
+
+[ext_resource type="Script" uid="uid://gpkmqikwsk0d" path="res://scenes/units/generic_unit_base_ui.gd" id="1_65som"]
+[ext_resource type="Texture2D" uid="uid://cn7p8f27o5727" path="res://assets/sprites/monsters/spearman.png" id="2_65som"]
+
+[sub_resource type="Animation" id="Animation_gbb82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProxy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rv48i"]
+resource_name = "attack"
+length = 0.702
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20297581, 0.3, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(25, 0), Vector2(25, 0), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_attack_hit_moment"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_t7hy3"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3020588),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.15)]
+}
+
+[sub_resource type="Animation" id="Animation_7hogs"]
+resource_name = "hurt"
+length = 0.599
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.1, 0.49830082),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-25, 0), Vector2(-25, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j5ql0"]
+resource_name = "idle"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProxy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.98)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7hogs"]
+_data = {
+&"RESET": SubResource("Animation_gbb82"),
+&"attack": SubResource("Animation_rv48i"),
+&"die": SubResource("Animation_t7hy3"),
+&"hurt": SubResource("Animation_7hogs"),
+&"idle": SubResource("Animation_j5ql0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohe78"]
+size = Vector2(82, 140)
+
+[node name="Ranger" type="Node2D"]
+script = ExtResource("1_65som")
+
+[node name="AnimationProxy" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationProxy"]
+position = Vector2(0, 1.0000001)
+scale = Vector2(0.15007968, 0.15007967)
+texture = ExtResource("2_65som")
+offset = Vector2(0, -560)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7hogs")
+}
+autoplay = "idle"
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(-4, -67)
+shape = SubResource("RectangleShape2D_ohe78")

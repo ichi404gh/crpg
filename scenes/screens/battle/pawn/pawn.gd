@@ -80,6 +80,7 @@ func update_status(hp_increnemnt: int, statuses):
 		const FLOATING_NUMBERS = preload("uid://dsy2hrnd3i4np")
 		var number = FLOATING_NUMBERS.instantiate()
 		damage_numbers_root.add_child(number)
+		number.position = Vector2(randf_range(-20, 20), randf_range(-20, 20))
 		if hp_increnemnt > 0:
 			number.label_settings.font_color = HEAL_COLOR
 			number.label_settings.outline_color = HEAL_OUTLINE_COLOR

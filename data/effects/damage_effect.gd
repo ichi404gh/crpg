@@ -14,7 +14,7 @@ func apply(source: Unit, target: Unit, battle_manager: BattleManager, action: Ac
 	damage.min_flat = amount_min
 	damage.max_flat = amount_max
 
-	var damage_result = battle_manager.damage_mananger.apply_damage(source, target, damage)
+	var damage_result = battle_manager.damage_mananger.apply_damage(source, target, damage,  action)
 	var interaction_effect = InteractionEvent.TargetEffect.new()
 	interaction_effect.animation = InteractionEvent.AnimationKind.Hurt
 	if action:

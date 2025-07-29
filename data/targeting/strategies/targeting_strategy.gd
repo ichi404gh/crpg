@@ -26,3 +26,19 @@ func pick_one(weighted_candidates: Array) -> Array[Unit]:
 			rand -= c[0]
 
 	return [weighted_candidates[0][1]] # fallback for rounding errors
+
+func pick_n(weighted_candidates: Array, n: int) -> Array[Unit]:
+	if not weighted_candidates:
+		return []
+	var wheight_sum: float = weighted_candidates.map(func(c): return c[0]).reduce(func (a, b): return a+b, 0)
+	var rand = randf_range(0.0, wheight_sum)
+	var results: Array[Unit] = []
+	for i in n:
+		for c in weighted_candidates:
+			if rand <= c[0]:
+				results.append(c[1])
+				break
+			else:
+				rand -= c[0]
+
+	return results

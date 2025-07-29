@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://c0okd6frubd66"]
+
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_575vd"]
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="1_y6wvd"]
+[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="2_or7ki"]
+[ext_resource type="Resource" uid="uid://bdn4xdv5r32bi" path="res://data/actions/raise_shield.tres" id="3_kci2l"]
+[ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="4_ye6n3"]
+[ext_resource type="Texture2D" uid="uid://cn7p8f27o5727" path="res://assets/sprites/monsters/spearman.png" id="5_sucpr"]
+[ext_resource type="PackedScene" uid="uid://cjm3iulok4inx" path="res://scenes/units/spearman.tscn" id="7_m573w"]
+
+[sub_resource type="Resource" id="Resource_ilwkm"]
+script = ExtResource("4_ye6n3")
+actions = Array[ExtResource("1_575vd")]([ExtResource("2_or7ki"), ExtResource("3_kci2l")])
+metadata/_custom_type_script = "uid://bysxs6fuocu8a"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2vup"]
+atlas = ExtResource("5_sucpr")
+region = Rect2(101.24475, 161.3378, 564.72864, 734.501)
+
+[resource]
+script = ExtResource("1_y6wvd")
+name = "Spearman"
+max_hp = 35
+unit_ui = ExtResource("7_m573w")
+portrait = SubResource("AtlasTexture_n2vup")
+action_set = SubResource("Resource_ilwkm")
+metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

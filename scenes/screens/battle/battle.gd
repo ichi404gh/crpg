@@ -53,6 +53,10 @@ func setup_stub():
 	const SKELETON = preload("uid://nqkobm5ii7rg")
 	const SKELETON_REAPER = preload("uid://d00w56ml886iu")
 	const MOUSEFOLK = preload("uid://bj5wsdwq6hy7e")
+	const MAGE = preload("uid://lvyhifn668b0")
+	const RANGER = preload("uid://drgbuud2gjo44")
+	const SPEARMAN = preload("uid://c0okd6frubd66")
+
 
 	encounter.append_array([
 		[
@@ -73,10 +77,9 @@ func setup_stub():
 	])
 
 	player_party = [
-		MOUSEFOLK.instantiate(),
-		MOUSEFOLK.instantiate(),
-		MOUSEFOLK.instantiate(),
-		MOUSEFOLK.instantiate(),
+		SPEARMAN.instantiate(),
+		RANGER.instantiate(),
+		MAGE.instantiate(),
 	]
 
 func setup_scene():

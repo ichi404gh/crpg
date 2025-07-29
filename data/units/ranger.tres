@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://drgbuud2gjo44"]
+
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_wqxi5"]
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="1_x6non"]
+[ext_resource type="Resource" uid="uid://cf5ul8llmqy0c" path="res://data/actions/weapon_strike.tres" id="2_yuw5u"]
+[ext_resource type="Resource" uid="uid://bwk7vs1anmvcn" path="res://data/actions/counterattack.tres" id="3_4h3xc"]
+[ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="4_x44i6"]
+[ext_resource type="Texture2D" uid="uid://dsjbeg48mecj4" path="res://assets/sprites/monsters/ranger.png" id="5_as72k"]
+[ext_resource type="PackedScene" uid="uid://boaq1mqdswedo" path="res://scenes/units/ranger.tscn" id="7_4fy27"]
+
+[sub_resource type="Resource" id="Resource_dmgx0"]
+script = ExtResource("4_x44i6")
+actions = Array[ExtResource("1_wqxi5")]([ExtResource("2_yuw5u"), ExtResource("3_4h3xc")])
+metadata/_custom_type_script = "uid://bysxs6fuocu8a"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufimk"]
+atlas = ExtResource("5_as72k")
+region = Rect2(159.7591, 131.62192, 735.67993, 702.6686)
+
+[resource]
+script = ExtResource("1_x6non")
+name = "Ranger"
+max_hp = 30
+unit_ui = ExtResource("7_4fy27")
+portrait = SubResource("AtlasTexture_ufimk")
+action_set = SubResource("Resource_dmgx0")
+metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

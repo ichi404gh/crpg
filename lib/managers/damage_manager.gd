@@ -8,14 +8,14 @@ func _init(bm: BattleManager):
 	self.bm = bm
 	dmr.registry = bm.modificator_registry
 
-func apply_damage(source: Unit, target: Unit, damage: DamagePipeline) -> Result:
+func apply_damage(source: Unit, target: Unit, damage: DamagePipeline, action: Action = null) -> Result:
 	var res = Result.new()
 
 	for mod: DealingDamageModificator in dmr.get_dealing_mods_for_unit(source):
-		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):
+		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm, action):
 			mod.modify(damage)
 	for mod: ReceivingDamageModificator in dmr.get_receiving_mods_for_unit(target):
-		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm):
+		if not mod.mod_condition or mod.mod_condition.fits(source, target, bm, action):
 			mod.modify(damage)
 
 	var reaction_events = apply_reaction(source, target, damage, bm)

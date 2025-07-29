@@ -88,10 +88,10 @@ func simulate_stage():
 	stage_simulation_ready.emit(SimulationData.new(events, turn_order, orders))
 
 func apply_order_effects():
+	orders_manager.commit_order(orders_manager.active_order)
 	var events: Array[AbstractBattleEvent] = []
-	var order = orders_manager.active_order
-	for effect: Effect in order.effects:
-		for target in order.targeting.get_targets(null, self):
+	for effect: Effect in orders_manager.active_order.effects:
+		for target in orders_manager.active_order.targeting.get_targets(null, self):
 			events.append_array(effect.apply(null, target, self))
 	return events
 

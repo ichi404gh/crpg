@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=18 format=3 uid="uid://lvyhifn668b0"]
+
+[ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="1_85r4g"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_j17p4"]
+[ext_resource type="Resource" uid="uid://bh8avx15y0r84" path="res://data/actions/quantum_healing.tres" id="2_bs4io"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="3_fknci"]
+[ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="3_qm8lk"]
+[ext_resource type="Texture2D" uid="uid://346ch0s3uugk" path="res://assets/sprites/monsters/mage.png" id="4_1autv"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="4_7la3f"]
+[ext_resource type="Script" uid="uid://ckvrtvh71magc" path="res://lib/action_tag.gd" id="4_eamqp"]
+[ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="5_7la3f"]
+[ext_resource type="PackedScene" uid="uid://dfgqoiby8yws1" path="res://scenes/units/mage.tscn" id="6_fknci"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="6_p8mpx"]
+[ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="8_p8mpx"]
+
+[sub_resource type="Resource" id="Resource_2b2hn"]
+script = ExtResource("4_7la3f")
+amount_max = 3
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_yb5qn"]
+script = ExtResource("6_p8mpx")
+x_times = 2
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_pki6g"]
+script = ExtResource("1_j17p4")
+title = "Magic spark"
+description = "Attack multiple emenies"
+flavour_text = "Weak spark opf magic energy bounce between emenies"
+key = "action.magic_spark"
+targeting = SubResource("Resource_yb5qn")
+effects = Array[ExtResource("3_fknci")]([SubResource("Resource_2b2hn")])
+texture = ExtResource("8_p8mpx")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_eamqp"]
+script = ExtResource("3_qm8lk")
+actions = Array[ExtResource("1_j17p4")]([ExtResource("2_bs4io"), SubResource("Resource_pki6g")])
+metadata/_custom_type_script = "uid://bysxs6fuocu8a"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7la3f"]
+atlas = ExtResource("4_1autv")
+region = Rect2(139.94287, 145.21535, 722.7112, 761.6173)
+
+[resource]
+script = ExtResource("1_85r4g")
+name = "Mage"
+max_hp = 25
+unit_ui = ExtResource("6_fknci")
+portrait = SubResource("AtlasTexture_7la3f")
+action_set = SubResource("Resource_eamqp")
+metadata/_custom_type_script = "uid://cm3rcfjr8rmb7"

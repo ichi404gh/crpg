@@ -20,10 +20,12 @@ var active_order: Order = null:
 					bm.targeting_registry.register(value.targeting_provider, bm.player_party)
 		active_order = value
 
-
+func commit_order(_order: Order):
+	pass
 
 func get_orders() -> Array[Order]:
 	var iop = InnateOrderProvider.new()
 	var res: Array[Order] = []
 	res.append_array(iop.get_orders())
-	return res
+	res.shuffle()
+	return res.slice(0,3)
