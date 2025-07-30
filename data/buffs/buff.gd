@@ -15,3 +15,5 @@ func tick(_target: Unit, _bm: BattleManager) -> Array[AbstractBattleEvent]:
 func _get_description():
 	if targeting_provider:
 		return "[val]{targeting}[/val]\n".format({"targeting": tr("buff.constant.affects_targeting")})
+	else:
+		return ""

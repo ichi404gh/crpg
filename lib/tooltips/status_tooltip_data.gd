@@ -15,10 +15,16 @@ func get_effects_text() -> String:
 
 	var duration = ""
 	if status.duration:
-		duration = tr("status_effect.constant.expires_in").format({val=status.duration})
+		duration = tr("status_effect.constant.expires_in").format({
+			val=status.duration,
+			round_plural=PluralHelper.plural("action_effect.plural.round", status.duration)
+			})
 	if status.uses:
-		duration = tr("status_effect.constant.charges_n").format({val=status.uses})
-	return "\n".join(strs) + "\n" + duration
+		duration = tr("status_effect.constant.charges_n").format({
+			val=status.uses,
+			uses_plural=PluralHelper.plural("action_effect.plural.uses", status.uses)
+			})
+	return "\n".join(strs.filter(func(a): return a)) + "\n" + duration
 
 func get_flavour_text():
 	return tr(status.flavour)

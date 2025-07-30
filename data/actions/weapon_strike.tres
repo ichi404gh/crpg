@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="5_vgvup"]
 [ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="6_8eoxt"]
 
-[sub_resource type="Resource" id="Resource_okts1"]
+[sub_resource type="Resource" id="Resource_2x5ws"]
 script = ExtResource("3_vgvup")
 metadata/_custom_type_script = "uid://mmchhhj8417w"
 
@@ -22,7 +22,7 @@ title = "action.weapon_strike.title"
 flavour_text = "action.weapon_strike.flavour"
 key = "action.weapon_strike"
 targeting = SubResource("Resource_4vhrk")
-effects = Array[ExtResource("2_2x5ws")]([SubResource("Resource_okts1")])
+effects = Array[ExtResource("2_2x5ws")]([SubResource("Resource_2x5ws")])
 texture = ExtResource("6_8eoxt")
 source_animation = 0
 metadata/_custom_type_script = "uid://crhahprxps0vr"

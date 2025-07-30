@@ -1,7 +1,7 @@
 key,en,ru
 status_effect.constant.status_effect,Status effect,Состояние
-status_effect.constant.expires_in,Expires in [val]{val} rounds[/val],Истекает через [val]{val} раунд(ов)[/val]
-status_effect.constant.charges_n,Have [val]{val} charges[/val],Имеет [val]{val} зарядов(ов)[/val]
+status_effect.constant.expires_in,Expires in [val]{val} {round_plural}[/val],Истекает через [val]{val} {round_plural}[/val]
+status_effect.constant.charges_n,Have [val]{val} {uses_plural}[/val],Имеет [val]{val} {uses_plural}[/val]
 
 buff.constant.affects_targeting,Affects targeting,Влияет на выбор целей
 status_effect.poisoned.title,Poisoned,Отравлен
