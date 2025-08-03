@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cslmcwir7anpu"]
+
+[ext_resource type="Script" uid="uid://cr86u4fta5hxm" path="res://scenes/screens/global_map/map_location.gd" id="1_yfsdk"]
+[ext_resource type="Texture2D" uid="uid://df68jihp8rsy" path="res://assets/ui/willage-doodle.png" id="2_4p4f4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onj1p"]
+radius = 16.124516
+
+[sub_resource type="LabelSettings" id="LabelSettings_yfsdk"]
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="MapLocation" type="Area2D"]
+script = ExtResource("1_yfsdk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3.0000002)
+scale = Vector2(0.47619048, 0.47619048)
+texture = ExtResource("2_4p4f4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onj1p")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -41.0
+offset_top = -44.0
+offset_right = 35.0
+offset_bottom = -22.0
+text = "Small town"
+label_settings = SubResource("LabelSettings_yfsdk")

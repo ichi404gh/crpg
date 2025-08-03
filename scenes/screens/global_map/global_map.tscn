@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://5ngcub6ltfb6"]
+
+[ext_resource type="Script" uid="uid://cdowv2uekoy0i" path="res://scenes/screens/global_map/global_map.gd" id="1_2roo3"]
+[ext_resource type="Texture2D" uid="uid://6ffes0g0a8s8" path="res://assets/bg/paper.jpg" id="1_iiun2"]
+
+[node name="GlobalMap" type="Node2D"]
+script = ExtResource("1_2roo3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 1)
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 800
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -1110.0
+offset_right = 2.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_iiun2")
+expand_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Locations" type="Node2D" parent="CanvasLayer/Control"]
+position = Vector2(623, 549)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv4226u4tjtf3"]
+
+[ext_resource type="Texture2D" uid="uid://ccqrmqlp5yjln" path="res://assets/ui/party-marker.png" id="1_tywxk"]
+
+[node name="PartyMarker" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.523164e-37, -5.9604645e-08)
+scale = Vector2(0.6666667, 0.6666667)
+texture = ExtResource("1_tywxk")
+offset = Vector2(4.5, -19.499998)

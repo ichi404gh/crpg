@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2oyv04k8klkb"]
+
+[ext_resource type="Script" uid="uid://dmiyt24ur72d" path="res://scenes/screens/main/main.gd" id="1_0udfb"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0udfb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_scale = 3.38
+
+[node name="SceneTransitionBackdrop" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="ActiveScreen" type="Node" parent="."]
+unique_name_in_owner = true

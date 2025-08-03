@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyij74iutv25o"]
+
+[ext_resource type="Texture2D" uid="uid://bqw4otu52kojg" path="res://assets/ui/dashed line.png" id="1_6ytgc"]
+
+[node name="Line2D" type="Line2D"]
+texture_repeat = 2
+points = PackedVector2Array(-1, -6, 96, -100)
+width = 8.54
+texture = ExtResource("1_6ytgc")
+texture_mode = 1

@@ -38,15 +38,29 @@ var hand_y: float
 
 var buttons_enabled: bool = true
 
+
+signal party_won
+signal party_lost
+
 func _ready() -> void:
 	connect_signals()
 	setup_ui()
 
-	setup_stub()
-	setup_scene()
+	#setup_stub()
+	#setup_scene()
+
+
 
 func setup_ui():
 	hand_y = hand.position.y
+
+func setup(ctx: EncounterContext):
+	player_party = ctx.player_party
+	for wave in ctx.waves:
+		encounter.append(wave.enemies)
+
+	setup_scene()
+
 
 func setup_stub():
 	const BAT = preload("uid://hwd0lxpta2ko")
@@ -64,16 +78,16 @@ func setup_stub():
 			BAT.instantiate(),
 			BAT.instantiate(),
 		],
-		[
-			BAT.instantiate(),
-			SKELETON.instantiate(),
-			SKELETON.instantiate(),
-		],
-		[
-			SKELETON.instantiate(),
-			SKELETON.instantiate(),
-			SKELETON_REAPER.instantiate(),
-		]
+		#[
+			#BAT.instantiate(),
+			#SKELETON.instantiate(),
+			#SKELETON.instantiate(),
+		#],
+		#[
+			#SKELETON.instantiate(),
+			#SKELETON.instantiate(),
+			#SKELETON_REAPER.instantiate(),
+		#]
 	])
 
 	player_party = [
@@ -112,17 +126,16 @@ func prepare_next_wave():
 	setup_scene()
 
 func retreat():
-	get_tree().quit()
+	party_lost.emit()
 
 func failed():
-	get_tree().quit()
+	party_lost.emit()
 
 func won():
-	get_tree().quit()
+	party_won.emit()
 
 
 func arrange_slots():
-
 	const PAWN = preload("uid://dmwqt8pe1nwg5")
 	for u in player_party_node.get_children():
 		u.queue_free()
