@@ -1,0 +1,204 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn0j10jly1twc"]
+
+[ext_resource type="Theme" uid="uid://l7sf8j0owpre" path="res://golden panels.tres" id="1_npc0o"]
+[ext_resource type="Script" uid="uid://c85wx6n2cercw" path="res://scenes/screens/global_map/unit_window/unit_window.gd" id="1_r3bfl"]
+[ext_resource type="LabelSettings" uid="uid://dxwtludwkw1h1" path="res://scenes/screens/global_map/unit_window/section_header_label.tres" id="3_x8gf7"]
+[ext_resource type="RichTextEffect" uid="uid://b2nx2tx8p2bp5" path="res://lib/bbcodes/dmg.tres" id="4_e4grp"]
+[ext_resource type="RichTextEffect" uid="uid://n4daf6xxn2xy" path="res://lib/bbcodes/heal.tres" id="5_ilhdf"]
+[ext_resource type="RichTextEffect" uid="uid://cqscp14jpf10y" path="res://lib/bbcodes/val.tres" id="6_pi4cq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r3bfl"]
+font_size = 22
+font_color = Color(0.8235294, 0.7137255, 0.5058824, 1)
+
+[node name="UnitWindow" type="PanelContainer"]
+anchors_preset = -1
+offset_right = 617.0
+offset_bottom = 349.0
+theme = ExtResource("1_npc0o")
+script = ExtResource("1_r3bfl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mage"
+label_settings = SubResource("LabelSettings_r3bfl")
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Info" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Equipment" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 8
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Equipment"]
+layout_mode = 2
+
+[node name="Equipment" type="VBoxContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+layout_mode = 2
+text = "Equipment"
+label_settings = ExtResource("3_x8gf7")
+
+[node name="EquipmentContainer" type="HFlowContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WeaponSlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WeaponLabel" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer"]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ArmorSlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorLabel" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Armor"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="AccessorySlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AccessoryLabel" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Accessory"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+layout_mode = 2
+text = "Party inventory"
+label_settings = ExtResource("3_x8gf7")
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 4
+
+[node name="ArmorSlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot2" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot3" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot4" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot5" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot6" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot7" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArmorSlot8" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.66
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Active modifiers"
+label_settings = ExtResource("3_x8gf7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Attack:
+Damage increase: [val]+15%[/val]"
+custom_effects = [ExtResource("4_e4grp"), ExtResource("5_ilhdf"), ExtResource("6_pi4cq")]
+
+[node name="CloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "[×]"

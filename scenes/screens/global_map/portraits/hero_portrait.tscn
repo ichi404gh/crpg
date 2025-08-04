@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctw7lfe3tcbwm"]
+
+[ext_resource type="Theme" uid="uid://l7sf8j0owpre" path="res://golden panels.tres" id="1_yi511"]
+[ext_resource type="Script" uid="uid://ne7qncsfwlny" path="res://scenes/screens/global_map/portraits/hero_portrait.gd" id="2_4gh3l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2slvl"]
+
+[node name="HeroPortrait" type="PanelContainer"]
+pivot_offset = Vector2(52.5, 0)
+theme = ExtResource("1_yi511")
+script = ExtResource("2_4gh3l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_2slvl")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hero name"

@@ -19,7 +19,7 @@ func _ready() -> void:
 	setup_party()
 	map = GLOBAL_MAP.instantiate()
 	active_screen.add_child(map)
-
+	map.setup(player_party)
 	map.selected.connect(on_select_location)
 
 

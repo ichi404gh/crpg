@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://l7sf8j0owpre"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://l7sf8j0owpre"]
 
 [ext_resource type="Texture2D" uid="uid://bqonjbj47ovfe" path="res://assets/ui/borders-gold-bg.png" id="1_qg4ec"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hnmds"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c3c37"]
 texture = ExtResource("1_qg4ec")
@@ -10,5 +12,24 @@ texture_margin_right = 15.0
 texture_margin_bottom = 15.0
 region_rect = Rect2(448, 192, 64, 64)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kq4b8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qg4ec"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s34u1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg4ec"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+bg_color = Color(0.050980393, 0.050980393, 0.05882353, 1)
+border_width_top = 2
+border_color = Color(0.87058824, 0.6784314, 0.43137255, 1)
+
 [resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_hnmds")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_c3c37")
+TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_kq4b8")
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_qg4ec")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_s34u1")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_qg4ec")

@@ -3,7 +3,11 @@ extends Node2D
 
 const MapLocation = preload("uid://cr86u4fta5hxm")
 const MAP_LOCATION = preload("uid://cslmcwir7anpu")
-@onready var locations: Node2D = $CanvasLayer/Control/Locations
+
+@onready var locations: Node2D = %Locations
+@onready var characters_container: HBoxContainer = %CharactersContainer
+@onready var unit_window: UnitWindow = %UnitWindow
+
 
 signal selected(location: LocationData)
 
@@ -16,6 +20,7 @@ var located_at: MapLocation
 
 func _ready() -> void:
 	generate_map()
+	unit_window.closed.connect(on_unit_window_close_called)
 
 func clicked_on(location: LocationData):
 	selected.emit(location)
@@ -27,7 +32,10 @@ func generate_map():
 	for row in grid_rows:
 		var location: MapLocation = MAP_LOCATION.instantiate()
 		locations.add_child(location)
-		location.position = Vector2(randi_range(0, grid_columns-1) * h_spacing + randf_range(-20, 20), - row * v_spacing + randf_range(-20, 20))
+		location.position = Vector2(
+				randi_range(0, grid_columns-1) * h_spacing + randf_range(-20, 20),
+				- row * v_spacing + randf_range(-20, 20)
+			)
 		var data = LocationData.new()
 		data.label = "poop"
 		data.enemy_waves.append(generate_waves())
@@ -51,3 +59,26 @@ func generate_waves() -> EnemyWave:
 	res.enemies.append(BAT.instantiate())
 
 	return res
+
+func setup(party: Array[Unit]):
+	setup_character_portraits(party)
+
+func setup_character_portraits(party: Array[Unit]):
+	for c in characters_container.get_children():
+		c.queue_free()
+
+	const HERO_PORTRAIT = preload("uid://ctw7lfe3tcbwm")
+	const HeroPortrait = preload("uid://ne7qncsfwlny")
+
+	for u in party:
+		var ui: HeroPortrait = HERO_PORTRAIT.instantiate()
+		characters_container.add_child(ui)
+		ui.setup(u)
+		ui.clicked.connect(on_portrait_clicked)
+
+func on_portrait_clicked(unit: Unit):
+	unit_window.setup(unit)
+	unit_window.show()
+
+func on_unit_window_close_called():
+	unit_window.hide()

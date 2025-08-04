@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://5ngcub6ltfb6"]
+[gd_scene load_steps=5 format=3 uid="uid://5ngcub6ltfb6"]
 
 [ext_resource type="Script" uid="uid://cdowv2uekoy0i" path="res://scenes/screens/global_map/global_map.gd" id="1_2roo3"]
 [ext_resource type="Texture2D" uid="uid://6ffes0g0a8s8" path="res://assets/bg/paper.jpg" id="1_iiun2"]
+[ext_resource type="PackedScene" uid="uid://ctw7lfe3tcbwm" path="res://scenes/screens/global_map/portraits/hero_portrait.tscn" id="3_jdneb"]
+[ext_resource type="PackedScene" uid="uid://dn0j10jly1twc" path="res://scenes/screens/global_map/unit_window/unit_window.tscn" id="4_mwwno"]
 
 [node name="GlobalMap" type="Node2D"]
 script = ExtResource("1_2roo3")
@@ -42,4 +44,29 @@ expand_mode = 5
 metadata/_edit_lock_ = true
 
 [node name="Locations" type="Node2D" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
 position = Vector2(623, 549)
+
+[node name="CharactersContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" parent="CanvasLayer/Control/CharactersContainer" instance=ExtResource("3_jdneb")]
+layout_mode = 2
+
+[node name="UnitWindow" parent="CanvasLayer/Control" instance=ExtResource("4_mwwno")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.5
+offset_top = -174.5
+offset_right = 308.5
+offset_bottom = 174.5
+grow_horizontal = 2
+grow_vertical = 2
