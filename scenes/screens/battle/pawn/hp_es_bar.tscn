@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqevon05t1j2w"]
+
+[ext_resource type="Script" uid="uid://bxlm577yi2lcd" path="res://scenes/screens/battle/pawn/hp_es_bar.gd" id="1_8fww3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocnu2"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.39607844, 0.007843138, 0.13333334, 1)
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fww3"]
+bg_color = Color(0.5011564, 0.7488501, 1, 1)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxox3"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.39607844, 0.007843138, 0.13333334, 1)
+draw_center = false
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5lq0"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.6156863, 0.3176471, 1)
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_oawkv"]
+line_spacing = 0.0
+font_size = 11
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HpEsBar" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fww3")
+hp_max = 289
+hp = 122
+es_max = 90
+
+[node name="EsBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -41.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 16.0
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_ocnu2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8fww3")
+max_value = 50.0
+step = 1.0
+value = 29.0
+allow_greater = true
+show_percentage = false
+
+[node name="HpBar" type="ProgressBar" parent="EsBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -5.0
+offset_right = 41.5
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_dxox3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h5lq0")
+step = 1.0
+allow_greater = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="EsBar/HpBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -8.0
+offset_right = 41.5
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "13/37 8/16"
+label_settings = SubResource("LabelSettings_oawkv")
+horizontal_alignment = 1

@@ -243,14 +243,14 @@ func _on_stage_result(data: BattleManager.SimulationData):
 				match target_effect.animation:
 					InteractionEvent.AnimationKind.Hurt:
 						target_effect.target.unit_view.hurt()
-				if target_effect.hp_change < 0:
+				if target_effect.hp_change + target_effect.es_change < 0:
 					const DAMAGE_INDICATOR = preload("uid://bbkvpkjbemqiw")
 					var scene = DAMAGE_INDICATOR.instantiate()
 					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
 					scene.setup(-target_effect.hp_change)
 
 
-				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, null)
+				unit_to_pawn[target_effect.target].update_status(target_effect.hp_change, target_effect.es_change, null)
 				if target_effect.fx:
 					var scene: ActionFX = target_effect.fx.instantiate()
 					unit_to_pawn[target_effect.target].get_node("%EffectRoot").add_child(scene)
@@ -263,9 +263,13 @@ func _on_stage_result(data: BattleManager.SimulationData):
 			if event.hurt:
 				await event.target.unit_view.hurt()
 
-			unit_to_pawn[event.target].update_status(event.hp_change, null)
+			unit_to_pawn[event.target].update_status(event.hp_change, event.es_change, null)
 		elif event is StatusEffectsUpdatedEvent:
-			unit_to_pawn[event.target].update_status(0, event.effects)
+			unit_to_pawn[event.target].update_status(0, 0,
+
+
+
+			 event.effects)
 		elif event is UnitDeadEvent:
 			event.who.unit_view.die()
 			unit_to_pawn[event.who].die()

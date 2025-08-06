@@ -6,5 +6,5 @@ func _init(bm: BattleManager):
 
 func apply_healing(target: Unit, amount: int) -> Array[AbstractBattleEvent]:
 	if target:
-		target.hp = min(target.hp + amount, target.unit_data.max_hp)
+		target.hp = min(target.hp + amount, target.total_max_hp)
 	return []
