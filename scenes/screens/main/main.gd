@@ -72,8 +72,15 @@ func setup_party():
 	const MINOR_HEALER_STAFF = preload("uid://dish68jfthflt")
 	const RUSTY_SPEAR = preload("uid://b6hacu4c6jf8g")
 	const RUSTY_SWORD = preload("uid://dnyf1gkcwv2dj")
+	const AXE = preload("uid://cvbhcwl8v73ms")
+	const LEATHER_ARMOR = preload("uid://dkgq5sgowoj8m")
+	const MAGE_ARMOR = preload("uid://bkvyeqb68n486")
 
-	party_info.inventory = []
+	party_info.inventory = [
+		AXE,
+	]
 	spearman.set_gear_item(RUSTY_SPEAR, Item.Slot.Weapon)
+	spearman.set_gear_item(LEATHER_ARMOR, Item.Slot.Armor)
 	ranger.set_gear_item(RUSTY_SWORD, Item.Slot.Weapon)
 	mage.set_gear_item(MINOR_HEALER_STAFF, Item.Slot.Weapon)
+	mage.set_gear_item(MAGE_ARMOR, Item.Slot.Armor)

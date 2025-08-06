@@ -14,7 +14,8 @@ func tick(target: Unit, battle_manager: BattleManager) -> Array[AbstractBattleEv
 
 	var ev = OffInteractionDamageEvent.new()
 	ev.target = target
-	ev.hp_change = -damage_result.final_damage
+	ev.hp_change = -damage_result.hp_damage
+	ev.es_change = -damage_result.es_damage
 
 	events.append(ev)
 

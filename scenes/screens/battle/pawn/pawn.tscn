@@ -1,41 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmwqt8pe1nwg5"]
+[gd_scene load_steps=4 format=3 uid="uid://dmwqt8pe1nwg5"]
 
 [ext_resource type="Script" uid="uid://dcdwl6y5wlagj" path="res://scenes/screens/battle/pawn/pawn.gd" id="1_hayec"]
 [ext_resource type="Script" uid="uid://bxp51gh1s6ktl" path="res://scenes/tooltips/tooltip_context.gd" id="2_ah6r1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk45r"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.39551923, 0.009381038, 0.1316472, 0.8156863)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jacq"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.14039281, 0.49854654, 0.36171407, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
+[ext_resource type="PackedScene" uid="uid://cqevon05t1j2w" path="res://scenes/screens/battle/pawn/hp_es_bar.tscn" id="3_lk45r"]
 
 [node name="Pawn" type="Node2D"]
 script = ExtResource("1_hayec")
@@ -51,56 +18,31 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(0, -71)
 
-[node name="HpBar" type="ProgressBar" parent="TooltipContext"]
-unique_name_in_owner = true
-offset_left = -34.0
-offset_top = 4.0
-offset_right = 34.0
-offset_bottom = 9.0
-theme_override_constants/outline_size = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_lk45r")
-theme_override_styles/fill = SubResource("StyleBoxFlat_5jacq")
-max_value = 50.0
-value = 23.77
-show_percentage = false
-
-[node name="Label" type="Label" parent="TooltipContext/HpBar"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -9.5
-offset_right = 15.0
-offset_bottom = 7.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 4
-theme_override_constants/shadow_outline_size = 1
-theme_override_font_sizes/font_size = 12
-text = "13/37"
-horizontal_alignment = 1
+[node name="HpEsBar" parent="TooltipContext" instance=ExtResource("3_lk45r")]
+anchors_preset = -1
+offset_top = 0.5
+offset_bottom = 0.5
+hp_max = 1000
+hp = 595
+es_max = 120
+es = 80
 
 [node name="PreparedActionsBar" type="HBoxContainer" parent="TooltipContext"]
 unique_name_in_owner = true
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -7.5
-offset_top = 16.0
+offset_top = 19.0
 offset_right = 7.5
-offset_bottom = 26.0
+offset_bottom = 29.0
 grow_horizontal = 2
 pivot_offset = Vector2(7.5, 0)
 theme_override_constants/separation = 6
 
 [node name="StatusBar" type="HBoxContainer" parent="TooltipContext"]
 unique_name_in_owner = true
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -7.0
@@ -113,7 +55,6 @@ theme_override_constants/separation = 6
 
 [node name="Tooltip" type="Control" parent="TooltipContext"]
 layout_mode = 3
-anchors_preset = 0
 offset_left = -169.0
 offset_top = -337.0
 offset_right = 170.0
