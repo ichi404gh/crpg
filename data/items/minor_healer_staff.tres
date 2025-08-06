@@ -1,0 +1,120 @@
+[gd_resource type="Resource" script_class="Item" load_steps=33 format=3 uid="uid://dish68jfthflt"]
+
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_fkulo"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="2_2sn2b"]
+[ext_resource type="Script" uid="uid://bji8t8p1tbdfn" path="res://lib/providers/action_provider.gd" id="2_aqsp0"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="3_6xpal"]
+[ext_resource type="Script" uid="uid://ckvrtvh71magc" path="res://lib/action_tag.gd" id="4_aqsp0"]
+[ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="5_bptjk"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="6_c8ri2"]
+[ext_resource type="Texture2D" uid="uid://m8d5tq8lnlrj" path="res://assets/sprites/actions/43.png" id="7_gbd0y"]
+[ext_resource type="Script" uid="uid://ckghg664ekf64" path="res://data/desirability_evaluators/have_wounded_allies_not_self.gd" id="8_knf8i"]
+[ext_resource type="Script" uid="uid://c5d87g5vabc7n" path="res://data/effects/heal_effect.gd" id="9_c26cb"]
+[ext_resource type="Script" uid="uid://cj7oyarx823is" path="res://data/actions/tags/once_per_round.gd" id="10_avl17"]
+[ext_resource type="Script" uid="uid://ft1uabvag5c6" path="res://data/targeting/providers/wounded_targeting_rule.gd" id="11_fmhyt"]
+[ext_resource type="Script" uid="uid://b3pmigr60y7l5" path="res://data/targeting/strategies/random_ally_not_self.gd" id="12_d8ch8"]
+[ext_resource type="Texture2D" uid="uid://bryrd0e2ijm0e" path="res://assets/sprites/actions/healing.png" id="13_4jif7"]
+[ext_resource type="Script" uid="uid://duacgy3orhigi" path="res://data/desirability_evaluators/self_wounded.gd" id="14_gmxn6"]
+[ext_resource type="Script" uid="uid://bfp1wa74cbqgs" path="res://data/targeting/strategies/self.gd" id="15_dn3qv"]
+[ext_resource type="Script" uid="uid://bugj1h2y45r7u" path="res://lib/items/item.gd" id="16_ikb16"]
+[ext_resource type="Texture2D" uid="uid://dcem0rpkblitb" path="res://assets/sprites/items/minor_healer_staff.png" id="17_e1nrh"]
+
+[sub_resource type="Resource" id="Resource_g2nhb"]
+script = ExtResource("3_6xpal")
+amount_max = 2
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_236li"]
+script = ExtResource("6_c8ri2")
+x_times = 2
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_bir7m"]
+script = ExtResource("1_fkulo")
+title = "Magic spark"
+targeting = SubResource("Resource_236li")
+effects = Array[ExtResource("2_2sn2b")]([SubResource("Resource_g2nhb")])
+texture = ExtResource("7_gbd0y")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_ov0ps"]
+script = ExtResource("8_knf8i")
+weight_match = 2.0
+weight_not_match = 0.5
+metadata/_custom_type_script = "uid://ckghg664ekf64"
+
+[sub_resource type="Resource" id="Resource_nei3h"]
+script = ExtResource("9_c26cb")
+amount_min = 2
+amount_max = 5
+metadata/_custom_type_script = "uid://c5d87g5vabc7n"
+
+[sub_resource type="Resource" id="Resource_148n0"]
+script = ExtResource("10_avl17")
+metadata/_custom_type_script = "uid://cj7oyarx823is"
+
+[sub_resource type="Resource" id="Resource_00tda"]
+script = ExtResource("11_fmhyt")
+weight = 5.0
+metadata/_custom_type_script = "uid://ft1uabvag5c6"
+
+[sub_resource type="Resource" id="Resource_mbh8q"]
+script = ExtResource("12_d8ch8")
+implicit_rules = Array[ExtResource("5_bptjk")]([SubResource("Resource_00tda")])
+metadata/_custom_type_script = "uid://b3pmigr60y7l5"
+
+[sub_resource type="Resource" id="Resource_ceuwh"]
+script = ExtResource("1_fkulo")
+title = "Minor healing"
+key = "action.minor_healing"
+targeting = SubResource("Resource_mbh8q")
+effects = Array[ExtResource("2_2sn2b")]([SubResource("Resource_nei3h")])
+desirability_evaluator = SubResource("Resource_ov0ps")
+texture = ExtResource("13_4jif7")
+source_animation = 1
+tags = Array[ExtResource("4_aqsp0")]([SubResource("Resource_148n0")])
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_q74e8"]
+script = ExtResource("14_gmxn6")
+weight_match = 2.5
+weight_not_match = 0.2
+metadata/_custom_type_script = "uid://duacgy3orhigi"
+
+[sub_resource type="Resource" id="Resource_41vw0"]
+script = ExtResource("9_c26cb")
+amount_min = 5
+amount_max = 8
+metadata/_custom_type_script = "uid://c5d87g5vabc7n"
+
+[sub_resource type="Resource" id="Resource_jqmjt"]
+script = ExtResource("15_dn3qv")
+metadata/_custom_type_script = "uid://bfp1wa74cbqgs"
+
+[sub_resource type="Resource" id="Resource_c2lg0"]
+script = ExtResource("1_fkulo")
+cost = 2
+cooldown = 3
+title = "Heal self"
+key = "action.item.hel_self"
+targeting = SubResource("Resource_jqmjt")
+effects = Array[ExtResource("2_2sn2b")]([SubResource("Resource_41vw0")])
+desirability_evaluator = SubResource("Resource_q74e8")
+texture = ExtResource("13_4jif7")
+source_animation = 1
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_bptjk"]
+script = ExtResource("2_aqsp0")
+provides = Array[ExtResource("1_fkulo")]([SubResource("Resource_bir7m"), SubResource("Resource_ceuwh"), SubResource("Resource_c2lg0")])
+metadata/_custom_type_script = "uid://bji8t8p1tbdfn"
+
+[resource]
+script = ExtResource("16_ikb16")
+texture = ExtResource("17_e1nrh")
+slot_mask = Dictionary[int, bool]({
+0: true
+})
+action_provider = SubResource("Resource_bptjk")
+metadata/_custom_type_script = "uid://bugj1h2y45r7u"

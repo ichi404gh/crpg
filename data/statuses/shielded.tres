@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dn82jj5sqjvr7" path="res://data/statuses/status.gd" id="2_ssgkr"]
 [ext_resource type="Script" uid="uid://d4i1bconmotfx" path="res://lib/modificators/receiving_damage_modificator.gd" id="3_7hpy3"]
 [ext_resource type="Texture2D" uid="uid://dvkffb2m22tq" path="res://assets/sprites/actions/19.png" id="3_ssgkr"]
-[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/modificators/modificator_provider.gd" id="4_7hpy3"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="4_7hpy3"]
 [ext_resource type="Script" uid="uid://b2rthyh48tmlp" path="res://data/reactions/reaction.gd" id="6_7hpy3"]
 
 [sub_resource type="Resource" id="Resource_pp6su"]

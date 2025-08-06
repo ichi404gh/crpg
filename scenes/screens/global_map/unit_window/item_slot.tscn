@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuqintc0lurup"]
+
+[ext_resource type="Script" uid="uid://b5nmodyn1b4ue" path="res://scenes/screens/global_map/unit_window/item_slot.gd" id="1_p7lbl"]
+[ext_resource type="Texture2D" uid="uid://c62wtah7im1ff" path="res://assets/ui/borders-gold.png" id="2_apdjv"]
+[ext_resource type="Texture2D" uid="uid://4lodqbnu1i2v" path="res://assets/ui/Ram Panels All.png" id="3_5pa3u"]
+[ext_resource type="Texture2D" uid="uid://xegwljrxyngg" path="res://assets/sprites/items/rusted_sword.jpg" id="4_n2eql"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0c51"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5mcs"]
+atlas = ExtResource("2_apdjv")
+region = Rect2(448, 128, 64, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcy65"]
+atlas = ExtResource("3_5pa3u")
+region = Rect2(192, 0, 64, 64)
+
+[node name="ItemSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_t0c51")
+script = ExtResource("1_p7lbl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Border9P" type="NinePatchRect" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_y5mcs")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Panel9P" type="NinePatchRect" parent="Control"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_hcy65")
+region_rect = Rect2(448, 128, 64, 64)
+patch_margin_left = 15
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="TextureRect" type="TextureRect" parent="Control/Panel9P"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("4_n2eql")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Hilight" type="ColorRect" parent="Control/Panel9P"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.83486855, 0.6698302, 0.3232439, 0.5764706)

@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Item" load_steps=19 format=3 uid="uid://b6hacu4c6jf8g"]
+
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_ix8yy"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="2_jr6lq"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="3_xaqh8"]
+[ext_resource type="Script" uid="uid://ckvrtvh71magc" path="res://lib/action_tag.gd" id="4_ix8yy"]
+[ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="5_jr6lq"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="6_dow5p"]
+[ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="7_u0e8k"]
+[ext_resource type="Texture2D" uid="uid://duvdfx4lq0x55" path="res://assets/sprites/actions/strike-02.png" id="8_n02ui"]
+[ext_resource type="Script" uid="uid://bugj1h2y45r7u" path="res://lib/items/item.gd" id="9_5n30r"]
+[ext_resource type="Script" uid="uid://bji8t8p1tbdfn" path="res://lib/providers/action_provider.gd" id="9_jr6lq"]
+[ext_resource type="Texture2D" uid="uid://d2xrfiwgu58sk" path="res://assets/sprites/items/rusted_spear.png" id="10_250bh"]
+
+[sub_resource type="Resource" id="Resource_qduge"]
+script = ExtResource("3_xaqh8")
+amount_max = 10
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_amgx3"]
+script = ExtResource("6_dow5p")
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_jm5q0"]
+script = ExtResource("1_ix8yy")
+title = "Strike"
+targeting = SubResource("Resource_amgx3")
+effects = Array[ExtResource("2_jr6lq")]([SubResource("Resource_qduge")])
+texture = ExtResource("7_u0e8k")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_cvk7k"]
+script = ExtResource("3_xaqh8")
+amount_max = 8
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_tghrq"]
+script = ExtResource("6_dow5p")
+x_times = 3
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_20vne"]
+script = ExtResource("1_ix8yy")
+cost = 2
+cooldown = 2
+title = "Skewer"
+key = "action.spear.skewer"
+targeting = SubResource("Resource_tghrq")
+effects = Array[ExtResource("2_jr6lq")]([SubResource("Resource_cvk7k")])
+texture = ExtResource("8_n02ui")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_xaqh8"]
+script = ExtResource("9_jr6lq")
+provides = Array[ExtResource("1_ix8yy")]([SubResource("Resource_jm5q0"), SubResource("Resource_20vne")])
+metadata/_custom_type_script = "uid://bji8t8p1tbdfn"
+
+[resource]
+script = ExtResource("9_5n30r")
+texture = ExtResource("10_250bh")
+slot_mask = Dictionary[int, bool]({
+0: true
+})
+action_provider = SubResource("Resource_xaqh8")
+metadata/_custom_type_script = "uid://bugj1h2y45r7u"

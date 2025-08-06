@@ -12,7 +12,6 @@ var turn_order: Array[Unit]
 var stage: int = 0
 var meta: Meta = Meta.new()
 
-var modificator_registry: ModificatorRegistry = ModificatorRegistry.new()
 var targeting_registry: TargetingRegistry = TargetingRegistry.new()
 
 

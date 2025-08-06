@@ -1,5 +1,4 @@
-class_name ModificatorRegistry
-
+extends  Node
 
 var records: Array[Record] = []
 

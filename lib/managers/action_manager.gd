@@ -8,6 +8,10 @@ const COOLDOWN_SCORE_MULTIPLIER = 0.8
 
 static func get_actions_selection_for_unit(unit: Unit) -> Array[ActionInstance]:
 	var res: Array[ActionInstance] = []
+
+	for action in ActionRegistry.get_actions_for_unit(unit):
+		res.append(ActionInstance.new(action, unit.cooldowns.get(action.key, 0)))
+
 	if unit.unit_data.action_set:
 		for action in unit.unit_data.action_set.actions:
 			res.append(ActionInstance.new(action, unit.cooldowns.get(action.key, 0)))

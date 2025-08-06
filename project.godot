@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 TooltipManager="*res://autoloads/tooltip_manager.gd"
+ModificatorRegistry="*res://lib/providers/registries/modificator_registry.gd"
+ActionRegistry="*res://lib/providers/registries/action_registry.gd"
 
 [debug]
 
@@ -32,6 +34,7 @@ window/size/window_width_override=2560
 window/size/window_height_override=1600
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+window/vsync/vsync_mode=0
 
 [dotnet]
 

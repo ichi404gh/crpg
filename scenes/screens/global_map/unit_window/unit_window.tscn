@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn0j10jly1twc"]
+[gd_scene load_steps=9 format=3 uid="uid://dn0j10jly1twc"]
 
 [ext_resource type="Theme" uid="uid://l7sf8j0owpre" path="res://golden panels.tres" id="1_npc0o"]
 [ext_resource type="Script" uid="uid://c85wx6n2cercw" path="res://scenes/screens/global_map/unit_window/unit_window.gd" id="1_r3bfl"]
 [ext_resource type="LabelSettings" uid="uid://dxwtludwkw1h1" path="res://scenes/screens/global_map/unit_window/section_header_label.tres" id="3_x8gf7"]
 [ext_resource type="RichTextEffect" uid="uid://b2nx2tx8p2bp5" path="res://lib/bbcodes/dmg.tres" id="4_e4grp"]
+[ext_resource type="PackedScene" uid="uid://cuqintc0lurup" path="res://scenes/screens/global_map/unit_window/item_slot.tscn" id="4_ilhdf"]
 [ext_resource type="RichTextEffect" uid="uid://n4daf6xxn2xy" path="res://lib/bbcodes/heal.tres" id="5_ilhdf"]
 [ext_resource type="RichTextEffect" uid="uid://cqscp14jpf10y" path="res://lib/bbcodes/val.tres" id="6_pi4cq"]
 
@@ -30,14 +31,14 @@ horizontal_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Info" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="Equipment" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 8
 metadata/_tab_index = 1
@@ -66,11 +67,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="WeaponSlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="WeaponSlot" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer" instance=ExtResource("4_ilhdf")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+slot_flags = Dictionary[int, bool]({
+0: true
+})
 
 [node name="WeaponLabel" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer"]
 layout_mode = 2
@@ -82,11 +84,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="ArmorSlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ArmorSlot" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer2" instance=ExtResource("4_ilhdf")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+slot_flags = Dictionary[int, bool]({
+1: true
+})
 
 [node name="ArmorLabel" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer2"]
 layout_mode = 2
@@ -98,11 +101,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="AccessorySlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(50, 50)
+[node name="AccessorySlot" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer3" instance=ExtResource("4_ilhdf")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+slot_flags = Dictionary[int, bool]({
+2: true
+})
 
 [node name="AccessoryLabel" type="Label" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/EquipmentContainer/VBoxContainer3"]
 layout_mode = 2
@@ -117,60 +121,37 @@ layout_mode = 2
 text = "Party inventory"
 label_settings = ExtResource("3_x8gf7")
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+[node name="InventoryGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 4
 
-[node name="ArmorSlot" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot2" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot2" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot3" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot3" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot4" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot4" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot5" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot5" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot6" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot6" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot7" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot7" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="ArmorSlot8" type="PanelContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="ItemSlot8" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer/Equipment/InventoryGrid" instance=ExtResource("4_ilhdf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Equipment/HBoxContainer"]
 layout_mode = 2

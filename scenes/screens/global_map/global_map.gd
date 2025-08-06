@@ -16,7 +16,7 @@ const grid_columns = 3
 const grid_rows = 5
 
 var located_at: MapLocation
-
+var party_info: PartyInfo
 
 func _ready() -> void:
 	generate_map()
@@ -60,24 +60,25 @@ func generate_waves() -> EnemyWave:
 
 	return res
 
-func setup(party: Array[Unit]):
-	setup_character_portraits(party)
+func setup(party_info: PartyInfo):
+	self.party_info = party_info
+	setup_character_portraits()
 
-func setup_character_portraits(party: Array[Unit]):
+func setup_character_portraits():
 	for c in characters_container.get_children():
 		c.queue_free()
 
 	const HERO_PORTRAIT = preload("uid://ctw7lfe3tcbwm")
 	const HeroPortrait = preload("uid://ne7qncsfwlny")
 
-	for u in party:
+	for u in party_info.player_party:
 		var ui: HeroPortrait = HERO_PORTRAIT.instantiate()
 		characters_container.add_child(ui)
 		ui.setup(u)
 		ui.clicked.connect(on_portrait_clicked)
 
 func on_portrait_clicked(unit: Unit):
-	unit_window.setup(unit)
+	unit_window.setup(unit, party_info)
 	unit_window.show()
 
 func on_unit_window_close_called():

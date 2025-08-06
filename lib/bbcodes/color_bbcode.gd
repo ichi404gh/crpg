@@ -5,6 +5,6 @@ extends RichTextEffect
 @export var color: Color = "#d22"
 @export var bbcode = "dmg"
 
-func _process_custom_fx(char_fx):
+func _process_custom_fx(char_fx: CharFXTransform):
 	char_fx.color = color
 	return true

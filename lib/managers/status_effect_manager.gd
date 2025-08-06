@@ -14,7 +14,7 @@ func aplly_status(target: Unit, status: Status) -> Array[AbstractBattleEvent]:
 		target.status_effects.append(status.duplicate())
 		for buff in status.buffs:
 			if buff.modificator_provider is ModificatorProvider:
-				bm.modificator_registry.register(buff.modificator_provider, [target])
+				ModificatorRegistry.register(buff.modificator_provider, [target])
 			if buff.targeting_provider is TargetingProvider:
 				bm.targeting_registry.register(buff.targeting_provider, [target])
 	var ev = StatusEffectsUpdatedEvent.from_unit(target)
@@ -41,7 +41,7 @@ func clean(target: Unit) -> Array[AbstractBattleEvent]:
 	for status: Status in to_remove:
 		for buff: Buff in status.buffs:
 			if buff.modificator_provider is ModificatorProvider:
-				bm.modificator_registry.unregister(buff.modificator_provider)
+				ModificatorRegistry.unregister(buff.modificator_provider)
 			if buff.targeting_provider is TargetingProvider:
 				bm.targeting_registry.unregister(buff.targeting_provider)
 		target.status_effects.erase(status)

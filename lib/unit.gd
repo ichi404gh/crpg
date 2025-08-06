@@ -1,4 +1,5 @@
 class_name Unit
+extends Resource
 
 
 @export var hp: int
@@ -6,16 +7,33 @@ class_name Unit
 @export var alive: bool = true
 @export var unit_data: UnitData
 @export var auto_selects_actions: bool = true
-
-var status_effects: Array[Status]
-
-var unit_view: UnitBaseUI
+@export var gear: Dictionary[Item.Slot, Item] = {
+	Item.Slot.Weapon: null,
+	Item.Slot.Armor: null,
+	Item.Slot.Accessory: null,
+}
 
 signal selected_actions_changed(actions: Array[Action])
 
+
+var status_effects: Array[Status]
+var unit_view: UnitBaseUI
 var selected_actions: Array[Action] = []
 var cooldowns: Dictionary[String, int] = {}
 
+
+func set_gear_item(item: Item, slot: Item.Slot):
+	if gear[slot]: # if slot was occupied
+		if gear[slot].action_provider:
+			ActionRegistry.unregister(gear[slot].action_provider)
+		if gear[slot].mod_provider:
+			ModificatorRegistry.unregister(gear[slot].mod_provider)
+	gear[slot] = item
+	if item:
+		if item.action_provider:
+			ActionRegistry.register(item.action_provider, [self])
+		if item.mod_provider:
+			ModificatorRegistry.register(item.mod_provider, [self])
 
 
 func remove_actions(index: int):
@@ -39,7 +57,6 @@ func clear_cooling_down_actions():
 	selected_actions = selected_actions.filter(func(a: Action): return not cooldowns.has(a.key))
 	if selected_actions.size() != old_size:
 		selected_actions_changed.emit(selected_actions)
-
 
 
 func tick_cooldowns():

@@ -6,7 +6,6 @@ var dmr: DamageModificatorRegistry = DamageModificatorRegistry.new()
 
 func _init(bm: BattleManager):
 	self.bm = bm
-	dmr.registry = bm.modificator_registry
 
 func apply_damage(source: Unit, target: Unit, damage: DamagePipeline, action: Action = null) -> Result:
 	var res = Result.new()

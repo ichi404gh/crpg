@@ -12,14 +12,14 @@ const BATTLE = preload("uid://c6vs1yn5jv11w")
 
 var map: GlobalMap
 var battle: Battle
-var player_party: Array[Unit]
+var party_info: PartyInfo
 
 
 func _ready() -> void:
 	setup_party()
 	map = GLOBAL_MAP.instantiate()
 	active_screen.add_child(map)
-	map.setup(player_party)
+	map.setup(party_info)
 	map.selected.connect(on_select_location)
 
 
@@ -33,7 +33,7 @@ func on_select_location(loc_data: LocationData):
 	battle.party_lost.connect(on_battle_end)
 	battle.party_won.connect(on_battle_end)
 	var encounter_context = EncounterContext.new()
-	encounter_context.player_party = player_party
+	encounter_context.player_party = party_info.player_party
 	encounter_context.waves = loc_data.enemy_waves
 	battle.setup(encounter_context)
 	await fade_in()
@@ -59,8 +59,21 @@ func setup_party():
 	const RANGER = preload("uid://drgbuud2gjo44")
 	const SPEARMAN = preload("uid://c0okd6frubd66")
 
-	player_party = [
-		SPEARMAN.instantiate(),
-		RANGER.instantiate(),
-		MAGE.instantiate(),
+	var spearman = SPEARMAN.instantiate()
+	var ranger = RANGER.instantiate()
+	var mage = MAGE.instantiate()
+	party_info = PartyInfo.new()
+	party_info.player_party = [
+		spearman,
+		ranger,
+		mage,
 	]
+
+	const MINOR_HEALER_STAFF = preload("uid://dish68jfthflt")
+	const RUSTY_SPEAR = preload("uid://b6hacu4c6jf8g")
+	const RUSTY_SWORD = preload("uid://dnyf1gkcwv2dj")
+
+	party_info.inventory = []
+	spearman.set_gear_item(RUSTY_SPEAR, Item.Slot.Weapon)
+	ranger.set_gear_item(RUSTY_SWORD, Item.Slot.Weapon)
+	mage.set_gear_item(MINOR_HEALER_STAFF, Item.Slot.Weapon)

@@ -10,12 +10,12 @@ var active_order: Order = null:
 		if active_order != value:
 			if active_order:
 				if active_order.modificator_provider:
-					bm.modificator_registry.unregister(active_order.modificator_provider)
+					ModificatorRegistry.unregister(active_order.modificator_provider)
 				if active_order.targeting_provider:
 					bm.targeting_registry.unregister(active_order.targeting_provider)
 			if value:
 				if value.modificator_provider:
-					bm.modificator_registry.register(value.modificator_provider, bm.player_party)
+					ModificatorRegistry.register(value.modificator_provider, bm.player_party)
 				if value.targeting_provider:
 					bm.targeting_registry.register(value.targeting_provider, bm.player_party)
 		active_order = value
