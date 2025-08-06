@@ -19,7 +19,8 @@ func apply(source: Unit, target: Unit, battle_manager: BattleManager, action: Ac
 	interaction_effect.animation = InteractionEvent.AnimationKind.Hurt
 	if action:
 		interaction_effect.fx = action.effect_scene
-	interaction_effect.hp_change = -damage_result.final_damage
+	interaction_effect.hp_change = -damage_result.hp_damage
+	interaction_effect.es_change = -damage_result.es_damage
 	interaction_effect.target = target
 	events.append(interaction_effect)
 

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_epasn"]
 [ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="2_fiay5"]
 [ext_resource type="Script" uid="uid://cc6djoemhugti" path="res://data/orders/order.gd" id="2_pgre3"]
-[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="3_fiay5"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="4_wyb04"]
 [ext_resource type="Texture2D" uid="uid://8mx0jil68fht" path="res://assets/sprites/orders/press_the_attack.jpg" id="6_wyb04"]
 
 [sub_resource type="Resource" id="Resource_fiay5"]
@@ -14,7 +14,7 @@ additive_bonus = 0.10000000000000007
 metadata/_custom_type_script = "uid://3akyn7qc8p3s"
 
 [sub_resource type="Resource" id="Resource_lfxfc"]
-script = ExtResource("3_fiay5")
+script = ExtResource("4_wyb04")
 provides = Array[ExtResource("1_bkfrd")]([SubResource("Resource_fiay5")])
 metadata/_custom_type_script = "uid://dx113vxf7sk78"
 

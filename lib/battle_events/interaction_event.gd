@@ -16,10 +16,11 @@ class TargetEffect extends AbstractBattleEvent:
 	var target: Unit
 	var animation: AnimationKind
 	var hp_change: int
+	var es_change: int
 	var fx: PackedScene
 
 	func _to_string() -> String:
-		return "hp_change: %s" % [hp_change]
+		return "hp_change: %s, es_change: %s" % [hp_change, es_change]
 
 enum AnimationKind {
 	Attack,

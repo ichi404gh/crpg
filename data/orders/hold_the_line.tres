@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="1_mfjl3"]
 [ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="2_mfjl3"]
 [ext_resource type="Script" uid="uid://d4i1bconmotfx" path="res://lib/modificators/receiving_damage_modificator.gd" id="3_na8fk"]
-[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="4_jwpye"]
 [ext_resource type="Script" uid="uid://cc6djoemhugti" path="res://data/orders/order.gd" id="5_gok04"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="5_na8fk"]
 [ext_resource type="Texture2D" uid="uid://dc7vgwyg1xtdh" path="res://assets/sprites/orders/defend.jpg" id="7_na8fk"]
 
 [sub_resource type="Resource" id="Resource_uskdx"]
@@ -20,7 +20,7 @@ multiplicative_bonus = 0.9
 metadata/_custom_type_script = "uid://d4i1bconmotfx"
 
 [sub_resource type="Resource" id="Resource_xyla0"]
-script = ExtResource("4_jwpye")
+script = ExtResource("5_na8fk")
 provides = Array[ExtResource("1_gh7g1")]([SubResource("Resource_uskdx"), SubResource("Resource_orw8b")])
 metadata/_custom_type_script = "uid://dx113vxf7sk78"
 
