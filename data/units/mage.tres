@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=8 format=3 uid="uid://lvyhifn668b0"]
 
 [ext_resource type="Script" uid="uid://cm3rcfjr8rmb7" path="res://lib/unit_data.gd" id="1_85r4g"]
-[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_j17p4"]
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_sglo2"]
 [ext_resource type="Script" uid="uid://bysxs6fuocu8a" path="res://lib/action_set.gd" id="3_qm8lk"]
 [ext_resource type="Texture2D" uid="uid://346ch0s3uugk" path="res://assets/sprites/monsters/mage.png" id="4_1autv"]
 [ext_resource type="PackedScene" uid="uid://dfgqoiby8yws1" path="res://scenes/units/mage.tscn" id="6_fknci"]

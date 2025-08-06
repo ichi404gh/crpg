@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Item" load_steps=19 format=3 uid="uid://cvbhcwl8v73ms"]
+
+[ext_resource type="Script" uid="uid://crhahprxps0vr" path="res://lib/action.gd" id="1_wpw41"]
+[ext_resource type="Script" uid="uid://c6uqypfvmhyax" path="res://data/effects/effect.gd" id="2_hc5u8"]
+[ext_resource type="Script" uid="uid://mmchhhj8417w" path="res://data/effects/damage_effect.gd" id="3_kmguq"]
+[ext_resource type="Script" uid="uid://ckvrtvh71magc" path="res://lib/action_tag.gd" id="4_sqfa7"]
+[ext_resource type="Script" uid="uid://b1gxj7ffeq4g1" path="res://data/targeting/providers/targeting_rule.gd" id="5_j1ls0"]
+[ext_resource type="Script" uid="uid://b0mxbvxl5sod0" path="res://data/targeting/strategies/random_enemy.gd" id="6_cgm3f"]
+[ext_resource type="Texture2D" uid="uid://c4jdadbxifs2q" path="res://assets/sprites/actions/strike-01.png" id="7_mgcat"]
+[ext_resource type="Script" uid="uid://bji8t8p1tbdfn" path="res://lib/providers/action_provider.gd" id="8_aicuu"]
+[ext_resource type="Texture2D" uid="uid://dru1n3ed3q5kt" path="res://assets/sprites/actions/strike-03.png" id="8_hc5u8"]
+[ext_resource type="Script" uid="uid://bugj1h2y45r7u" path="res://lib/items/item.gd" id="9_7nj48"]
+[ext_resource type="Texture2D" uid="uid://c68sya3ngvnt7" path="res://assets/sprites/items/axe.png" id="10_8cuh7"]
+
+[sub_resource type="Resource" id="Resource_xx7wh"]
+script = ExtResource("3_kmguq")
+amount_min = 2
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_lan6x"]
+script = ExtResource("6_cgm3f")
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_ktdnv"]
+script = ExtResource("1_wpw41")
+title = "Strike"
+targeting = SubResource("Resource_lan6x")
+effects = Array[ExtResource("2_hc5u8")]([SubResource("Resource_xx7wh")])
+texture = ExtResource("7_mgcat")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_wpw41"]
+script = ExtResource("3_kmguq")
+amount_min = 3
+amount_max = 6
+metadata/_custom_type_script = "uid://mmchhhj8417w"
+
+[sub_resource type="Resource" id="Resource_hc5u8"]
+script = ExtResource("6_cgm3f")
+x_times = 2
+metadata/_custom_type_script = "uid://b0mxbvxl5sod0"
+
+[sub_resource type="Resource" id="Resource_kmguq"]
+script = ExtResource("1_wpw41")
+cost = 2
+cooldown = 2
+title = "Cleave"
+targeting = SubResource("Resource_hc5u8")
+effects = Array[ExtResource("2_hc5u8")]([SubResource("Resource_wpw41")])
+texture = ExtResource("8_hc5u8")
+source_animation = 0
+metadata/_custom_type_script = "uid://crhahprxps0vr"
+
+[sub_resource type="Resource" id="Resource_xbkft"]
+script = ExtResource("8_aicuu")
+provides = Array[ExtResource("1_wpw41")]([SubResource("Resource_ktdnv"), SubResource("Resource_kmguq")])
+metadata/_custom_type_script = "uid://bji8t8p1tbdfn"
+
+[resource]
+script = ExtResource("9_7nj48")
+texture = ExtResource("10_8cuh7")
+slot_mask = Dictionary[int, bool]({
+0: true
+})
+action_provider = SubResource("Resource_xbkft")
+metadata/_custom_type_script = "uid://bugj1h2y45r7u"

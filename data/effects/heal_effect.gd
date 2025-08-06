@@ -8,6 +8,8 @@ func apply(_source: Unit, target: Unit, battle_manager: BattleManager, action: A
 	var amount = randi_range(amount_min, amount_max)
 	var events = []
 
+	amount = min(amount, target.total_max_hp - target.hp)
+
 	var interaction_effect = InteractionEvent.TargetEffect.new()
 	interaction_effect.animation = InteractionEvent.AnimationKind.None
 	interaction_effect.fx = action.effect_scene

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cc6djoemhugti" path="res://data/orders/order.gd" id="2_p53qc"]
 [ext_resource type="Script" uid="uid://3akyn7qc8p3s" path="res://lib/modificators/dealing_damage_modificator.gd" id="3_7vo11"]
 [ext_resource type="Script" uid="uid://d4i1bconmotfx" path="res://lib/modificators/receiving_damage_modificator.gd" id="4_e14ot"]
-[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="5_yelb6"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="5_7vo11"]
 [ext_resource type="Texture2D" uid="uid://d1xnbt5hgairm" path="res://assets/sprites/orders/reckless_attack.jpg" id="7_rlg7g"]
 
 [sub_resource type="Resource" id="Resource_ioi6c"]
@@ -19,7 +19,7 @@ multiplicative_bonus = 1.5000000000000002
 metadata/_custom_type_script = "uid://d4i1bconmotfx"
 
 [sub_resource type="Resource" id="Resource_tyga6"]
-script = ExtResource("5_yelb6")
+script = ExtResource("5_7vo11")
 provides = Array[ExtResource("2_iincc")]([SubResource("Resource_ioi6c"), SubResource("Resource_gc11h")])
 metadata/_custom_type_script = "uid://dx113vxf7sk78"
 

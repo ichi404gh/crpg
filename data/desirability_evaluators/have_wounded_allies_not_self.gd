@@ -9,6 +9,6 @@ func evaluate(source: Unit, battle_manager: BattleManager) -> float:
 	for unit in party:
 		if unit == source:
 			continue
-		if unit.hp / float(unit.unit_data.max_hp) <= threshold:
+		if unit.hp / float(unit.total_max_hp) <= threshold:
 			return weight_match
 	return weight_not_match

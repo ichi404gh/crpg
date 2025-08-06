@@ -7,11 +7,11 @@ var battle_manager: BattleManager
 
 signal clicked
 
-@onready var hp_bar: ProgressBar = %HpBar
+const HpEsBar = preload("uid://bxlm577yi2lcd")
+@onready var hp_es_bar: HpEsBar = $TooltipContext/HpEsBar
 @onready var prepared_actions_bar: HBoxContainer = %PreparedActionsBar
 @onready var status_bar: HBoxContainer = %StatusBar
 @onready var unit_root: Node2D = %UnitRoot
-@onready var hp_label: Label = %Label
 @onready var damage_numbers_root: Node2D = %DamageNumbersRoot
 
 const DMG_COLOR: Color = Color(0.834, 0.29, 0.123, 1.0)
@@ -36,12 +36,14 @@ func setup(unit: Unit, flip: bool, battle_manager: BattleManager):
 	unit_root.add_child(scene)
 	if flip:
 		scene.scale.x = -1
-	hp_bar.max_value = unit.unit_data.max_hp
-	hp_bar.value = unit.hp
-	hp_label.text = "%s/%s" % [unit.hp, unit.unit_data.max_hp]
-	update_status(0, unit.status_effects)
+
+	hp_es_bar.hp_max = unit.total_max_hp
+	hp_es_bar.hp = unit.hp
+	hp_es_bar.es_max = unit.total_max_es
+	hp_es_bar.es = unit.es
+	update_status(0, 0, unit.status_effects)
 func die():
-	hp_bar.hide()
+	hp_es_bar.hide()
 	status_bar.hide()
 	prepared_actions_bar.hide()
 
@@ -67,14 +69,13 @@ func on_unit_hovered(value: bool):
 			self.battle_manager.meta.hovered_unit = null
 
 
-func update_status(hp_increnemnt: int, statuses):
-	hp_value += hp_increnemnt
-	hp_label.text = "%s/%s" % [clamp(hp_value, 0, unit.unit_data.max_hp), unit.unit_data.max_hp]
+func update_status(hp_increnemnt: int, es_increment: int, statuses):
+	hp_es_bar.update_ui()
+	hp_es_bar.hp += hp_increnemnt
+	hp_es_bar.es += es_increment
 
 	on_statuses_changed(statuses)
 
-	var tween = create_tween()
-	tween.tween_property(hp_bar, "value", hp_value, 0.4).set_ease(Tween.EASE_IN)
 
 	if hp_increnemnt != 0:
 		const FLOATING_NUMBERS = preload("uid://dsy2hrnd3i4np")
@@ -89,8 +90,9 @@ func update_status(hp_increnemnt: int, statuses):
 			number.label_settings.outline_color = DMG_OUTLINE_COLOR
 
 		number.text = str(abs(hp_increnemnt))
-	#
 		number.modulate.a = 1
+		var tween = create_tween()
+
 		tween.parallel().tween_property(number, "position:y", -50, 0.9)
 		tween.parallel().tween_property(number, "modulate:a", 0, 0.9)
 		await tween.finished

@@ -20,9 +20,14 @@ func apply_damage(source: Unit, target: Unit, damage: DamagePipeline, action: Ac
 	var reaction_events = apply_reaction(source, target, damage, bm)
 
 	damage.resolve()
-	res.final_damage = damage.resolved_value
 
-	target.hp -= damage.resolved_value
+	var es_damage = max(0, target.es - damage.resolved_value)
+	target.es -= es_damage
+	target.hp -= (damage.resolved_value - es_damage)
+
+	res.es_damage = es_damage
+	res.hp_damage = damage.resolved_value - es_damage
+
 	if target.hp <= 0:
 		target.alive = false
 		var event = UnitDeadEvent.new()
@@ -59,4 +64,5 @@ func apply_reaction(source: Unit, target: Unit, damage: DamagePipeline, bm: Batt
 
 class Result:
 	var events: Array[AbstractBattleEvent] = []
-	var final_damage: int
+	var hp_damage: int
+	var es_damage: int

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://dkgq5sgowoj8m"]
+
+[ext_resource type="Script" uid="uid://bugj1h2y45r7u" path="res://lib/items/item.gd" id="1_bxfgr"]
+[ext_resource type="Script" uid="uid://18pyry3sq7u6" path="res://lib/modificators/modificator.gd" id="1_pspjo"]
+[ext_resource type="Script" uid="uid://d4i1bconmotfx" path="res://lib/modificators/receiving_damage_modificator.gd" id="2_is605"]
+[ext_resource type="Script" uid="uid://dx113vxf7sk78" path="res://lib/providers/modificator_provider.gd" id="3_x1vp7"]
+[ext_resource type="Texture2D" uid="uid://cl8ofy48y1ujj" path="res://assets/sprites/items/leather_armor.png" id="5_ci7p8"]
+
+[sub_resource type="Resource" id="Resource_csqxu"]
+script = ExtResource("2_is605")
+flat_bonus = -1
+metadata/_custom_type_script = "uid://d4i1bconmotfx"
+
+[sub_resource type="Resource" id="Resource_68hc5"]
+script = ExtResource("3_x1vp7")
+provides = Array[ExtResource("1_pspjo")]([SubResource("Resource_csqxu")])
+metadata/_custom_type_script = "uid://dx113vxf7sk78"
+
+[resource]
+script = ExtResource("1_bxfgr")
+texture = ExtResource("5_ci7p8")
+slot_mask = Dictionary[int, bool]({
+1: true
+})
+mod_provider = SubResource("Resource_68hc5")
+metadata/_custom_type_script = "uid://bugj1h2y45r7u"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bkvyeqb68n486"]
+
+[ext_resource type="Script" uid="uid://bugj1h2y45r7u" path="res://lib/items/item.gd" id="1_t4s3j"]
+[ext_resource type="Texture2D" uid="uid://41rbhdnlolpo" path="res://assets/sprites/items/mage_armor.png" id="2_8tl2q"]
+
+[resource]
+script = ExtResource("1_t4s3j")
+texture = ExtResource("2_8tl2q")
+slot_mask = Dictionary[int, bool]({
+1: true
+})
+stat_bonus_provider = Dictionary[int, int]({
+1: 4
+})
+metadata/_custom_type_script = "uid://bugj1h2y45r7u"
