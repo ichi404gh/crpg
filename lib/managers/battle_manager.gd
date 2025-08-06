@@ -55,7 +55,6 @@ func simulate_stage():
 	var max_round = (player_party + enemy_party)\
 						.map(func(u: Unit): return u.selected_actions.size())\
 						.max()
-
 	events.append_array(apply_order_effects())
 
 	for round_number in max_round:
@@ -80,11 +79,24 @@ func simulate_stage():
 		events.append_array(status_effect_manager.expire_statuses(unit))
 		process_unit_cooldowns(unit)
 
+	events.append_array(regenerate_es())
 	turn_order = _get_turn_order()
 	var orders = orders_manager.get_orders()
 	orders.shuffle()
 
 	stage_simulation_ready.emit(SimulationData.new(events, turn_order, orders))
+
+func regenerate_es():
+	var events: Array[AbstractBattleEvent] = []
+	for unit: Unit in (player_party + enemy_party):
+		var regenerated_value = unit.regenerate_es()
+		if regenerated_value:
+			var ev = OffInteractionDamageEvent.new()
+			ev.target = unit
+			ev.es_change = regenerated_value
+			ev.hurt = false
+			events.append(ev)
+	return events
 
 func apply_order_effects():
 	orders_manager.commit_order(orders_manager.active_order)
